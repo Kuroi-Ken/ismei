@@ -1,64 +1,65 @@
-<footer class="bg-[#1E3A8A] w-full h-[400px] flex items-center">
-    <div class="w-full max-w-7xl mx-auto px-10">
-        <div class="grid grid-cols-3 gap-40 h-full items-start">
+<footer class="bg-[#1E3A8A] w-full py-10">
+    <div class="max-w-7xl mx-auto px-6">
 
-            <div class="flex flex-col">
-                <div class="flex gap-5">
-                    <img class="w-[110px] h-[100px]" src="../assets/seameo.png" alt="">
-                </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 
-                <span class="text-justify text-lg leading-relaxed text-[#F8FAFC] max-w-sm pt-3">
-                    Office Address: Jl. Kaliurang Km.6 Sambisari, Condongcatur, Depok, Sleman, Yogyakarta, Indonesia
+            <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                <img class="w-[90px] h-[80px]" src="../assets/seameo.png" alt="">
+
+                <span class="text-sm leading-relaxed text-[#F8FAFC] pt-3 max-w-xs">
+                    Office Address: Jl. Kaliurang Km.6 Sambisari, Condongcatur, Depok,
+                    Sleman, Yogyakarta, Indonesia
                 </span>
 
-                <div class="flex gap-10 max-w-xs pt-7">
+                <div class="flex gap-6 pt-5">
                     <a href="">
-                        <i class="w-[27px] h-[27px] text-[#F8FAFC] hover:text-blue-500 duration-200 transition-colors" data-feather="twitter"></i>
+                        <i class="text-[#F8FAFC] hover:text-blue-400 transition" data-feather="twitter"></i>
                     </a>
                     <a href="">
-                        <i class="w-[27px] h-[27px] text-[#F8FAFC] hover:text-blue-500 duration-200 transition-colors" data-feather="facebook"></i>
+                        <i class="text-[#F8FAFC] hover:text-blue-400 transition" data-feather="facebook"></i>
                     </a>
                     <a href="">
-                        <i class="w-[27px] h-[27px] text-[#F8FAFC] hover:text-blue-500 duration-200 transition-colors" data-feather="instagram"></i>
+                        <i class="text-[#F8FAFC] hover:text-blue-400 transition" data-feather="instagram"></i>
                     </a>
                     <a href="">
-                        <i class="w-[27px] h-[27px] text-[#F8FAFC] hover:text-blue-500 duration-200 transition-colors" data-feather="globe"></i>
+                        <i class="text-[#F8FAFC] hover:text-blue-400 transition" data-feather="globe"></i>
                     </a>
                 </div>
             </div>
 
-            <div class="flex flex-col">
-                <h4 class="text-xl text-[#F8FAFC] font-bold">
+            <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                <h4 class="text-lg text-[#F8FAFC] font-bold">
                     Contact Us
                 </h4>
 
-                <div class="pt-8 flex flex-col gap-4">
-                    <a href="" class="flex gap-5 text-[#F8FAFC] hover:text-blue-500">
+                <div class="pt-5 flex flex-col gap-3 text-sm">
+                    <a href="" class="flex gap-3 text-[#F8FAFC] hover:text-blue-400 transition">
                         <i data-feather="phone"></i> WhatsApp
                     </a>
 
-                    <a href="" class="flex gap-5 text-[#F8FAFC] hover:text-blue-500 duration-200 transition-colors">
+                    <a href="" class="flex gap-3 text-[#F8FAFC] hover:text-blue-400 transition">
                         <i data-feather="mail"></i> ismei@qitepinmath.org
                     </a>
                 </div>
             </div>
 
-            <div class="flex flex-col">
-                <h1 class="text-xl text-[#F8FAFC] font-bold">
+            <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                <h4 class="text-lg text-[#F8FAFC] font-bold">
                     Quick Menu
-                </h1>
+                </h4>
 
-                <ul class="pt-8 flex flex-col gap-2">
-                    <li><a href="/" class="text-[#F8FAFC] hover:text-blue-500 transition-colors duration-200">Home</a></li>
-                    <li><a href="#" class="text-[#F8FAFC] hover:text-blue-500 transition-colors duration-200">Symposium</a></li>
-                    <li><a href="/information" class="text-[#F8FAFC] hover:text-blue-500 transition-colors duration-200">Informations</a></li>
-                    <li><a href="#" class="text-[#F8FAFC] hover:text-blue-500 transition-colors duration-200">Announcement</a></li>
-                    <li><a href="#" class="text-[#F8FAFC] hover:text-blue-500 transition-colors duration-200">Proceeding</a></li>
-                    <li><a href="#" class="text-[#F8FAFC] hover:text-blue-500 transition-colors duration-200">Post Symposium Workshop</a></li>
-                    <li><a href="#" class="text-[#F8FAFC] hover:text-blue-500 transition-colors duration-200">About</a></li>
+                <ul class="pt-5 flex flex-col gap-2 text-sm">
+                    <li><a href="/" class="text-[#F8FAFC] hover:text-blue-400 transition">Home</a></li>
+                    <li><a href="#" class="text-[#F8FAFC] hover:text-blue-400 transition">Symposium</a></li>
+                    <li><a href="/information" class="text-[#F8FAFC] hover:text-blue-400 transition">Informations</a></li>
+                    <li><a href="#" class="text-[#F8FAFC] hover:text-blue-400 transition">Announcement</a></li>
+                    <li><a href="#" class="text-[#F8FAFC] hover:text-blue-400 transition">Proceeding</a></li>
+                    <li><a href="#" class="text-[#F8FAFC] hover:text-blue-400 transition">Post Symposium Workshop</a></li>
+                    <li><a href="#" class="text-[#F8FAFC] hover:text-blue-400 transition">About</a></li>
                 </ul>
             </div>
 
         </div>
+
     </div>
 </footer>
