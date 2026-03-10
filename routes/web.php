@@ -18,3 +18,6 @@ Route::get('/', function () {
 Route::get('/information', function () {
     return view('information');
 });
+Route::get('/symposium', function () {
+    return view('symposium');
+});

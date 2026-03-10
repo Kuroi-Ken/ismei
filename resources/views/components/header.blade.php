@@ -11,14 +11,13 @@
         <nav class="hidden md:block">
             <ul class="flex gap-8 text-[15px]">
                 <li><a href="/" class="text-[#1E3A8A] hover:text-black">Home</a></li>
-                <li><a href="#" class="text-[#1E3A8A] hover:text-black">Symposium</a></li>
+                <li><a href="/symposium" class="text-[#1E3A8A] hover:text-black">Symposium</a></li>
                 <li><a href="/information" class="text-[#1E3A8A] hover:text-black">Informations</a></li>
                 <li><a href="#" class="text-[#1E3A8A] hover:text-black">Post Symposium Workshop</a></li>
                 <li><a href="#" class="text-[#1E3A8A] hover:text-black">About</a></li>
             </ul>
         </nav>
 
-        <!-- Hamburger -->
         <button id="menu-btn" class="md:hidden">
             <i data-feather="menu" class="w-7 h-7 text-[#1E3A8A]"></i>
         </button>
@@ -27,13 +26,11 @@
 </header>
 
 
-<!-- Overlay -->
 <div id="overlay"
     class="fixed inset-0 bg-black/40 opacity-0 invisible transition-all duration-500 z-40">
 </div>
 
 
-<!-- Sidebar -->
 <div id="sidebar"
     class="fixed top-0 right-0 h-full w-72 bg-white shadow-xl
     transform translate-x-full transition-transform duration-300 z-50">
