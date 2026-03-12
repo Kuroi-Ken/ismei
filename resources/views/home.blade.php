@@ -130,7 +130,7 @@
 
             <div class="w-full">
 
-                <h1 class="text-center text-blue-900 text-[40px] font-medium mb-15">
+                <h1 class="text-center text-blue-900 text-[40px] font-bold mb-15">
                     Register and Join Us
                 </h1>
 
@@ -168,16 +168,12 @@
     </section>
 
     <section class="w-full">
-        <div class="max-w-7xl mx-auto p-10 border rounded-2xl">
+        <div class="max-w-7xl mx-auto p-10 border rounded-2xl bg-[#F8FAFC] shadow-2xl">
 
-            <div class="flex justify-between pb-10">
-                <h2 class="text-[30px] font-medium text-blue-900">
+            <div class="w-full mx-auto pb-10">
+                <h2 class="text-[40px] text-center font-bold text-blue-900">
                     ISMEI Keynotes Speaker
                 </h2>
-
-                <a href="#" class="grid items-center w-52 h-10 text-xl text-center text-white bg-blue-900 rounded-3xl hover:bg-blue-800 transition">
-                    See More Profile
-                </a>
             </div>
 
             @php $total = 5; @endphp
@@ -207,19 +203,22 @@
             </div>
 
             @if ($total > 4)
-                <div class="mt-5 text-center">
+                <div class="my-5 text-center">
                     <h3 class="italic text-[#1E3A8A]">
                         *Scroll to see more keynote speakers
                     </h3>
                 </div>
             @endif
+            <a href="#" class="mx-auto grid items-center w-52 h-10 text-xl text-center text-white bg-blue-900 rounded-3xl hover:bg-blue-800 transition">
+                See More Profile
+            </a>
 
         </div>
     </section>
 
     <section class="w-full mt-40 mx-auto max-w-7xl">
         <div class="max-w-7xl mx-auto px-10">
-            <h2 class="text-3xl text-center font-bold text-blue-900">
+            <h2 class="text-3xl text-[40px] text-center font-bold text-blue-900 pb-10">
                 Hall of Informations
             </h2>
         </div>
@@ -245,7 +244,7 @@
             </div>
         </div>
         <h3></h3>
-        <div class="flex gap-5 max-w-6xl py-10 justify-center mx-auto">
+        <div class="flex gap-5 max-w-6xl py-5 justify-center mx-auto">
             <a href="#" class="w-50 grid items-center h-11 bg-blue-900 text-white text-center rounded-3xl text-xl">
                 Schedule
             </a>
@@ -256,24 +255,32 @@
         
     </section>
 
-    <section class="w-full ">
-        <div class="w-full h-screen my-auto">
+    <section class="w-full">
+
+        <div class="min-h-screen flex flex-col items-center justify-center px-5">
+
             <h1 class="text-center text-blue-900 text-[40px] font-bold pb-2">
                 Contact Us
             </h1>
-            <h3 class="text-center text-[20px] text-[#1E3A8A] max-w-5xl leading-tight mx-auto pb-5">
+
+            <h3 class="text-center text-[20px] text-[#1E3A8A] max-w-5xl leading-tight pb-8">
                 Any Question Regarding The Event or Anything About ISMEI? Don’t Hesitate to Ask Here
             </h3>
-            <div class="flex gap-5 max-w-6xl justify-center mx-auto">
-                <a href="#" class="w-44 grid items-center h-10 bg-blue-900 text-white text-center rounded-3xl text-xl">
+
+            <div class="flex gap-5 justify-center">
+
+                <a href="#" class="w-44 h-10 flex items-center justify-center bg-blue-900 text-white rounded-3xl text-xl">
                     Email
                 </a>
-                <a href="#" class="w-44 grid items-center h-10 bg-blue-900 text-white text-center rounded-3xl text-xl">
+
+                <a href="#" class="w-44 h-10 flex items-center justify-center bg-blue-900 text-white rounded-3xl text-xl">
                     WhatsApp
                 </a>
+
             </div>
-            
+
         </div>
+
     </section>
 
 
