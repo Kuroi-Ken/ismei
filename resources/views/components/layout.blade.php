@@ -46,7 +46,8 @@
     <div class="min-h-full">
 
     {{-- header --}}
-    <x-header></x-header>
+    <x-header>
+    </x-header>
 
     {{ $slot }}
     <div class="fixed bg-black p-3 rounded-2xl z-100 bottom-0 right-0 m-10">

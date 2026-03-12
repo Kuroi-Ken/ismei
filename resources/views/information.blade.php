@@ -5,8 +5,8 @@
             bg-[radial-gradient(rgba(59,130,246,0.15)_2px,transparent_2px)]
             bg-size-[30px_30px]">
             <div class="w-full max-w-7xl mx-auto">
-                <h1 class="md:text-[40px] text-blue-900 text-[20px] font-bold pb-10">
-                    Hall of Informations
+                <h1 class="md:text-[25px] text-blue-900 text-[20px] font-bold pb-10">
+                    {{$title}}
                 </h1>
                 <div class="py-5">
                     <h1 class="text-center md:text-[40px] text-[20px] text-blue-900 font-bold">Check Every Our Latest Update Here</h1>
@@ -23,6 +23,13 @@
     </section>
 
     <section class="bg-[#F8FAFC]">
+        <div class="flex justify-center gap-10 max-w-7xl w-full mx-auto py-15">
+        @for ($i=0;$i<2;$i++)
+            <div class="">
+                <img class="mx-auto w-105.75 h-160 object-cover shadow-2xl" src="../assets/test.jpeg" alt="">
+            </div>
+        @endfor
+        </div>
         <div class="w-full mx-auto max-w-7xl pb-20">
             <h1 class="text-[40px] font-bold text-blue-900 pb-5 pt-20">Call for Submissions</h1>
             <div class="py-7 bg-white shadow-2xl px-10 rounded-2xl">

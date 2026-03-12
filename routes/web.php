@@ -16,8 +16,17 @@ Route::get('/', function () {
     return view('home');
 });
 Route::get('/information', function () {
-    return view('information');
+    return view('information',[
+        'title' => 'Hall of Informations'
+    ]);
 });
 Route::get('/symposium', function () {
-    return view('symposium');
+    return view('symposium', [
+        'title' => 'Symposium'
+    ]);
+});
+Route::get('/about', function () {
+    return view('about',[
+        'title' => 'About Us'
+    ]);
 });

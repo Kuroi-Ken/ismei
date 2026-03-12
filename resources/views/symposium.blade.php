@@ -1,24 +1,25 @@
 <x-layout>
-    <section class="max-w-7xl w-full mx-auto">
-        <div class="">
-            <h1 class="text-center text-[40px] text-[#1E3A8A] font-bold py-15">Keynotes Speaker of ISMEI</h1>
-            <div class="flex justify-center gap-20 max-w-7xl w-full">
-            @for ($i=0;$i<1;$i++)
-                <div class="">
-                    <img class="mx-auto w-105.75 h-160 object-cover shadow-2xl" src="../assets/test.jpeg" alt="">
-                </div>
-            @endfor
+    <section class="w-full mx-auto">
+        <div class="relative md:py-10 pt-5 pb-25 px-5
+            bg-linear-to-b from-white to-blue-50
+            bg-[radial-gradient(rgba(59,130,246,0.15)_2px,transparent_2px)]
+            bg-size-[30px_30px]">
+            <h1 class="md:text-[25px] max-w-7xl mx-auto text-blue-900 text-[20px] font-bold">
+                {{ $title }}
+            </h1>
+            <div class="h-80 flex items-center justify-center">
+                <h1 class="text-center text-[40px] text-[#1E3A8A] font-bold py-15">Keynotes Speaker of ISMEI</h1>
             </div>
         </div>
     </section>
 
-    <section class="w-full max-x-7xl mx-auto py-30">
+    <section class="w-full max-x-7xl mx-auto py-30 bg-[#F8FAFC]">
         <h2 class="text-[30px] font-bold text-[#1E3A8A] pb-10 max-w-7xl mx-auto">Assoc. Prof. Dr. Thiradet Jiarasuksakun</h2>
         <div class="flex gap-5 justify-between mx-auto max-w-7xl ">
             <div class="">
                 <img src="../assets/test.jpeg" class="object-cover h-110 w-90 rounded-2xl" alt="">
             </div>
-            <p class="text-[17px] font-norma max-w-210 text-justify leading-relaxed py-3">
+            <p class="text-[17px] font-norma max-w-210 text-justify leading-relaxed my-auto">
                 Thiradet Jiarasuksakun was born in 1977 and grew up in Thailand. He had received Thai scholarship from IPST to study higher education in the US. He finished his Ph.D. in Mathematics from the University of Michigan, Ann Arbor, MI in 2006. After that he 
                 started his academic career as a math lecturer in the department of math, faculty of science at King Mongkut’s University of Technology Thonburi (KMUTT) in Bangkok. Two years later he was promoted to the assistant dean of faculty of science at KMUTT. He had produced various publications in math and math education. Then he became 
                 the head of math department in 2013, and three years later he was promoted to the dean of faculty of science at KMUTT. As an associate professor in math and a leader in math education, he had a lot of opportunities to enrich math proficiency for math teachers in secondary
@@ -68,10 +69,10 @@
         </div>
     </section>
     
-    <section class="w-full max-x-7xl mx-auto pb-30">
+    <section class="w-full max-x-7xl mx-auto pb-30 bg-[#F8FAFC]">
         <h2 class="text-[30px] font-bold text-[#1E3A8A] pb-10 max-w-7xl mx-auto">Assoc. Prof. Dr. Thiradet Jiarasuksakun</h2>
         <div class="flex gap-5 justify-between mx-auto max-w-7xl ">
-            <p class="text-[17px] font-normal max-w-210 text-justify leading-relaxed py-3">
+            <p class="text-[17px] font-normal max-w-210 text-justify leading-relaxed my-auto">
                 Thiradet Jiarasuksakun was born in 1977 and grew up in Thailand. He had received Thai scholarship from IPST to study higher education in the US. He finished his Ph.D. in Mathematics from the University of Michigan, Ann Arbor, MI in 2006. After that he 
                 started his academic career as a math lecturer in the department of math, faculty of science at King Mongkut’s University of Technology Thonburi (KMUTT) in Bangkok. Two years later he was promoted to the assistant dean of faculty of science at KMUTT. He had produced various publications in math and math education. Then he became 
                 the head of math department in 2013, and three years later he was promoted to the dean of faculty of science at KMUTT. As an associate professor in math and a leader in math education, he had a lot of opportunities to enrich math proficiency for math teachers in secondary

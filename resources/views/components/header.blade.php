@@ -14,7 +14,7 @@
                 <li><a href="/symposium" class="text-[#1E3A8A] hover:text-black">Symposium</a></li>
                 <li><a href="/information" class="text-[#1E3A8A] hover:text-black">Informations</a></li>
                 <li><a href="#" class="text-[#1E3A8A] hover:text-black">Post Symposium Workshop</a></li>
-                <li><a href="#" class="text-[#1E3A8A] hover:text-black">About</a></li>
+                <li><a href="about" class="text-[#1E3A8A] hover:text-black">About</a></li>
             </ul>
         </nav>
 
@@ -50,10 +50,10 @@
     <ul class="flex flex-col gap-6 p-6 text-[15px]">
 
         <li><a href="/" class="text-[#1E3A8A] hover:text-black">Home</a></li>
-        <li><a href="#" class="text-[#1E3A8A] hover:text-black">Symposium</a></li>
+        <li><a href="/symposium" class="text-[#1E3A8A] hover:text-black">Symposium</a></li>
         <li><a href="/information" class="text-[#1E3A8A] hover:text-black">Informations</a></li>
         <li><a href="#" class="text-[#1E3A8A] hover:text-black">Post Symposium Workshop</a></li>
-        <li><a href="#" class="text-[#1E3A8A] hover:text-black">About</a></li>
+        <li><a href="about" class="text-[#1E3A8A] hover:text-black">About</a></li>
 
     </ul>
 

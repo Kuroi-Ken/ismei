@@ -37,10 +37,10 @@
     </section>
 
 
-    <section class="w-full pb-15">
-        <div class="py-15 bg-blue-100 rounded-t-4xl">
+    <section class="w-full z-10 inset-0">
+        <div class="py-15 bg-white rounded-t-4xl">
 
-            <div class="max-w-7xl mx-auto grid justify-center py-20 border-t border-blue-200">
+            <div class="max-w-7xl mx-auto grid justify-center pt-20 border-t border-blue-200">
                 <h3 class="max-w-5xl text-center text-[40px] leading-tight font-medium text-blue-900">
                     "Empowering Future Generation through Emerging Technology Trends in Mathematics Education"
                 </h3>
@@ -49,34 +49,19 @@
                 </h4>
             </div>
 
-            <div class="relative w-full -top-2">
-                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 grid grid-cols-3 gap-15 max-w-4xl">
-
-                    @for ($i =0 ; $i <3 ; $i++)
-                        <div class="p-15 py-10 mx-auto bg-white shadow-2xl rounded-4xl">
-                            <i data-feather="user" class="mx-auto text-blue-700 size-10"></i>
-                            <h4 class="pt-2 text-[35px] font-bold text-center text-blue-900">300</h4>
-                            <h4 class="pt-6 text-[18.75px] text-center text-blue-700 font-medium">
-                                Participant
-                            </h4>
-                        </div>
-                    @endfor
-
-                </div>
-            </div>
-
         </div>
     </section>
 
 
-    <section class="pt-55 py-40 bg-white">
+    <section class="-z-10 inset-0 bg-white relative">
+        {{-- <div class=" bg-blue-200 w-full h-30"></div> --}}
         <div class="w-full">
-            <h3 class="text-[40px] text-center font-medium text-blue-900">
+            <h3 class="text-[40px] text-center font-bold text-blue-900">
                 What's New?
             </h3>
         </div>
 
-        <div class="flex justify-center py-10">
+        <div class="flex justify-center py-15">
             <div class="swiper max-w-6xl rounded-2xl overflow-hidden">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
@@ -85,9 +70,6 @@
                     <div class="swiper-slide">
                         <img src="{{ asset('assets/Acheron.jpg') }}" class="w-full h-110 object-cover">
                     </div>
-                    <div class="swiper-slide">
-                        <img src="{{ asset('assets/img3.jpg') }}" class="w-full h-110 object-cover">
-                    </div>
                 </div>
 
                 <div class="swiper-pagination"></div>
@@ -95,60 +77,105 @@
                 <div class="swiper-button-prev text-blue-900"></div>
             </div>
         </div>
+        <div class="absolute bottom-0 bg-[#BEDBFF] w-full h-70"></div>
     </section>
 
 
-    <section class="w-full bg-blue-100 py-25">
-        <div class="max-w-6xl mx-auto pb-25">
-            <h2 class="py-5 text-[30px] font-medium text-slate-800">
-                What is ISMEI?
-            </h2>
-            <div class="flex justify-between">
-                <div>
-                    <img src="../assets/bg.jpg" class="w-120 h-70 object-cover rounded-2xl" alt="">
-                </div>
-                <div>
-                    <p class="max-w-xl py-2 text-[18.75px] leading-relaxed text-justify text-slate-800 pb-5">
-                        The International Symposium on Mathematics Education and Innovation (ISMEI) is a prominent biennial event organized by the SEAMEO Regional Centre for QITEP in Mathematics (SEAQiM). Since its inception in 2011, ISMEI has been a pivotal gathering for educators, 
-                        policymakers, and stakeholders to share and discuss innovative practices in mathematics education.
-                    </p>
-                    <a href="#" class="w-44 grid items-center h-12 bg-blue-900 text-white text-center rounded-3xl text-xl">
-                        Read More
-                    </a>
+    <section class="w-full pt-40">
+        <h1 class="w-full text-center text-[40px] text-blue-900 font-bold ">
+            About Us
+        </h1>
+        <h3 class="text-[20px] text-center text-blue-900 pb-15">
+            Check our Profile and Background to Know More About ISMEI
+        </h3>
+        <div class="flex justify-center gap-10">
+            <div class="max-w-2xl border p-7 rounded-2xl bg-[#F8FAFC] shadow-2xl">
+                <h2 class="pb-5 text-[30px] font-medium text-blue-900">
+                    What is ISMEI?
+                </h2>
+                <div class="flex justify-between">
+                    <div>
+                        <p class="max-w-2xl py-2 text-[18.75px] leading-relaxed text-justify text-slate-800 pb-5">
+                            The International Symposium on Mathematics Education and Innovation (ISMEI) is a prominent biennial event organized by the SEAMEO Regional Centre for QITEP in Mathematics (SEAQiM). Since its inception in 2011, ISMEI has been a pivotal gathering for educators, 
+                            policymakers, and stakeholders to share and discuss innovative practices in mathematics education.
+                        </p>
+                        <a href="#" class="w-44 grid items-center h-10 bg-blue-900 text-white text-center rounded-3xl text-xl">
+                            Read More
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="max-w-6xl mx-auto py-20">
-            <h2 class="py-5 text-[30px] font-medium text-slate-800">
-                Background & Rationale
-            </h2>
-            <div class="flex justify-between">
-                <div>
-                    <p class="max-w-xl py-2 text-[18.75px] leading-relaxed text-justify text-slate-800 pb-5">
-                        The International Symposium on Mathematics Education and Innovation (ISMEI) is a prominent biennial event organized by the SEAMEO Regional Centre for QITEP in Mathematics (SEAQiM). Since its inception in 2011, ISMEI has been a pivotal gathering for educators, 
-                        policymakers, and stakeholders to share and discuss innovative practices in mathematics education.
-                    </p>
-                    <a href="#" class="w-44 grid items-center h-12 bg-blue-900 text-white text-center rounded-3xl text-xl">
-                        Read More
-                    </a>
-                </div>
-                <div>
-                    <img src="../assets/bg.jpg" class="w-120 h-70 object-cover rounded-2xl" alt="">
+            <div class="max-w-2xl p-5 shadow-2xl rounded-2xl border">
+                <h2 class=" text-[30px] font-medium text-slate-800">
+                    Background & Rationale
+                </h2>
+                <div class="flex justify-between">
+                    <div>
+                        <p class="max-w-2xl py-2 text-[18.75px] leading-relaxed text-justify text-slate-800 pb-5">
+                            The International Symposium on Mathematics Education and Innovation (ISMEI) is a prominent biennial event organized by the SEAMEO Regional Centre for QITEP in Mathematics (SEAQiM). Since its inception in 2011, ISMEI has been a pivotal gathering for educators, 
+                            policymakers, and stakeholders to share and discuss innovative practices in mathematics education.
+                        </p>
+                        <a href="#" class="w-44 grid items-center h-10 bg-blue-900 text-white text-center rounded-3xl text-xl">
+                            Read More
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="w-full pt-20">
-        <div class="max-w-6xl mx-auto px-6">
+    <section class="w-full">
 
-            <div class="flex justify-between py-10">
+        <div class="min-h-[150vh] flex items-center justify-center ">
+
+            <div class="w-full">
+
+                <h1 class="text-center text-blue-900 text-[40px] font-medium mb-15">
+                    Register and Join Us
+                </h1>
+
+                <div class="max-w-7xl mx-auto">
+
+                    <div class="flex justify-between max-w-6xl mx-auto">
+
+                        @for ($i = 0; $i < 3; $i++)
+
+                            <div class="pt-5">
+
+                                <h4 class="pt-6 text-[25px] text-center font-normal">
+                                    Participant
+                                </h4>
+
+                                <h4 class="text-[100px] font-bold text-center text-blue-900">
+                                    300
+                                </h4>
+                                <h4 class="text-center text-[20px] font-normal">
+                                    Here's Total the ISMEI Participant 
+                                </h4>
+
+                            </div>
+
+                        @endfor
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="w-full">
+        <div class="max-w-7xl mx-auto p-10 border rounded-2xl">
+
+            <div class="flex justify-between pb-10">
                 <h2 class="text-[30px] font-medium text-blue-900">
                     ISMEI Keynotes Speaker
                 </h2>
 
-                <a href="#" class="grid items-center w-52 h-12 text-xl text-center text-white bg-blue-900 rounded-3xl hover:bg-blue-800 transition">
+                <a href="#" class="grid items-center w-52 h-10 text-xl text-center text-white bg-blue-900 rounded-3xl hover:bg-blue-800 transition">
                     See More Profile
                 </a>
             </div>
@@ -190,63 +217,62 @@
         </div>
     </section>
 
-    <section class="w-full py-30">
+    <section class="w-full mt-40 mx-auto max-w-7xl">
         <div class="max-w-7xl mx-auto px-10">
-
-            <div class="flex justify-between items-center mb-20">
-                <h2 class="text-3xl font-semibold text-blue-900">
-                    Schedule & Dates
-                </h2>
-
-                <a href="#" class="w-44 grid items-center h-12 bg-blue-900 text-white text-center rounded-3xl text-xl">
-                    Read More
-                </a>
-            </div>
-
-            <div class="relative">
-                <div class="absolute top-3 left-0 w-full h-0.5 bg-gray-700"></div>
-                <div class="relative flex justify-between">
-
-                    @php
-                        $schedules = [
-                            ['date' => '12 Jan 2026', 'title' => 'Registration Open'],
-                            ['date' => '20 Feb 2026', 'title' => 'Abstract Deadline'],
-                            ['date' => '15 Mar 2026', 'title' => 'Notification'],
-                            ['date' => '10 Apr 2026', 'title' => 'Full Paper'],
-                            ['date' => '01 May 2026', 'title' => 'Final Payment'],
-                            ['date' => '20 Jun 2026', 'title' => 'Conference Day'],
-                        ];
-                    @endphp
-
-                    @foreach ($schedules as $item)
-                        <div class="flex flex-col items-center text-center w-32">
-
-                            <div class="w-6 h-6 bg-gray-300 rounded-full z-10 mb-6"></div>
-
-                            <p class="text-blue-500 font-medium text-sm">
-                                {{ $item['date'] }}
-                            </p>
-                            <p class="text-gray-300 text-sm mt-1">
-                                {{ $item['title'] }}
-                            </p>
-
+            <h2 class="text-3xl text-center font-bold text-blue-900">
+                Hall of Informations
+            </h2>
+        </div>
+        <div class="">
+            <div class="w-full mx-auto max-w-7xl pb-10">
+                <div class="py-7 max-w-5xl border bg-white shadow-2xl mx-auto px-10 rounded-2xl">
+                    <div class="flex gap-15 ">
+                        <div class="">
+                            <img src="../assets/bg.jpg" class="w-md h-65 object-cover rounded-2xl" alt="">
                         </div>
-                    @endforeach
-
+                        <a href="#" class="my-auto grid grid-rows-3 gap-5">
+                            <h2 class="text-[30px] font-bold">Call for Submissions</h2>
+                            <p class="text-[15.63px] max-w-2xl"> Download the template for extended abstract here
+                                For details of abstract submission guidelines, please click here 
+                            </p>
+                            <div class="flex gap-4 pt-5">
+                                <i data-feather="calendar" class="my-auto w-4 h-4 text-center"></i>
+                                <p class="my-auto font-light">Date Realease</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
-
         </div>
+        <h3></h3>
+        <div class="flex gap-5 max-w-6xl py-10 justify-center mx-auto">
+            <a href="#" class="w-50 grid items-center h-11 bg-blue-900 text-white text-center rounded-3xl text-xl">
+                Schedule
+            </a>
+            <a href="#" class="w-50 grid items-center h-11 bg-blue-900 text-white text-center rounded-3xl text-xl">
+                Announcement
+            </a>
+        </div>
+        
     </section>
 
-    <section class="pb-30 w-full pt-10">
-        <div class="w-full">
-            <h1 class="text-center text-[30px] text-[#1E3A8A] max-w-5xl leading-tight mx-auto font-bold">
-                Any Question Regarding The Event or Anything About ISMEI? Don’t Hesitate to Ask Here
+    <section class="w-full ">
+        <div class="w-full h-screen my-auto">
+            <h1 class="text-center text-blue-900 text-[40px] font-bold pb-2">
+                Contact Us
             </h1>
-            <a href="#">
-                <i data-feather="phone" class="mx-auto size-15 w-full pt-5 text-[#1E3A8A]"></i>
-            </a>
+            <h3 class="text-center text-[20px] text-[#1E3A8A] max-w-5xl leading-tight mx-auto pb-5">
+                Any Question Regarding The Event or Anything About ISMEI? Don’t Hesitate to Ask Here
+            </h3>
+            <div class="flex gap-5 max-w-6xl justify-center mx-auto">
+                <a href="#" class="w-44 grid items-center h-10 bg-blue-900 text-white text-center rounded-3xl text-xl">
+                    Email
+                </a>
+                <a href="#" class="w-44 grid items-center h-10 bg-blue-900 text-white text-center rounded-3xl text-xl">
+                    WhatsApp
+                </a>
+            </div>
+            
         </div>
     </section>
 
