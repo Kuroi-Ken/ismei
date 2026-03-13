@@ -31,7 +31,7 @@ Route::get('/about', function () {
     ]);
 });
 Route::get('/admin', function () {
-    return view('admin.layout',[
+    return view('admin.home.layout',[
         'title' => 'Admin Panel'
     ]);
 });

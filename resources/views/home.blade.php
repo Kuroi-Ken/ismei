@@ -168,7 +168,7 @@
     </section>
 
     <section class="w-full">
-        <div class="max-w-7xl mx-auto p-10 border rounded-2xl bg-[#F8FAFC] shadow-2xl">
+        <div class="max-w-7xl mx-auto p-10 border rounded-2xl bg-[blue-200 ]shadow-2xl">
 
             <div class="w-full mx-auto pb-10">
                 <h2 class="text-[40px] text-center font-bold text-blue-900">

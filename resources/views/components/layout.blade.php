@@ -56,7 +56,6 @@
         </a>
     </div>
     <x-footer class="relative">
-        {{ $slot }}
     </x-footer>
     </div>
 

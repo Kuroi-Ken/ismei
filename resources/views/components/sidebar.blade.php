@@ -1,10 +1,6 @@
-    <div class="fixed h-screen w-2xs bg-blue-200 rounded-tr-2xl z-100 inset-0">
+    <div class="h-screen w-2xs bg-blue-200 rounded-tr-2xl">
         <div class="flex-col flex gap-3 pt-6">
             <div class=" mx-auto w-3xs border-b border-black/20 pb-5">
-                {{-- <div class="flex justify-center mx-auto gap-3">
-                    <img src="../assets/seameo.png" class="size-20" alt="">
-                    <img src="../assets/seaqim.png" class="size-20" alt="">
-                </div> --}}
                 <h2 class="pt-2 text-center text-blue-900 font-medium text-[30px]">
                     ISMEI 
                 </h2>
