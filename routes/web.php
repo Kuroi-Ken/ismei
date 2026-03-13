@@ -30,3 +30,8 @@ Route::get('/about', function () {
         'title' => 'About Us'
     ]);
 });
+Route::get('/admin', function () {
+    return view('admin.layout',[
+        'title' => 'Admin Panel'
+    ]);
+});
