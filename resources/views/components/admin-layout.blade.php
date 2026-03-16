@@ -9,15 +9,21 @@
     <title>{{ $title }} | ISMEI Admin</title>
 </head>
 
-<body class="bg-gray-50 flex">
-    
-    <x-sidebar></x-sidebar>
-    <section class="flex-1 p-6">
-        {{ $slot }}
-    </section>
+<body class="bg-gray-50">
+
+    <div class="flex h-screen overflow-hidden">
+        <aside class="w-2xs shrink-0 h-screen overflow-y-auto">
+            <x-sidebar></x-sidebar>
+        </aside>
+
+        <main class="flex-1 h-screen overflow-y-auto p-6">
+            {{ $slot }}
+        </main>
+
+    </div>
 
     <script>
-    feather.replace();
+        feather.replace();
     </script>
 
 </body>

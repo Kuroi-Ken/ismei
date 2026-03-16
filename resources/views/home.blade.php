@@ -42,10 +42,10 @@
 
             <div class="max-w-7xl mx-auto grid justify-center pt-20 border-t border-blue-200">
                 <h3 class="max-w-5xl text-center text-[40px] leading-tight font-medium text-blue-900">
-                    "Empowering Future Generation through Emerging Technology Trends in Mathematics Education"
+                    "{{ \App\Models\SiteContent::get('home_theme_quote', 'Empowering Future Generation through Emerging Technology Trends in Mathematics Education') }}"
                 </h3>
                 <h4 class="pt-3 text-center text-[25px] text-blue-700">
-                    8th ISMEI Symposium Theme
+                    {{ \App\Models\SiteContent::get('home_theme_subtitle', '8th ISMEI Symposium Theme') }}
                 </h4>
             </div>
 
@@ -53,8 +53,8 @@
     </section>
 
 
-    <section class="-z-10 inset-0 bg-white relative">
-        {{-- <div class=" bg-blue-200 w-full h-30"></div> --}}
+    <section class="z-10 inset-0 bg-white relative">
+        {{-- <div class=" bg-blue-200 w-full h-30"></div> --}}a
         <div class="w-full">
             <h3 class="text-[40px] text-center font-bold text-blue-900">
                 What's New?
@@ -62,22 +62,28 @@
         </div>
 
         <div class="flex justify-center py-15">
-            <div class="swiper max-w-6xl rounded-2xl overflow-hidden">
+            <div class="swiper max-w-6xl rounded-2xl overflow-hidden z-10">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="{{ asset('assets/test1.png') }}" class="w-full h-110 object-cover">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{ asset('assets/Acheron.jpg') }}" class="w-full h-110 object-cover">
-                    </div>
-                </div>
 
+                    @php
+                        $whatsNewImages = \App\Models\WhatsNewImage::orderBy('order')->orderBy('id')->get();
+                    @endphp
+
+                    @if($whatsNewImages->count() > 0)
+                        @foreach($whatsNewImages as $img)
+                            <div class="swiper-slide">
+                                <img src="{{ asset('storage/' . $img->path) }}" class="w-full h-110 object-cover">
+                            </div>
+                        @endforeach
+                    @endif
+
+                </div>
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-next text-blue-900"></div>
                 <div class="swiper-button-prev text-blue-900"></div>
             </div>
         </div>
-        <div class="absolute bottom-0 bg-[#BEDBFF] w-full h-70"></div>
+        <div class="absolute bottom-0 bg-[#BEDBFF] w-full h-70 -z-10"></div>
     </section>
 
 
