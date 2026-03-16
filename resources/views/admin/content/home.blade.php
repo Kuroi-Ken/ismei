@@ -97,7 +97,6 @@
             </div>
         @endif
 
-        {{-- Form upload gambar baru --}}
         <form action="{{ route('admin.content.whats-new.upload') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="border border-blue-100 rounded-xl p-5 bg-blue-50/40">

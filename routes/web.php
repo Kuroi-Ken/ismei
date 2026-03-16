@@ -19,6 +19,13 @@ Route::get('/about', function () {
     return view('about', ['title' => 'About Us']);
 });
 
+Route::get('/go-to-admin-panel-menu', function () {
+    return view('login.login', ['title' => 'Login Menu']) ;
+});
+Route::get('/forgot-the-password', function () {
+    return view('login.forgot', ['title' => 'Login Menu']) ;
+});
+
 // Admin routes
 Route::prefix('admin')->group(function () {
 

@@ -45,18 +45,27 @@
 <body class="relative">
     <div class="min-h-full">
 
-    {{-- header --}}
-    <x-header>
-    </x-header>
+        {{-- header --}}
+        @if ($header ?? true)
+            <x-header>
+            </x-header>
+        @endif
 
-    {{ $slot }}
-    <div class="fixed bg-black p-3 rounded-2xl z-100 bottom-0 right-0 m-10">
-        <a href="#" class="">
-            <i data-feather="chevron-up" class="md:w-8 md:h-8 text-[#F8FAFC]"></i>
-        </a>
-    </div>
-    <x-footer class="relative">
-    </x-footer>
+        {{ $slot }}
+
+        @if ($chevron ?? true)
+            <div class="fixed bg-black p-3 rounded-2xl z-100 bottom-0 right-0 m-10">
+                <a href="#" class="">
+                    <i data-feather="chevron-up" class="md:w-8 md:h-8 text-[#F8FAFC]"></i>
+                </a>
+            </div>
+        @endif
+
+        @if ($footer ?? true)
+            <x-footer class="relative">
+            </x-footer>
+        @endif
+
     </div>
 
     <script>
