@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\SiteContent;
 use App\Models\WhatsNewImage;
 use Illuminate\Http\Request;
@@ -68,7 +69,7 @@ class AdminContentController extends Controller
         ]);
 
         return redirect()->route('admin.content.home')
-            ->with('success', 'successfully uploaded')
+            ->with('success', 'successfully uploaded');
     }
     
     public function deleteLogoUpdate(logoImages $image)

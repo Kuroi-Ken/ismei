@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('image_path');
             $table->timestamps();
-        })
+        });
     }
 
     public function down(): void
