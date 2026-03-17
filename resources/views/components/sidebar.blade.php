@@ -43,4 +43,16 @@
         </ul>
     </div>
 
+    <div class="px-5 pb-6 border-t border-black/20 pt-4">
+        <p class="px-3 pb-2 text-xs text-black/40">{{ Auth::user()->name }}</p>
+        <form action="{{ route('admin.logout') }}" method="POST">
+            @csrf
+            <button type="submit"
+                class="flex items-center gap-2 w-full py-1 px-3 rounded-lg text-red-700
+                       hover:bg-red-700 hover:text-white duration-300">
+                <i data-feather="log-out" class="w-5 h-5 shrink-0"></i>
+                <span>Logout</span>
+            </button>
+        </form>
+    </div>
 </div>

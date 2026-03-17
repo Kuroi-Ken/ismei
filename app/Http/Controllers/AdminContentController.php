@@ -9,24 +9,18 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminContentController extends Controller
 {
-    /**
-     * Tampilkan halaman edit konten home.
-     */
     public function editHome()
-    {
-        $contents = SiteContent::whereIn('key', [
-            'home_theme_quote',
-            'home_theme_subtitle',
-        ])->pluck('value', 'key');
+{
+    $contents = SiteContent::whereIn('key', [
+        'home_theme_quote',
+        'home_theme_subtitle',
+    ])->pluck('value', 'key');
 
-        $whatsNewImages = WhatsNewImage::orderBy('order')->orderBy('id')->get();
+    $whatsNewImages = WhatsNewImage::orderBy('order')->orderBy('id')->get(); 
 
-        return view('admin.content.home', compact('contents', 'whatsNewImages'));
-    }
+    return view('admin.content.home', compact('contents', 'whatsNewImages')); 
+}
 
-    /**
-     * Simpan perubahan teks (quote & subtitle).
-     */
     public function updateHome(Request $request)
     {
         $request->validate([
@@ -45,9 +39,6 @@ class AdminContentController extends Controller
             ->with('success', 'Konten berhasil diperbarui!');
     }
 
-    /**
-     * Upload gambar baru ke What's New (bisa multiple).
-     */
     public function uploadWhatsNew(Request $request)
     {
         $request->validate([
@@ -67,6 +58,26 @@ class AdminContentController extends Controller
 
         return redirect()->route('admin.content.home')
             ->with('success', 'Gambar berhasil diupload!');
+    }
+
+    public function logoUpdate(Request $request)
+    {
+        $request->validate([
+            'images' => 'required|array|min:1',
+            'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
+
+        return redirect()->route('admin.content.home')
+            ->with('success', 'successfully uploaded')
+    }
+    
+    public function deleteLogoUpdate(logoImages $image)
+    {
+        Storage::disk('public')->delete($image->path);
+        $image->delete();
+
+        return redirect()->route('admin.content.home')
+            ->with('success', 'Logo Deleted Successfully');
     }
 
     /**

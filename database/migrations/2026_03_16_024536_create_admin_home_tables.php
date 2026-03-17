@@ -8,7 +8,6 @@ return new class extends Migration
 {
     public function up(): void
     {
-        // Tabel untuk konten teks (theme quote & subtitle)
         Schema::create('site_contents', function (Blueprint $table) {
             $table->id();
             $table->string('key')->unique();
@@ -17,7 +16,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // Tabel untuk gambar slider What's New
         Schema::create('whats_new_images', function (Blueprint $table) {
             $table->id();
             $table->string('path');
@@ -25,6 +23,13 @@ return new class extends Migration
             $table->integer('order')->default(0);
             $table->timestamps();
         });
+
+        schema::create('logo', function (Blueprint $table){
+            $table->id();
+            $table->string('title')->nullable();
+            $table->string('image_path');
+            $table->timestamps();
+        })
     }
 
     public function down(): void
