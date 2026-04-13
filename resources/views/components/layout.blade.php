@@ -7,8 +7,17 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
 
     <style>
+        .kaushan-script-regular {
+        font-family: "Kaushan Script", cursive;
+        font-weight: 400;
+        font-style: italic;
+        }
+        
         .swiper-button-next:hover,
         .swiper-button-prev:hover {
             transition: ease-in-out 200ms;
@@ -38,6 +47,24 @@
         .no-scrollbar {
         -ms-overflow-style: none;
         scrollbar-width: none;
+        }
+
+        .swiper {
+        width: 100% !important;
+        }
+
+        .swiper-wrapper {
+            display: flex !important;
+            width: 100% !important;
+        }
+
+        .swiper-slide {
+            width: 100% !important;
+            flex-shrink: 0;
+        }
+
+        .swiper-slide img {
+            width: 100%;
         }
 </style>
 

@@ -1,28 +1,16 @@
-document.addEventListener("DOMContentLoaded", () => {
+function toggleSlide(button) {
+        // 1. Cari kontainer '.info-slider' terdekat dari tombol yang diklik
+        const slider = button.closest('.info-slider');
+        
+        // 2. Cek apakah slider tersebut sedang di posisi 0 atau sudah geser
+        // Kita mengecek properti style transform secara langsung
+        const currentTransform = slider.style.transform;
 
-    const accordions = document.querySelectorAll(".accordion-toggle");
-
-    accordions.forEach(button => {
-
-        const content = button.nextElementSibling;
-        const icon    = button.querySelector(".accordion-icon");
-
-        button.addEventListener("click", () => {
-
-            if (content.style.maxHeight) {
-
-                content.style.maxHeight = null;
-                icon.classList.remove("rotate-90");
-
-            } else {
-
-                content.style.maxHeight = content.scrollHeight + "px";
-                icon.classList.add("rotate-90");
-
-            }
-
-        });
-
-    });
-
-});
+        if (!currentTransform || currentTransform === 'translateX(0%)') {
+            // Jika di awal, geser ke kiri 50%
+            slider.style.transform = 'translateX(-50%)';
+        } else {
+            // Jika sudah geser, kembalikan ke awal
+            slider.style.transform = 'translateX(0%)';
+        }
+    }
