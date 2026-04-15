@@ -10,7 +10,7 @@
                     </h1>
                     <div class="">
                         <h2 class=" text-white text-xl md:text-[25px]">
-                            Meet our incredible guest speakers.
+                            Meet Our Incredible Guest Speakers.
                         </h2>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                 
                 <div class="w-1/2 flex flex-col {{ $i % 2 != 0 ? 'md:flex-row-reverse' : 'md:flex-row' }} justify-center gap-10 py-10 px-10 items-center">
                     <div class="flex-shrink-0">
-                        <img src="../assets/test.jpeg" class="object-cover h-120 w-90 rounded-2xl shadow-lg" alt="Profile Image">
+                        <img src="../assets/test.jpeg" class="object-cover h-120 w-90 border-2 border-blue-900 rounded-2xl shadow-lg" alt="Profile Image">
                     </div>
                     
                     <div class="max-w-3xl flex flex-col gap-7">

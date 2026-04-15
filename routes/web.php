@@ -10,6 +10,9 @@ Route::get('/', fn() => view('home'));
 Route::get('/information', fn() => view('information', ['title' => 'Hall of Informations']));
 Route::get('/symposium', fn() => view('symposium', ['title' => 'Symposium']));
 Route::get('/about', fn() => view('about', ['title' => 'About Us']));
+Route::get('/archive', fn() => view('archive', ['title' => 'Archives']));
+Route::get('/other-archive', fn() => view('other-archive', ['title' => 'Archives']));
+
 
 // Login & forgot password (hanya untuk yang belum login)
 Route::middleware('guest')->group(function () {

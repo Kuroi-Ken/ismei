@@ -21,8 +21,8 @@
     <section>
         <div class="mx-auto py-20 max-w-6xl">
             <div class="max-w-lg mx-auto flex w-full mb-10 justify-center gap-5 text-[17px] p-2 font-medium border rounded-3xl">
-                <a href="/archive" class="px-20 py-2 rounded-2xl bg-blue-900 text-white">Proceeding</a>
-                <a href="/other-archive" class="px-20 py-2 rounded-2xl bg-white text-blue-900 hover:bg-blue-50 duration-200 transition">Other</a>
+                <a href="/archive" class="px-20 py-2 rounded-2xl bg-white text-blue-900 hover:bg-blue-50 duration-200 transition">Proceeding</a>
+                <a href="/other-archive" class="px-20 py-2 rounded-2xl bg-blue-900 text-white ">Other</a>
             </div>
             <div class="flex items-center max-w-6xl mx-auto p-1 bg-white border border-slate rounded-full transition-all">
                 <div class="pl-4 text-slate-400">

@@ -35,7 +35,7 @@
                     <a href="#" class="grid items-center w-30 h-8 md:w-44 md:h-12 md:text-xl text-center text-white rounded-3xl bg-blue-900 hover:bg-blue-800 transition">
                         Registration
                     </a>
-                    <a href="#" class="grid items-center w-30 h-8 md:w-44 md:h-12 md:text-xl text-center text-blue-900 bg-white border border-blue-900 rounded-3xl hover:bg-blue-50 transition">
+                    <a href="#" class="grid items-center w-30 h-8 md:w-44 md:h-12 md:text-xl text-center text-blue-900 bg-white border-2 border-blue-900 rounded-3xl hover:bg-blue-50 transition">
                         Read More
                     </a>
                 </div>
