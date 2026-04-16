@@ -1,32 +1,24 @@
-<x-layout class="">
-    <section>
-        <div class="relative w-full h-100 overflow-hidden">
-            <img class="absolute inset-0 w-full h-100 object-cover object-top z-0" src="{{ asset('assets/bg.jpg') }}" alt="">
-            <div class="absolute inset-0 bg-black/50 z-10"></div>
-            <div class="relative z-20 h-full flex items-center justify-center">
-                <div class="text-center px-4">
-                    <h1 class="md:text-[70px] text-[20px] text-white font-bold tracking-tight uppercase">
-                        {{$title}}
-                    </h1>
-                    <div class="">
-                        <h2 class=" text-white text-xl md:text-[25px]">
-                            Everything you need to know, all in one place.
-                        </h2>
-                    </div>
-                </div>
+<x-layout title="Hall of Informations">
+    <section class="bg-blue-900 py-24 relative -z-20 overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-blue-800 skew-x-12 translate-x-20"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <h1 class="text-6xl md:text-8xl font-black text-white leading-none tracking-tighter opacity-20 absolute -top-10 left-0 uppercase">ismei</h1>
+            <div class="pt-10">
+                <h2 class="text-4xl md:text-6xl font-bold text-white uppercase mb-4">informations</h2>
+                <p class="font-kaushan text-2xl text-blue-200">"Everything you need to know, all in one place."</p>
             </div>
         </div>
     </section>
 
-    <section class="bg-[#F8FAFC] pt-25">
-        <h1 class="text-[40px] max-w-7xl mx-auto text-[#1E3A8A] text-center font-bold pt-5 uppercase">Main Informations</h1>
+    <section class="bg-white z-20 rounded-4xl p-15 shadow-lg max-w-7xl mx-auto leading-tight -mt-12">
+        <h1 class="text-[40px] max-w-7xl mx-auto text-[#1E3A8A] text-center font-bold tracking-tighter pt-5 uppercase">Main Informations</h1>
         <h1 class="text-[25px] max-w-7xl mb-8 mx-auto text-[#1E3A8A] text-center font-light">Stay up-to-date With Our Latest News and Events.</h1>
 
         <div class="flex flex-col gap-10">
             <div class="w-full mx-auto justify-center gap-10 flex flex-col">
                 <div class="flex gap-10 mx-auto">
                     @for ($i =0 ; $i <2 ; $i++)
-                    <div class=" bg-blue-900 shadow-2xl p-5 rounded-2xl max-w-lg hover:scale-105 transition duration-300">
+                    <div class=" shadow-lg border border-blue-50 rounded-2xl max-w-lg hover:-translate-y-2 hover:border-blue-900 transition duration-300">
                         <a href="#" class="my-auto grid grid-rows-3 gap-3 bg-white p-5 rounded-2xl">
                             <h2 class="text-[30px] font-bold">Call for Submissions</h2>
                             <p class="text-[17.63px] max-w-2xl font-light"> Download the template for extended abstract here
@@ -42,7 +34,7 @@
                 </div>
             </div>
             <div class="w-full max-w-7xl flex flex-col gap-10 mx-auto">
-                <div class="flex items-center w-full mx-auto p-1 bg-white border border-slate-200 rounded-full shadow-lg focus-within:border-blue-900 transition-all">
+                <div class="flex items-center w-full mx-auto px-3 py-2 bg-white border border-slate-200 rounded-full shadow-lg focus-within:border-blue-900 transition-all">
                     <div class="pl-4 text-slate-400">
                         <i data-feather="search" class="w-5 h-5"></i>
                     </div>
@@ -57,14 +49,14 @@
                 </div>
                 <div class="flex justify-center gap-10">
                     @for ($i=0;$i<3;$i++)
-                        <a href="" class="grid gap-3 bg-white shadow-2xl p-5 rounded-3xl border">
+                        <a href="" class="grid gap-1 bg-white shadow-2xl p-5 rounded-3xl border">
                             <h1 class="bg-[#BEDBFF] text-[11.72px] w-fit py-1 px-5 rounded-lg text-blue-900">Tag</h1>
                             <h1 class="text-[30px] font-bold">Informations Title</h1>
-                            <p class="text-[18.75px] pb-3 font-light">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            <p class="text-[15.75px] pb-3 font-light">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                     nostrum perferendis distinctio et consequatur.</p>
-                            <div class="flex gap-4 border-t py-2 ">
-                                <i class="size-4.5 my-auto" data-feather="calendar"></i>
-                                <p class="font-light">Date Realease</p>
+                            <div class="flex gap-2 border-t pt-2 items-center">
+                                <i class="size-3.5 my-auto" data-feather="calendar"></i>
+                                <p class="font-light text-[12px]">Date Realease</p>
                             </div>
                         </a>
                     @endfor
@@ -73,15 +65,19 @@
         </div>
     </section>
 
-    {{-- poster & call --}}
-    <section class="bg-[#F8FAFC] flex flex-col gap-30">
-        <div class="">
-            <h1 class="font-bold text-[40px] text-blue-900 text-center uppercase w-full pt-25 pb-5">
-                Poster & Pamphlet
-            </h1>
+    {{-- poster--}}
+    <section class="bg-white flex flex-col my-30 gap-30">
+        <div class="flex flex-col gap-12">
+            <div class="leading-tight text-center">
+                <h1 class="tracking-tighter max-w-7xl mx-auto font-bold text-[40px] text-black uppercase w-full">
+                Poster
+                    <span class="font-bold text-[40px] text-blue-900 max-w-7xl mx-auto uppercase w-full pb-5">& Pamphlet</span> 
+                </h1>
+                <h3 class="tracking-tighter max-w-7xl mx-auto font-light text-[25px] text-blue-900 uppercase w-full">Explore Our Official Media</h3>
+            </div>
             <div class="flex justify-center gap-10 max-w-7xl w-full mx-auto">
             @for ($i=0;$i<3;$i++)
-                <div class="">
+                <div class="p-3 bg-blue-50">
                     <img class="mx-auto w-90.75 h-140 object-cover shadow-2xl" src="../assets/test.jpeg" alt="">
                 </div>
             @endfor
@@ -90,30 +86,47 @@
 
     </section>
 
-    <section class="bg-[#F8FAFC] py-30 ">
-        <div class="w-full max-w-7xl mx-auto flex flex-col gap-10 ">
-            <div class="leading-tight">
-                <h1 class="text-[40px] text-center font-bold uppercase text-[#1E3A8A]">Announcement</h1>
-                <h2 class="text-[25px] text-center font-light text-blue-900">Check If Your Name is Nominated Here</h2>
+    <section class="bg-white pb-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-15 leading-tight">
+                <h1 class="text-5xl font-black text-blue-900 uppercase tracking-tight mb-4">
+                    Announcement
+                </h1>
+                <div class="flex items-center justify-center gap-4">
+                    <h2 class="text-xl font-light text-blue-900 tracking-wide uppercase">
+                        Participant Results & Nominations
+                    </h2>
+                </div>
             </div>
-            <div class="flex mx-auto justify-center gap-20 ">
-                @for ($i=0;$i<3;$i++)
-                    <a href="#">
-                        <div class="grid gap-9 text-center bg-white shadow-2xl max-w-3xs rounded-2xl border pb-7 hover:scale-105 transition duration-300">
-                            <h2 class="text-[25px] bg-blue-900 rounded-t-2xl p-10 py-7 font-bold text-white leading-tight">
+
+            <div class="grid md:grid-cols-3 gap-10">
+                @for ($i=0; $i<3; $i++)
+                    <a href="#" class="group relative">
+                        <div class="absolute inset-0 bg-blue-900 rounded-[2.5rem] translate-y-4 opacity-0 "></div>
+                        
+                        <div class="relative bg-white border border-slate-100 p-10 rounded-[2.5rem] shadow-xl shadow-slate-200/50 flex flex-col items-center text-center transition-all duration-500 group-hover:-translate-y-3 group-hover:border-blue-900">
+                            
+                            <div class="w-20 h-20 bg-blue-50 text-blue-900 rounded-2xl flex items-center justify-center mb-8  transition-colors duration-500 shadow-inner">
+                                <i data-feather="file-text" class="w-10 h-10"></i>
+                            </div>
+
+                            <h3 class="text-2xl font-bold text-slate-900 mb-4">
                                 Accepted Abstract
-                            </h2>
-                            <p class="px-10 leading-tight">
-                                Here’s the list of all participants 
-                                accepted abstract
+                            </h3>
+                            
+                            <p class="text-slate-500 leading-relaxed font-light mb-8">
+                                Here’s the complete list of all participants whose abstracts have been officially accepted for ISMEI 2026.
                             </p>
-                            <i data-feather="chevron-right" class="mx-auto bg-[#BEDBFF] w-10 h-10 rounded-full p-2"></i>
+
+                            <div class="mt-auto flex items-center gap-2 text-blue-900 font-bold text-sm tracking-widest uppercase border-b-2 border-transparent pb-1">
+                                Check Results
+                                <i data-feather="arrow-right" class="w-4 h-4"></i>
+                            </div>
                         </div>
                     </a>
                 @endfor
             </div>
         </div>
     </section>
-
 
 </x-layout>

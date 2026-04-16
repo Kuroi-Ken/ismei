@@ -1,66 +1,60 @@
-<x-layout>
-    <section>
-        <div class="relative w-full h-100 overflow-hidden">
-            <img class="absolute inset-0 w-full h-100 object-cover object-top z-0" src="{{ asset('assets/bg.jpg') }}" alt="">
-            <div class="absolute inset-0 bg-black/50 z-10"></div>
-            <div class="relative z-20 h-full flex items-center justify-center">
-                <div class="text-center px-4">
-                    <h1 class="md:text-[70px] text-[20px] text-white font-bold tracking-tight uppercase">
-                        {{$title}}
-                    </h1>
-                    <div class="">
-                        <h2 class=" text-white text-xl md:text-[25px]">
-                            Meet Our Incredible Guest Speakers.
-                        </h2>
-                    </div>
-                </div>
+<x-layout title="Symposium">
+    <section class="bg-blue-900 py-24 relative -z-20 overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-blue-800 skew-x-12 translate-x-20"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <h1 class="text-6xl md:text-8xl font-black text-white leading-none tracking-tighter opacity-20 absolute -top-10 left-0 uppercase">ismei</h1>
+            <div class="pt-10">
+                <h2 class="text-4xl md:text-6xl font-bold text-white uppercase mb-4">Symposium </h2>
+                <p class="font-kaushan text-2xl text-blue-200">"Meet Our Incredible Guest Speakers."</p>
             </div>
         </div>
     </section>
 
-    <section class="w-full pt-30 pb pb-10 bg-[#F8FAFC]">
-        <h1 class="text-blue-900 text-[30px] uppercase font-bold text-center">
-            Keynotes Speaker of ISMEI
-        </h1>
-        <div class="max-w-7xl mx-auto p-10 rounded-2xl bg-[blue-200 ]shadow-2xl">
-            @php $total = 5; @endphp
+    <section class="w-full -mt-12 max-w-7xl mx-auto mb-20 z-20 bg-white rounded-[2rem] shadow-lg p-15">
+        <div class="">
+            <h1 class="text-blue-900 text-[30px] uppercase font-bold text-center">
+                 Keynotes Speaker of ISMEI
+            </h1>
+            <div class="max-w-7xl mx-auto p-10 rounded-2xl bg-[blue-200 ]shadow-2xl">
+                @php $total = 5; @endphp
 
-            <div class="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory rounded-2xl no-scrollbar">
+                <div class="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory rounded-2xl no-scrollbar">
 
-                @for ($i=0; $i < $total; $i++)
-                    <div class="min-w-62.5 snap-start shrink-0 ">
-                        <div class="relative overflow-hidden rounded-3xl group">
+                    @for ($i=0; $i < $total; $i++)
+                        <div class="min-w-62.5 snap-start shrink-0 ">
+                            <div class="relative overflow-hidden rounded-3xl group">
 
-                            <img src="./assets/test.jpeg"
-                                class="w-full h-80 object-cover rounded-3xl transition-transform duration-500 group-hover:scale-105">
+                                <img src="./assets/test.jpeg"
+                                    class="w-full h-80 object-cover rounded-3xl transition-transform duration-500 group-hover:scale-105">
 
-                            <div class="absolute bottom-0 left-0 w-full
-                                bg-blue-900/95 rounded-b-3xl
-                                translate-y-full group-hover:translate-y-0
-                                transition-transform duration-500">
+                                <div class="absolute bottom-0 left-0 w-full
+                                    bg-blue-900/95 rounded-b-3xl
+                                    translate-y-full group-hover:translate-y-0
+                                    transition-transform duration-500">
 
-                                <h4 class="py-5 text-center text-white font-medium">
-                                    Faiz Nur Ramadhan
-                                </h4>
+                                    <h4 class="py-5 text-center text-white font-medium">
+                                        Faiz Nur Ramadhan
+                                    </h4>
+                                </div>
+
                             </div>
-
                         </div>
-                    </div>
-                @endfor
-            </div>
-
-            @if ($total > 4)
-                <div class="my-5 text-center">
-                    <h3 class="italic text-[#1E3A8A]">
-                        *Scroll to see more keynote speakers
-                    </h3>
+                    @endfor
                 </div>
-            @endif
 
+                @if ($total > 4)
+                    <div class="my-5 text-center">
+                        <h3 class="italic text-[#1E3A8A]">
+                            *Scroll to see more keynote speakers
+                        </h3>
+                    </div>
+                @endif
+
+            </div>
         </div>
     </section>
 
-    <section class="w-full mx-auto pb-30 bg-[#F8FAFC] overflow-hidden flex flex-col gap-20">
+    <section class="w-full mx-auto pb-30 bg-white overflow-hidden flex flex-col gap-20">
         @for ($i = 0; $i < 4; $i++)
         <div class="max-w-7xl mx-auto border rounded-2xl overflow-hidden bg-blue-50 shadow-lg">
             

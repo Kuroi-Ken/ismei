@@ -1,4 +1,4 @@
-<header class="z-50 bg-[#F8FAFC] sticky top-0 w-full shadow-sm">
+<header class="z-50 bg-white sticky top-0 w-full shadow-sm">
     <div class="h-20 flex items-center justify-between max-w-7xl mx-auto px-6">
 
         <a href="/" class="rounded-2xl">
@@ -13,7 +13,7 @@
                 <li><a href="/" class="text-[#1E3A8A] hover:text-black">Home</a></li>
                 <li><a href="/symposium" class="text-[#1E3A8A] hover:text-black">Symposium</a></li>
                 <li><a href="/information" class="text-[#1E3A8A] hover:text-black">Informations</a></li>
-                <li><a href="/archive" class="text-[#1E3A8A] hover:text-black">Archieves</a></li>
+                <li><a href="/archive" class="text-[#1E3A8A] hover:text-black">Archives</a></li>
                 <li><a href="about" class="text-[#1E3A8A] hover:text-black">About Us</a></li>
             </ul>
         </nav>
@@ -52,7 +52,7 @@
         <li><a href="/" class="text-[#1E3A8A] hover:text-black">Home</a></li>
         <li><a href="/symposium" class="text-[#1E3A8A] hover:text-black">Symposium</a></li>
         <li><a href="/information" class="text-[#1E3A8A] hover:text-black">Informations</a></li>
-        <li><a href="/archive" class="text-[#1E3A8A] hover:text-black">Archieves</a></li>
+        <li><a href="/archive" class="text-[#1E3A8A] hover:text-black">Archives</a></li>
         <li><a href="about" class="text-[#1E3A8A] hover:text-black">About Us</a></li>
 
     </ul>

@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="ISMEI Homepage">
 
     <section>
         <div class="relative md:py-10 py-25
@@ -107,8 +107,8 @@
         </div>
     </section>
 
-    <section class="w-full">
-        <div class="flex flex-col gap-15">
+    <section class="w-full bg-blue-50">
+        <div class="flex flex-col py-15 gap-15">
             <div class="text-center">
                 <h1 class="uppercase text-blue-900 font-bold text-[40px] ">Informations</h1>
                 <h3 class="text-[20.75px] font-light text-blue-900">Keep yourself up-to-date so you don't miss any of our updates</h3>
@@ -140,6 +140,8 @@
             </div>
         </div>
     </section>
+
+
 
     <section class="w-full py-30">
         <div class="max-w-7xl mx-auto p-10 rounded-2xl bg-[blue-200 ]shadow-2xl">
@@ -195,33 +197,23 @@
         </div>
     </section>
 
-    <section class="w-full">
-
-        <div class="min-h-screen flex flex-col items-center justify-center px-5">
-
-            <h1 class="text-center text-blue-900 text-[40px] font-bold pb-2">
-                Contact Us
-            </h1>
-
-            <h3 class="text-center text-[20px] text-[#1E3A8A] max-w-5xl leading-tight pb-8">
-                Any Question Regarding The Event or Anything About ISMEI? Don’t Hesitate to Ask Here
-            </h3>
-
-            <div class="flex gap-5 justify-center">
-
-                <a href="#" class="w-44 h-10 flex items-center justify-center bg-blue-900 text-white rounded-3xl text-xl">
-                    Email
+    <section class="py-32 bg-blue-900 relative overflow-hidden text-center">
+        <div class="relative z-10 px-6">
+            <h2 class="text-5xl md:text-6xl font-black text-white uppercase tracking-tighter mb-6">Have Questions?</h2>
+            <p class="text-xl text-blue-200 font-light max-w-2xl mx-auto mb-12">
+                Our team is ready to assist you regarding the event or any collaboration inquiries.
+            </p>
+            <div class="flex justify-center gap-6">
+                <a href="#" class="px-10 py-4 bg-white text-blue-900 rounded-2xl font-black hover:scale-105 transition-transform flex items-center gap-2">
+                    <i data-feather="mail"></i> Email Us
                 </a>
-
-                <a href="#" class="w-44 h-10 flex items-center justify-center bg-blue-900 text-white rounded-3xl text-xl">
-                    WhatsApp
+                <a href="#" class="px-10 py-4 border-2 border-white text-white rounded-2xl font-black hover:bg-white hover:text-blue-900 transition-all flex items-center gap-2">
+                    <i data-feather="message-circle"></i> WhatsApp
                 </a>
-
             </div>
-
         </div>
-
     </section>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
