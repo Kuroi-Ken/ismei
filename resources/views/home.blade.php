@@ -48,7 +48,7 @@
     <section class="z-10 inset-0 bg-white relative pt-20">
         {{-- <div class=" bg-blue-200 w-full h-30"></div> --}}
         <div class="w-full">
-            <h3 class="text-[40px] uppercase text-center font-bold text-blue-900">
+            <h3 class="text-[40px] uppercase text-center font-bold tracking-tighter text-blue-900">
                 What's New?
             </h3>
         </div>
@@ -110,13 +110,13 @@
     <section class="w-full bg-blue-50">
         <div class="flex flex-col py-15 gap-15">
             <div class="text-center">
-                <h1 class="uppercase text-blue-900 font-bold text-[40px] ">Informations</h1>
+                <h1 class="uppercase text-blue-900 font-bold tracking-tighter text-[40px] ">Informations</h1>
                 <h3 class="text-[20.75px] font-light text-blue-900">Keep yourself up-to-date so you don't miss any of our updates</h3>
             </div>
             <div class="flex w-fit gap-18 m-auto">
                 <div class="max-w-xl flex flex-col gap-12">
                     <div class="flex flex-col">
-                        <h1 class="text-[30px] font-bold text-blue-900">Call For Submissions</h1>
+                        <h1 class="text-[30px] font-bold tracking-tighter text-blue-900">Call For Submissions</h1>
                         <h3 class="text-[17.63px] font-light text-blue-900">We invite submissions of the original and unpublished work to the symposium for review. Only scholarly work that has not been published elsewhere should be submitted for consideration.  The followings are the topics:</h3>
                     </div>
                     <a class="text-[20px] border text-[#1F2937] px-5 py-1 w-fit rounded-3xl shadow-xl" href="">See More</a>
@@ -130,7 +130,7 @@
                 <a href="" class="bg-blue-900 max-w-lg px-11 py-9 rounded-xl">
                     <div class="flex gap-3">
                         <div class="text-white flex flex-col gap-1">
-                            <h1 class="font-bold text-[30px]">Announcement</h1>
+                            <h1 class="font-bold tracking-tighter text-[30px]">Announcement</h1>
                             <h3 class="text-[17.63px] font-light max-w-md leading-5">See all the accepted abstract, participant, and grant awardee during or after the event here</h3>
                         </div>
                         <i class="m-auto size-12 text-white" data-feather="chevron-right"></i>
@@ -148,7 +148,7 @@
 
             <div class="flex w-full pb-10">
                 <div class="w-full flex flex-col ">
-                    <h2 class="text-[30px] font-bold uppercase text-blue-900">
+                    <h2 class="text-[30px] font-bold uppercase tracking-tighter text-blue-900">
                         ISMEI Keynotes Speaker
                     </h2>
                     <h3 class="text-[20.75px] font-light text-blue-900">

@@ -24,7 +24,7 @@
                             </div>
                         </div>
 
-                        <h2 class="text-4xl font-black text-slate-900 mb-8 flex items-center gap-4">
+                        <h2 class="text-4xl font-black text-blue-900 mb-8 flex items-center gap-4">
                             WHAT IS ISMEI?
                         </h2>
                         
@@ -52,7 +52,7 @@
                 <div class="max-w-7xl mx-auto px-6">
                         
                         <div class="border-b border-slate-100 pb-12">
-                            <h1 class="text-[40px] md:text-5xl font-Bold uppercase tracking-tighter text-blue-900 leading-tight">
+                            <h1 class="text-[40px] md:text-[40px] font-bold uppercase tracking-tighter text-blue-900 leading-tight">
                                 Background & Rationale
                             </h1>
                         </div>
@@ -88,9 +88,7 @@
                 <div class="flex flex-col md:flex-row gap-8">
                     @for ($i=0;$i<2;$i++)
                     <div class="flex-1 h-64 relative group overflow-hidden rounded-2xl">
-                        <img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-120" src="{{asset('assets/bg.jpg')}}" alt="">
-                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900 to-transparent opacity-60"></div>
-                        <div class="absolute bottom-6 left-6 text-white font-bold tracking-widest">GALLERY_{{ $i + 1 }}</div>
+                        <img class="w-full h-full object-cover" src="{{asset('assets/bg.jpg')}}" alt="">
                     </div>
                     @endfor
                 </div>
@@ -99,7 +97,7 @@
         </div>
     </section>
     <section class="py-15 mb-20 bg-white overflow-hidden">
-        <div class="max-w-6xl mx-auto px-6">
+        <div class="max-w-7xl mx-auto px-6">
             
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
                 <div class="space-y-4">
@@ -112,7 +110,7 @@
             <div class=" gap-16 items-start flex">
                 
                 <div class="lg:col-span-7 space-y-8">
-                    <div class="prose prose-slate lg:prose-lg max-w-none font-light leading-relaxed text-justify text-slate-600">
+                    <div class="prose prose-slate lg:prose-lg max-w-none text-lg font-light leading-relaxed text-justify text-slate-600">
                         <p>
                             The International Symposium on Mathematics Education and Innovation (ISMEI) is a prominent biennial event organized by the SEAMEO Regional Centre for QITEP in Mathematics (SEAQiM). Since its inception in 2011, ISMEI has been a pivotal gathering for educators, policymakers, and stakeholders to share and discuss innovative practices in mathematics education.
                             <br><br>  This partnership underscores our commitment to leveraging technology and open learning platforms to enrich the symposium experience. The symposium continues to be a vital forum for promoting professional development among teachers and enhancing the quality of mathematics teaching and learning.

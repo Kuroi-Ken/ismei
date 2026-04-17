@@ -7,7 +7,11 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://unpkg.com/feather-icons"></script>
     <title>{{ $title }} | ISMEI Admin</title>
+
+    
 </head>
+
+
 
 <body class="bg-gray-50">
 
