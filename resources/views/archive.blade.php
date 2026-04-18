@@ -29,6 +29,7 @@
                         </div>
                     </a>
                 @endfor
+            </div>
         </div>
     </section>
 </x-layout>

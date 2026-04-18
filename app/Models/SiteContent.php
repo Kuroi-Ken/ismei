@@ -11,6 +11,8 @@ class SiteContent extends Model
     public static function get(string $key, string $fallback = ''): string
     {
         $record = static::where('key', $key)->first();
-        return $record ? $record->value : $fallback;
+        $value = $record ? $record->value : $fallback;
+
+        return (string) ($value ?? $fallback);
     }
 }

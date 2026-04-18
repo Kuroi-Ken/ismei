@@ -9,7 +9,7 @@
             <div class="relative z-10 flex flex-col items-center justify-center w-full p-20 py-7">
 
                 <div class="flex justify-center w-full">
-                    <h1 class="max-w-5xl text-center md:text-[40px] leading-11 font-bold text-blue-900">
+                    <h1 class="max-w-5xl text-center md:text-[40px] leading-11 font-bold uppercase text-blue-900">
                         Welcome To The International Symposium on Mathematics Education and Innovation <br> (ISMEI)
                     </h1>
                 </div>
@@ -46,7 +46,6 @@
 
 
     <section class="z-10 inset-0 bg-white relative pt-20">
-        {{-- <div class=" bg-blue-200 w-full h-30"></div> --}}
         <div class="w-full">
             <h3 class="text-[40px] uppercase text-center font-bold tracking-tighter text-blue-900">
                 What's New?
@@ -87,22 +86,39 @@
                 The International Symposium on Mathematics Education and Innovation (ISMEI) is a prominent biennial event organized by the SEAMEO Regional Centre for QITEP in Mathematics (SEAQiM). Since its inception in 2011, ISMEI has been a pivotal gathering for educators, policymakers, and stakeholders to share and discuss innovative practices in mathematics education.
             </h3>
         </div>
-        <div class="flex items-center justify-center ">
-            <div class="w-full">
-                <div class="max-w-2xl mx-auto">
-                    <div class="flex justify-between max-w-6xl mx-auto">
-                        @for ($i = 0; $i < 3; $i++)
-                            <div class="pt-5">
-                                <h4 class="text-[60px] font-kaushan font-bold text-center text-blue-900">
-                                    300
-                                </h4>
-                                <h4 class="text-[17.63px] text-center font-light">
-                                    Participant
-                                </h4>
-                            </div>
-                        @endfor
-                    </div>
+        <div class="">
+            <div class="flex justify-between max-w-3xl mx-auto">
+    
+                {{-- Stat 1: Fixed - always 300 Participants --}}
+                <div class="pt-5">
+                    <h4 class="text-[60px] font-kaushan font-bold text-center text-blue-900">
+                        300
+                    </h4>
+                    <h4 class="text-[20.63px] uppercase text-center font-medium">
+                        Participants
+                    </h4>
                 </div>
+    
+                {{-- Stat 2: Editable from admin --}}
+                <div class="pt-5">
+                    <h4 class="text-[60px] font-kaushan font-bold text-center text-blue-900">
+                        {{ \App\Models\SiteContent::get('home_stat2_value', '50') }}
+                    </h4>
+                    <h4 class="text-[20.63px] uppercase text-center font-medium">
+                        {{ \App\Models\SiteContent::get('home_stat2_label', 'Countries') }}
+                    </h4>
+                </div>
+    
+                {{-- Stat 3: Editable from admin --}}
+                <div class="pt-5">
+                    <h4 class="text-[60px] font-kaushan font-bold text-center text-blue-900">
+                        {{ \App\Models\SiteContent::get('home_stat3_value', '20') }}
+                    </h4>
+                    <h4 class="text-[20.63px] uppercase text-center font-medium">
+                        {{ \App\Models\SiteContent::get('home_stat3_label', 'Sessions') }}
+                    </h4>
+                </div>
+    
             </div>
         </div>
     </section>
@@ -131,7 +147,7 @@
                     <div class="flex gap-3">
                         <div class="text-white flex flex-col gap-1">
                             <h1 class="font-bold tracking-tighter text-[30px]">Announcement</h1>
-                            <h3 class="text-[17.63px] font-light max-w-md leading-5">See all the accepted abstract, participant, and grant awardee during or after the event here</h3>
+                            <h3 class="text-[17.63px] font-light max-w-md uppercase leading-5">See all the accepted abstract, participant, and grant awardee during or after the event here</h3>
                         </div>
                         <i class="m-auto size-12 text-white" data-feather="chevron-right"></i>
                     </div>
@@ -143,7 +159,7 @@
 
 
 
-    <section class="w-full py-30">
+    <section class="w-full mt-20">
         <div class="max-w-7xl mx-auto p-10 rounded-2xl bg-[blue-200 ]shadow-2xl">
 
             <div class="flex w-full pb-10">
@@ -151,7 +167,7 @@
                     <h2 class="text-[30px] font-bold uppercase tracking-tighter text-blue-900">
                         ISMEI Keynotes Speaker
                     </h2>
-                    <h3 class="text-[20.75px] font-light text-blue-900">
+                    <h3 class="text-[20.75px] uppercase font-light text-blue-900">
                         Introducing the speakers for the on-going event
                     </h3>
                 </div>
@@ -194,6 +210,38 @@
                 </div>
             @endif
 
+        </div>
+    </section>
+
+    <section class="bg-blue-50">
+        <div class="max-w-7xl mx-auto py-30 px-10 ">
+            <div class="flex w-full">
+            <div class="w-full flex flex-col ">
+                <h2 class="text-[30px] font-bold uppercase tracking-tighter text-blue-900">
+                    Proceeding <span class="text-[30px] font-bold uppercase tracking-tighter text-black">& Other Archives</span>
+                </h2>
+                <h3 class="text-[20.75px] font-light text-blue-900 uppercase">
+                    See All The Proceeding & Additional Attachment From The Event
+                </h3>
+            </div>
+            <a href="#" class="my-auto py-1 w-45 h-10 text-xl text-center text-white bg-blue-900 rounded-3xl hover:bg-blue-800 transition">
+                See More 
+            </a>
+            </div>
+            <div class="grid grid-cols-3 pt-10 justify-center gap-10">
+            @for ($i=0;$i<3;$i++)
+                <a href="" class="grid gap-3 bg-white shadow-2xl p-5 rounded-2xl border border-blue-50 hover:-translate-y-4 hover:border-blue-900 duration-300 transition-all">
+                    <h1 class="bg-[#BEDBFF] text-[9.72px] w-fit py-1 px-5 rounded-lg text-blue-900">Link</h1>
+                    <h1 class="text-[30px] font-bold">Archieve Title</h1>
+                    <p class="text-[14.75px] pb-3 font-light">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            nostrum perferendis distinctio et consequatur.</p>
+                    <div class="flex gap-4 border-t pt-5 ">
+                        <i class="size-4.5 my-auto" data-feather="calendar"></i>
+                        <p class="text-[13.75px] font-light">Date Realease</p>
+                    </div>
+                </a>
+            @endfor
+            </div>
         </div>
     </section>
 

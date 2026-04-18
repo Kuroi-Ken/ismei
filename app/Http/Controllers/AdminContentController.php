@@ -11,33 +11,55 @@ use Illuminate\Support\Facades\Storage;
 class AdminContentController extends Controller
 {
     public function editHome()
-{
-    $contents = SiteContent::whereIn('key', [
-        'home_theme_quote',
-        'home_theme_subtitle',
-    ])->pluck('value', 'key');
+    {
+        $contents = SiteContent::whereIn('key', [
+            'home_theme_quote',
+            'home_theme_subtitle',
+            'home_stat2_value',
+            'home_stat2_label',
+            'home_stat3_value',
+            'home_stat3_label',
+        ])->pluck('value', 'key');
 
-    $whatsNewImages = WhatsNewImage::orderBy('order')->orderBy('id')->get(); 
+        $whatsNewImages = WhatsNewImage::orderBy('order')->orderBy('id')->get();
 
-    return view('admin.content.home', compact('contents', 'whatsNewImages')); 
-}
+        return view('admin.content.home', compact('contents', 'whatsNewImages'));
+    }
 
     public function updateHome(Request $request)
     {
         $request->validate([
             'home_theme_quote'    => 'nullable|string|max:500',
             'home_theme_subtitle' => 'nullable|string|max:200',
+            'home_stat2_value'    => 'nullable|string|max:50',
+            'home_stat2_label'    => 'nullable|string|max:100',
+            'home_stat3_value'    => 'nullable|string|max:50',
+            'home_stat3_label'    => 'nullable|string|max:100',
         ]);
 
-        foreach (['home_theme_quote', 'home_theme_subtitle'] as $key) {
-            SiteContent::updateOrCreate(
-                ['key' => $key],
-                ['value' => $request->input($key), 'type' => 'text']
-            );
+        $keys = [
+            'home_theme_quote',
+            'home_theme_subtitle',
+            'home_stat2_value',
+            'home_stat2_label',
+            'home_stat3_value',
+            'home_stat3_label',
+        ];
+
+        foreach ($keys as $key) {
+            if ($request->has($key)) {
+                SiteContent::updateOrCreate(
+                    ['key' => $key],
+                    [
+                        'value' => $request->input($key) ?? '', // Paksa jadi string kosong jika null
+                        'type' => 'text'
+                    ]
+                );
+            }
         }
 
         return redirect()->route('admin.content.home')
-            ->with('success', 'Konten berhasil diperbarui!');
+            ->with('success', 'Content updated successfully!');
     }
 
     public function uploadWhatsNew(Request $request)
@@ -58,31 +80,11 @@ class AdminContentController extends Controller
         }
 
         return redirect()->route('admin.content.home')
-            ->with('success', 'Gambar berhasil diupload!');
-    }
-
-    public function logoUpdate(Request $request)
-    {
-        $request->validate([
-            'images' => 'required|array|min:1',
-            'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048',
-        ]);
-
-        return redirect()->route('admin.content.home')
-            ->with('success', 'successfully uploaded');
-    }
-    
-    public function deleteLogoUpdate(logoImages $image)
-    {
-        Storage::disk('public')->delete($image->path);
-        $image->delete();
-
-        return redirect()->route('admin.content.home')
-            ->with('success', 'Logo Deleted Successfully');
+            ->with('success', 'Images uploaded successfully!');
     }
 
     /**
-     * Hapus satu gambar dari What's New.
+     * Delete a single image from What's New.
      */
     public function deleteWhatsNew(WhatsNewImage $image)
     {
@@ -90,6 +92,6 @@ class AdminContentController extends Controller
         $image->delete();
 
         return redirect()->route('admin.content.home')
-            ->with('success', 'Gambar berhasil dihapus!');
+            ->with('success', 'Image deleted successfully!');
     }
 }

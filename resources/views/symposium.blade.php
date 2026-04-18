@@ -12,7 +12,7 @@
 
     <section class="w-full -mt-12 max-w-7xl mx-auto mb-20 z-20 bg-white rounded-[2rem] shadow-lg p-15">
         <div class="">
-            <h1 class="text-blue-900 text-[30px] uppercase font-bold text-center">
+            <h1 class="text-blue-900 text-[30px] tracking-tighter uppercase font-bold text-center">
                  Keynotes Speaker of ISMEI
             </h1>
             <div class="max-w-7xl mx-auto p-10 rounded-2xl bg-[blue-200 ]shadow-2xl">
@@ -66,7 +66,7 @@
                     </div>
                     
                     <div class="max-w-3xl flex flex-col gap-7">
-                        <h2 class="text-[30px] font-bold text-[#1E3A8A] text-center">Assoc. Prof. Dr. Thiradet Jiarasuksakun</h2>
+                        <h2 class="text-[30px] font-bold text-[#1E3A8A] tracking-tighter text-center">Assoc. Prof. Dr. Thiradet Jiarasuksakun</h2>
                         <div class="">
                             <p class="text-[17px] font-light text-justify leading-relaxed">
                                 Thiradet Jiarasuksakun was born in 1977 and grew up in Thailand. He had received Thai scholarship from IPST to study higher education in the US. He finished his Ph.D. in Mathematics from the University of Michigan, Ann Arbor, MI in 2006. After that he started his academic career as a math lecturer in the department of math, faculty of science at King Mongkut’s University of Technology Thonburi (KMUTT) in Bangkok. Two years later he was promoted to the assistant dean of faculty of science at KMUTT. He had produced various publications in math and math education. Then he became the head of math department in 2013, and three years later he was promoted to the dean of faculty of science at KMUTT. As an associate professor in math and a leader in math education, he had a lot of opportunities to enrich math proficiency for math teachers in secondary school level and vocational education. In 2020, he received “Executive of the Year Award” in the field of developing science and math teachers & educators from Foundation for Thai Society due to his dedication in training science and math teachers in Thailand. Then he has been appointed the president of IPST since Sep 2022. He aims to support all Thai science and math teachers to inspire Thai students to enhance their STEAM competencies in the 21st century.
