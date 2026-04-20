@@ -18,20 +18,20 @@
 
             @php
                 $menus = [
-                    ['Dashboard',     'home',           'admin.dashboard'],
-                    ['Informations',  'info',           null],
-                    ['Symposium',     'sunset',         null],
-                    ['Archives',      'archive',        null],
-                    ['About',         'more-horizontal',null],
+                    ['Dashboard',   'home',           'admin.dashboard'],
+                    ['Symposium',   'users',          'admin.speakers.index'],
+                    ['Informations','info',           null],
+                    ['Archives',    'archive',        null],
+                    ['About',       'more-horizontal',null],
                 ];
             @endphp
 
             @foreach($menus as [$label, $icon, $route])
                 @php
-                    // Active if current route matches, OR if visiting admin.content.home (same page as dashboard)
                     $isActive = $route && (
                         $current === $route ||
-                        ($route === 'admin.dashboard' && $current === 'admin.content.home')
+                        ($route === 'admin.dashboard'      && $current === 'admin.content.home') ||
+                        ($route === 'admin.speakers.index' && str_starts_with($current ?? '', 'admin.speakers'))
                     );
                     $url = $route ? route($route) : '#';
                 @endphp
@@ -69,4 +69,4 @@
             </button>
         </form>
     </div>
-</div>
+</div>  

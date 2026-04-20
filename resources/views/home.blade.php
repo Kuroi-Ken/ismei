@@ -23,12 +23,9 @@
                 </div>
 
                 <div class="flex justify-between md:gap-10 gap-5 md:py-10 mx-auto">
-                    @for ($i=0; $i<3; $i++)
-                        <div class="py-2">
-                            <img class="w-20.5 h-20.5 md:w-32.5 md:h-32.5 mx-auto object-cover" src="../assets/seameo.png" alt="">
-                            <h3 class="pt-3 md:text-xl text-center text-blue-900">SEAMEO</h3>
-                        </div>
-                    @endfor
+                    <img src="{{ asset(\App\Models\SiteContent::get('home_logo_seameo', 'images/default-logo.png')) }}" 
+                        alt="SEAMEO Logo" 
+                        class="h-16 w-auto object-contain">
                 </div>
 
                 <div class="flex gap-7 md:gap-10">

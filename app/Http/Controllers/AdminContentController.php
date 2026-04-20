@@ -94,4 +94,31 @@ class AdminContentController extends Controller
         return redirect()->route('admin.content.home')
             ->with('success', 'Image deleted successfully!');
     }
+
+    public function updateLogo(Request $request)
+    {
+        $request->validate([
+            'home_logo_seameo' => 'required|image|mimes:png,jpg,jpeg,svg|max:2048',
+        ]);
+
+        if ($request->hasFile('home_logo_seameo')) {
+            // Hapus logo lama jika perlu (opsional)
+            $oldLogo = SiteContent::get('home_logo_seameo');
+            if ($oldLogo && $oldLogo !== 'images/default-logo.png') {
+                Storage::disk('public')->delete(str_replace('storage/', '', $oldLogo));
+            }
+
+            // Simpan file baru
+            $path = $request->file('home_logo_seameo')->store('logos', 'public');
+            $fullPath = 'storage/' . $path;
+
+            // Update ke database
+            SiteContent::updateOrCreate(
+                ['key' => 'home_logo_seameo'],
+                ['value' => $fullPath, 'type' => 'image']
+            );
+        }
+
+        return back()->with('success', 'Logo updated successfully!');
+    }
 }

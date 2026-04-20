@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminContentController;
+use App\Http\Controllers\AdminSpeakerController;
 use App\Http\Controllers\ForgotPasswordController;
 
 // Public routes
@@ -13,28 +14,23 @@ Route::get('/about', fn() => view('about', ['title' => 'About Us']));
 Route::get('/archive', fn() => view('archive', ['title' => 'Archives']));
 Route::get('/other-archive', fn() => view('other-archive', ['title' => 'Archives']));
 
-
-// Login & forgot password (hanya untuk yang belum login)
+// Login & forgot password (guests only)
 Route::middleware('guest')->group(function () {
 
-    // Login
     Route::get('/go-to-admin-panel-menu', [AdminAuthController::class, 'showLogin'])
         ->name('admin.login');
     Route::post('/go-to-admin-panel-menu', [AdminAuthController::class, 'login'])
         ->name('admin.login.post');
 
-    // Forgot password
     Route::get('/forgot-the-password', [ForgotPasswordController::class, 'showForm'])
         ->name('admin.forgot');
     Route::post('/forgot-the-password', [ForgotPasswordController::class, 'sendLink'])
         ->name('admin.forgot.send');
 
-    // Reset password (dari link di email)
     Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showReset'])
         ->name('password.reset');
     Route::post('/reset-password', [ForgotPasswordController::class, 'reset'])
         ->name('admin.reset.update');
-
 });
 
 // Logout
@@ -42,9 +38,10 @@ Route::post('/admin/logout', [AdminAuthController::class, 'logout'])
     ->name('admin.logout')
     ->middleware('auth');
 
-// Admin routes — wajib login
+// Admin routes — auth required
 Route::prefix('admin')->middleware('auth')->group(function () {
 
+    // Dashboard / Home Content
     Route::get('/', [AdminContentController::class, 'editHome'])
         ->name('admin.dashboard');
 
@@ -59,5 +56,27 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::delete('/content/whats-new/{image}', [AdminContentController::class, 'deleteWhatsNew'])
         ->name('admin.content.whats-new.delete');
+
+    Route::prefix('admin')->middleware('auth')->group(function () {
+        
+        // ... dashboard routes
+        
+        Route::put('/content/home', [AdminContentController::class, 'updateHome'])
+            ->name('admin.content.home.update');
+
+        // TAMBAHKAN BARIS INI:
+        Route::post('/content/home/logo', [AdminContentController::class, 'updateLogo'])
+            ->name('admin.content.home.update-logo');
+
+        // ... route whats-new dan speakers
+    });
+
+    // Speakers CRUD
+    Route::get('/speakers',              [AdminSpeakerController::class, 'index'])  ->name('admin.speakers.index');
+    Route::get('/speakers/create',       [AdminSpeakerController::class, 'create']) ->name('admin.speakers.create');
+    Route::post('/speakers',             [AdminSpeakerController::class, 'store'])  ->name('admin.speakers.store');
+    Route::get('/speakers/{speaker}/edit', [AdminSpeakerController::class, 'edit'])   ->name('admin.speakers.edit');
+    Route::put('/speakers/{speaker}',    [AdminSpeakerController::class, 'update']) ->name('admin.speakers.update');
+    Route::delete('/speakers/{speaker}', [AdminSpeakerController::class, 'destroy'])->name('admin.speakers.destroy');
 
 });

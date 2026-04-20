@@ -72,6 +72,45 @@
         </div>
     </form>
 
+    <form action="{{ route('admin.content.home.update-logo') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="bg-white rounded-2xl shadow p-7 mb-5 w-full">
+            <div class="flex items-start gap-3 mb-5">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-900 flex-shrink-0">
+                    <i data-feather="image" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h2 class="text-[18px] font-semibold text-blue-900">Partner Logo</h2>
+                    <p class="text-sm text-black/50">Update the SEAMEO logo or other partner logos on the homepage.</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-6">
+                {{-- Preview Logo Saat Ini --}}
+                <div class="w-24 h-24 rounded-xl border border-blue-100 flex items-center justify-center p-2 bg-gray-50">
+                    <img src="{{ asset(\App\Models\SiteContent::get('home_logo_seameo', 'images/default-logo.png')) }}" 
+                        alt="Current Logo" class="max-w-full max-h-full object-contain">
+                </div>
+
+                <div class="flex-1">
+                    <label class="block text-sm font-medium text-blue-900 mb-1">Upload New Logo</label>
+                    <input type="file" name="home_logo_seameo" 
+                        class="w-full text-sm text-black/60 border border-blue-200 rounded-xl px-3 py-2 cursor-pointer bg-white
+                                file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0
+                                file:text-sm file:bg-blue-900 file:text-white hover:file:bg-blue-800">
+                    <p class="text-xs text-black/40 mt-2">Recommended: Transparent PNG, Max 2MB.</p>
+                </div>
+            </div>
+
+            <div class="flex justify-end mt-5">
+                <button type="submit" class="bg-blue-900 hover:bg-blue-800 text-white text-sm font-medium px-8 py-2.5 rounded-xl transition flex items-center gap-2">
+                    <i data-feather="upload" class="w-4 h-4"></i>
+                    Update Logo
+                </button>
+            </div>
+        </div>
+    </form>
+
     {{-- ===== STATISTICS ===== --}}
     <form action="{{ route('admin.content.home.update') }}" method="POST">
         @csrf
