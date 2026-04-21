@@ -36,20 +36,35 @@
             @include('admin.speaker._form', ['speaker' => $speaker])
         </div>
 
-        <div class="flex justify-end">
-
-            <div class="flex gap-3">
-                <a href="{{ route('admin.speaker.index') }}"
-                    class="px-6 py-2.5 rounded-xl border border-blue-200 text-blue-900 text-sm font-medium hover:bg-blue-50 transition">
-                    Cancel
-                </a>
-                <button type="submit"
-                    class="bg-blue-900 hover:bg-blue-800 text-white text-sm font-medium px-8 py-2.5 rounded-xl transition flex items-center gap-2">
-                    <i data-feather="save" class="w-4 h-4"></i>
-                    Save Changes
-                </button>
-            </div>
+        <div class="flex justify-end gap-3">
+            <a href="{{ route('admin.speaker.index') }}"
+                class="px-6 py-2.5 rounded-xl border border-blue-200 text-blue-900 text-sm font-medium hover:bg-blue-50 transition">
+                Cancel
+            </a>
+            <button type="submit"
+                class="bg-blue-900 hover:bg-blue-800 text-white text-sm font-medium px-8 py-2.5 rounded-xl transition flex items-center gap-2">
+                <i data-feather="save" class="w-4 h-4"></i>
+                Save Changes
+            </button>
         </div>
     </form>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            tinymce.init({
+                selector: '#tinymce-bio, #tinymce-abstract',
+                license_key: 'gpl', // Tambahkan ini jika Anda menggunakan TinyMCE versi 7
+                plugins: 'code table lists link',
+                toolbar: 'undo redo | blocks | bold italic | bullist numlist | code | table',
+                height: 350,
+                branding: false,
+                promotion: false,
+                setup: function (editor) {
+                    editor.on('change', function () {
+                        tinymce.triggerSave();
+                    });
+                }
+            });
+        });
+    </script>
 </x-admin-layout>

@@ -40,6 +40,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/content/home', [AdminContentController::class, 'editHome'])   ->name('admin.content.home');
     Route::put('/content/home', [AdminContentController::class, 'updateHome']) ->name('admin.content.home.update');
 
+    // Header Logo
+    Route::post('/content/header-logo', [AdminContentController::class, 'updateHeaderLogo'])
+        ->name('admin.content.header-logo.update');
+
     // Partner Logos
     Route::post  ('/content/logos',             [AdminContentController::class, 'uploadLogo'])     ->name('admin.content.logos.upload');
     Route::patch ('/content/logos/{logo}/name', [AdminContentController::class, 'updateLogoName']) ->name('admin.content.logos.update-name');

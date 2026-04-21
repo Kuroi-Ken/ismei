@@ -134,4 +134,27 @@ class AdminContentController extends Controller
         return redirect()->route('admin.content.home')
             ->with('success', 'Image deleted successfully!');
     }
+
+    public function updateHeaderLogo(Request $request)
+    {
+        $request->validate([
+            'header_logo' => 'required|image|mimes:jpg,jpeg,png,webp,svg|max:3072',
+        ]);
+ 
+        // Delete old stored file if it exists
+        $old = SiteContent::where('key', 'header_logo')->first();
+        if ($old && $old->value && Storage::disk('public')->exists($old->value)) {
+            Storage::disk('public')->delete($old->value);
+        }
+ 
+        $path = $request->file('header_logo')->store('header', 'public');
+ 
+        SiteContent::updateOrCreate(
+            ['key'  => 'header_logo'],
+            ['value' => $path, 'type' => 'image']
+        );
+ 
+        return redirect()->route('admin.content.home')
+            ->with('success', 'Header logo updated successfully!');
+    }
 }

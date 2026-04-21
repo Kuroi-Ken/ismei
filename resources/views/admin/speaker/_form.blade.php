@@ -45,11 +45,11 @@
         @error('photo') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
     </div>
 
-    {{-- Bio --}}
+    {{-- Bio (DENGAN TINYMCE) --}}
     <div class="md:col-span-2">
         <label class="block text-sm font-medium text-blue-900 mb-1">Biography</label>
-        <textarea name="bio" rows="6"
-            class="w-full border border-blue-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300 resize-none"
+        <textarea name="bio" id="tinymce-bio" rows="6"
+            class="w-full border border-blue-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
             placeholder="Write the speaker's biography here...">{{ old('bio', $speaker->bio ?? '') }}</textarea>
         @error('bio') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
     </div>
@@ -64,11 +64,11 @@
         @error('presentation_title') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
     </div>
 
-    {{-- Presentation Abstract --}}
+    {{-- Presentation Abstract (DENGAN TINYMCE) --}}
     <div class="md:col-span-2">
         <label class="block text-sm font-medium text-blue-900 mb-1">Presentation Abstract / Summary</label>
-        <textarea name="presentation_abstract" rows="6"
-            class="w-full border border-blue-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300 resize-none"
+        <textarea name="presentation_abstract" id="tinymce-abstract" rows="6"
+            class="w-full border border-blue-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
             placeholder="Write the presentation abstract here...">{{ old('presentation_abstract', $speaker->presentation_abstract ?? '') }}</textarea>
         @error('presentation_abstract') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
     </div>

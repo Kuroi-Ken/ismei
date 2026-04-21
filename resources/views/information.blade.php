@@ -20,7 +20,7 @@
 
                     <div class=" shadow-lg border border-blue-50 rounded-2xl max-w-lg hover:-translate-y-2 hover:border-blue-900 transition duration-400">
                         <a href="#" class="my-auto flex flex-col gap-5 bg-white p-5 rounded-2xl">
-                            <h2 class="text-[30px] font-bold uppercase tracking-tighter text-center">Call for Submisions</h2>
+                            <h2 class="text-[30px] font-bold uppercase tracking-tighter text-blue-900 text-center">Call for Submisions</h2>
                             <p class="text-[17.63px] max-w-2xl font-light h-20 mb-3"> Download the template for extended abstract here
                                 For details of abstract submission guidelines, please click here 
                             </p>
@@ -33,7 +33,7 @@
 
                     <div class=" shadow-lg border border-blue-50 rounded-2xl max-w-lg hover:-translate-y-2 hover:border-blue-900 transition duration-400">
                         <a href="#" class="my-auto flex flex-col gap-5 bg-white p-5 rounded-2xl">
-                            <h2 class="text-[30px] font-bold uppercase tracking-tighter text-center">Schedule</h2>
+                            <h2 class="text-[30px] font-bold uppercase tracking-tighter text-blue-900 text-center">Schedule</h2>
                             <p class="text-[17.63px] max-w-2xl font-light h-20 mb-3"> Download the template for extended abstract here
                                 For details of abstract submission guidelines, please click here 
                             </p>

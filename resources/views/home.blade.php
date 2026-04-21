@@ -150,7 +150,7 @@
                         <h1 class="text-[30px] font-bold tracking-tighter uppercase text-blue-900">Call For Submissions</h1>
                         <h3 class="text-[17.63px] font-light text-blue-900">We invite submissions of the original and unpublished work to the symposium for review. Only scholarly work that has not been published elsewhere should be submitted for consideration.  The followings are the topics:</h3>
                     </div>
-                    <a class="text-[20px] flex items-center gap-1 hover:gap-3 duration-200 text-blue-900 px-5 py-1 w-fit" href="">
+                    <a class="text-[20px] flex items-center gap-1 hover:gap-3 duration-300 border border-blue-50 hover:border-blue-900 hover:px-3 hover:mx-0 hover:bg-white rounded-2xl -mx-3 px-3 text-blue-900 py-1 w-fit" href="">
                         <span>See More</span>
                         <i data-feather="arrow-right" class="pt-1"></i>
                     </a>
