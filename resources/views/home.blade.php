@@ -6,27 +6,48 @@
             bg-[radial-gradient(rgba(59,130,246,0.15)_2px,transparent_2px)]
             bg-size-[30px_30px]">
 
-            <div class="relative z-10 flex flex-col items-center justify-center w-full p-20 py-7">
+            <div class="relative z-10 flex flex-col items-center justify-center w-full p-20 py-5">
 
                 <div class="flex justify-center w-full">
                     <h1 class="max-w-5xl text-center md:text-[40px] leading-11 font-bold uppercase text-blue-900">
                         Welcome To The International Symposium on Mathematics Education and Innovation <br> (ISMEI)
                     </h1>
                 </div>
-                <div class=" mx-auto grid justify-center pt-5">
+                <div class=" mx-auto justify-center pt-8 flex flex-col gap-3 ">
+                    <h4 class="text-center rounded-3xl bg-blue-900 w-fit mx-auto px-5 py-1 font-medium text-[20px] text-white">
+                        {{ \App\Models\SiteContent::get('home_theme_subtitle', '8th ISMEI Symposium Theme') }}
+                    </h4>
                     <h3 class="max-w-5xl text-center text-[25px] leading-tight font-light text-blue-900">
                         "{{ \App\Models\SiteContent::get('home_theme_quote', 'Empowering Future Generation through Emerging Technology Trends in Mathematics Education') }}"
                     </h3>
-                    <h4 class="text-center font-light text-[25px] text-blue-900">
-                        {{ \App\Models\SiteContent::get('home_theme_subtitle', '8th ISMEI Symposium Theme') }}
-                    </h4>
                 </div>
 
-                <div class="flex justify-between md:gap-10 gap-5 md:py-10 mx-auto">
-                    <img src="{{ asset(\App\Models\SiteContent::get('home_logo_seameo', 'images/default-logo.png')) }}" 
-                        alt="SEAMEO Logo" 
-                        class="h-16 w-auto object-contain">
+                @php
+                    $partnerLogos = \App\Models\PartnerLogo::orderBy('order')->orderBy('id')->get();
+                @endphp
+                
+                <div class="flex justify-center md:gap-10 gap-5 md:py-10 mx-auto flex-wrap">
+                    @forelse($partnerLogos as $logo)
+                        <div class="py-2 flex flex-col items-center">
+                            <img class="w-20 h-20 md:w-32 md:h-32 object-contain mx-auto"
+                                src="{{ asset('storage/' . $logo->path) }}"
+                                alt="{{ $logo->name ?? 'Partner Logo' }}">
+                            @if($logo->name)
+                                <h3 class="pt-3 md:text-xl text-center uppercase font-medium text-blue-900">{{ $logo->name }}</h3>
+                            @endif
+                        </div>
+                    @empty
+                        {{-- Fallback jika belum ada logo di database --}}
+                        @for($i = 0; $i < 3; $i++)
+                            <div class="py-2">
+                                <img class="w-20 h-20 md:w-32 md:h-32 mx-auto object-cover"
+                                    src="{{ asset('assets/seameo.png') }}" alt="SEAMEO">
+                                <h3 class="pt-3 md:text-xl text-center text-blue-900">SEAMEO</h3>
+                            </div>
+                        @endfor
+                    @endforelse
                 </div>
+                
 
                 <div class="flex gap-7 md:gap-10">
                     <a href="#" class="grid items-center w-30 h-8 md:w-44 md:h-12 md:text-xl text-center text-white rounded-3xl bg-blue-900 hover:bg-blue-800 transition">
@@ -42,7 +63,7 @@
     </section>
 
 
-    <section class="z-10 inset-0 bg-white relative pt-20">
+    <section class="z-10 inset-0 bg-white relative pt-20 ">
         <div class="w-full">
             <h3 class="text-[40px] uppercase text-center font-bold tracking-tighter text-blue-900">
                 What's New?
@@ -86,7 +107,6 @@
         <div class="">
             <div class="flex justify-between max-w-3xl mx-auto">
     
-                {{-- Stat 1: Fixed - always 300 Participants --}}
                 <div class="pt-5">
                     <h4 class="text-[60px] font-kaushan font-bold text-center text-blue-900">
                         300
@@ -95,8 +115,7 @@
                         Participants
                     </h4>
                 </div>
-    
-                {{-- Stat 2: Editable from admin --}}
+
                 <div class="pt-5">
                     <h4 class="text-[60px] font-kaushan font-bold text-center text-blue-900">
                         {{ \App\Models\SiteContent::get('home_stat2_value', '50') }}
@@ -106,7 +125,6 @@
                     </h4>
                 </div>
     
-                {{-- Stat 3: Editable from admin --}}
                 <div class="pt-5">
                     <h4 class="text-[60px] font-kaushan font-bold text-center text-blue-900">
                         {{ \App\Models\SiteContent::get('home_stat3_value', '20') }}
@@ -124,15 +142,18 @@
         <div class="flex flex-col py-15 gap-15">
             <div class="text-center">
                 <h1 class="uppercase text-blue-900 font-bold tracking-tighter text-[40px] ">Informations</h1>
-                <h3 class="text-[20.75px] font-light text-blue-900">Keep yourself up-to-date so you don't miss any of our updates</h3>
+                <h3 class="text-[20.75px] uppercase font-light text-blue-900">Keep yourself up-to-date so you don't miss any of our updates</h3>
             </div>
             <div class="flex w-fit gap-18 m-auto">
                 <div class="max-w-xl flex flex-col gap-12">
                     <div class="flex flex-col">
-                        <h1 class="text-[30px] font-bold tracking-tighter text-blue-900">Call For Submissions</h1>
+                        <h1 class="text-[30px] font-bold tracking-tighter uppercase text-blue-900">Call For Submissions</h1>
                         <h3 class="text-[17.63px] font-light text-blue-900">We invite submissions of the original and unpublished work to the symposium for review. Only scholarly work that has not been published elsewhere should be submitted for consideration.  The followings are the topics:</h3>
                     </div>
-                    <a class="text-[20px] border text-[#1F2937] px-5 py-1 w-fit rounded-3xl shadow-xl" href="">See More</a>
+                    <a class="text-[20px] flex items-center gap-1 hover:gap-3 duration-200 text-blue-900 px-5 py-1 w-fit" href="">
+                        <span>See More</span>
+                        <i data-feather="arrow-right" class="pt-1"></i>
+                    </a>
                 </div>
                 <div class="my-auto">
                     <img class="w-80 h-50 object-cover rounded-xl" src="{{ asset('assets/info.svg') }}" alt="">
@@ -140,15 +161,19 @@
             </div>
             <div class="flex mx-auto max-w-7xl gap-10">
                 @for ($i = 0; $i < 2; $i++)
-                <a href="" class="bg-blue-900 max-w-lg px-11 py-9 rounded-xl">
-                    <div class="flex gap-3">
-                        <div class="text-white flex flex-col gap-1">
-                            <h1 class="font-bold tracking-tighter text-[30px]">Announcement</h1>
-                            <h3 class="text-[17.63px] font-light max-w-md uppercase leading-5">See all the accepted abstract, participant, and grant awardee during or after the event here</h3>
+                    <a href="" class="group block max-w-lg bg-blue-900 hover:bg-white border border-blue-900 rounded-xl px-11 py-9 transition-all duration-400 hover:-translate-y-2">
+                        <div class="flex gap-3 items-center">
+                            <div class="flex flex-col gap-1">
+                                <h1 class="font-bold tracking-tighter uppercase text-[30px] text-white group-hover:text-blue-900 transition-colors">
+                                    Announcement
+                                </h1>
+                                <h3 class="text-[17.63px] font-light max-w-md leading-5 text-white group-hover:text-blue-900 transition-colors">
+                                    See all the accepted abstract, participant, and grant awardee during or after the event here
+                                </h3>
+                            </div>
+                            <i class="size-12 text-white group-hover:text-blue-900 transition-colors ml-auto" data-feather="chevron-right"></i>
                         </div>
-                        <i class="m-auto size-12 text-white" data-feather="chevron-right"></i>
-                    </div>
-                </a>
+                    </a>
                 @endfor
             </div>
         </div>
@@ -227,7 +252,7 @@
             </div>
             <div class="grid grid-cols-3 pt-10 justify-center gap-10">
             @for ($i=0;$i<3;$i++)
-                <a href="" class="grid gap-3 bg-white shadow-2xl p-5 rounded-2xl border border-blue-50 hover:-translate-y-4 hover:border-blue-900 duration-300 transition-all">
+                <a href="" class="grid gap-3 bg-white shadow-2xl p-5 rounded-2xl border border-blue-50 hover:-translate-y-4 hover:border-blue-900 duration-400 transition-all">
                     <h1 class="bg-[#BEDBFF] text-[9.72px] w-fit py-1 px-5 rounded-lg text-blue-900">Link</h1>
                     <h1 class="text-[30px] font-bold">Archieve Title</h1>
                     <p class="text-[14.75px] pb-3 font-light">Lorem ipsum dolor sit amet consectetur adipisicing elit.

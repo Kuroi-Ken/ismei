@@ -23,18 +23,12 @@ return new class extends Migration
             $table->integer('order')->default(0);
             $table->timestamps();
         });
-
-        schema::create('logo', function (Blueprint $table){
-            $table->id();
-            $table->string('title')->nullable();
-            $table->string('image_path');
-            $table->timestamps();
-        });
     }
 
     public function down(): void
     {
         Schema::dropIfExists('whats_new_images');
         Schema::dropIfExists('site_contents');
+        Schema::dropIfExists('partner_logos');
     }
 };

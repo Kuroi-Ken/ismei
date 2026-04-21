@@ -14,7 +14,7 @@ class AdminSpeakerController extends Controller
     public function index()
     {
         $speakers = Speaker::orderBy('order')->orderBy('id')->get();
-        return view('admin.speakers.index', compact('speakers'));
+        return view('admin.speaker.index', compact('speakers'));
     }
 
     /**
@@ -22,7 +22,7 @@ class AdminSpeakerController extends Controller
      */
     public function create()
     {
-        return view('admin.speakers.create');
+        return view('admin.speaker.create');
     }
 
     /**
@@ -53,7 +53,7 @@ class AdminSpeakerController extends Controller
 
         Speaker::create($data);
 
-        return redirect()->route('admin.speakers.index')
+        return redirect()->route('admin.speaker.index')
             ->with('success', 'Speaker added successfully!');
     }
 
@@ -62,7 +62,7 @@ class AdminSpeakerController extends Controller
      */
     public function edit(Speaker $speaker)
     {
-        return view('admin.speakers.edit', compact('speaker'));
+        return view('admin.speaker.edit', compact('speaker'));
     }
 
     /**
@@ -97,7 +97,7 @@ class AdminSpeakerController extends Controller
 
         $speaker->update($data);
 
-        return redirect()->route('admin.speakers.index')
+        return redirect()->route('admin.speaker.index')
             ->with('success', 'Speaker updated successfully!');
     }
 
@@ -111,7 +111,7 @@ class AdminSpeakerController extends Controller
         }
         $speaker->delete();
 
-        return redirect()->route('admin.speakers.index')
+        return redirect()->route('admin.speaker.index')
             ->with('success', 'Speaker deleted successfully!');
     }
 }

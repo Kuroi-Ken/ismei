@@ -12,25 +12,38 @@
 
     <section class="bg-white z-20 rounded-4xl p-15 shadow-lg max-w-7xl mx-auto leading-tight -mt-12">
         <h1 class="text-[40px] max-w-7xl mx-auto text-[#1E3A8A] text-center font-bold tracking-tighter pt-5 uppercase">Main Informations</h1>
-        <h1 class="text-[25px] max-w-7xl mb-8 mx-auto text-[#1E3A8A] text-center font-light">Stay up-to-date With Our Latest News and Events.</h1>
+        <h1 class="text-[25px] max-w-7xl mb-8 mx-auto text-[#1E3A8A] text-center font-light uppercase">Stay up-to-date With Our Latest News and Events.</h1>
 
         <div class="flex flex-col gap-10">
             <div class="w-full mx-auto justify-center gap-10 flex flex-col">
                 <div class="flex gap-10 mx-auto">
-                    @for ($i =0 ; $i <2 ; $i++)
-                    <div class=" shadow-lg border border-blue-50 rounded-2xl max-w-lg hover:-translate-y-2 hover:border-blue-900 transition duration-300">
-                        <a href="#" class="my-auto grid grid-rows-3 gap-3 bg-white p-5 rounded-2xl">
-                            <h2 class="text-[30px] font-bold">Call for Submissions</h2>
-                            <p class="text-[17.63px] max-w-2xl font-light"> Download the template for extended abstract here
+
+                    <div class=" shadow-lg border border-blue-50 rounded-2xl max-w-lg hover:-translate-y-2 hover:border-blue-900 transition duration-400">
+                        <a href="#" class="my-auto flex flex-col gap-5 bg-white p-5 rounded-2xl">
+                            <h2 class="text-[30px] font-bold uppercase tracking-tighter text-center">Call for Submisions</h2>
+                            <p class="text-[17.63px] max-w-2xl font-light h-20 mb-3"> Download the template for extended abstract here
                                 For details of abstract submission guidelines, please click here 
                             </p>
-                            <div class="flex gap-4 border-t">
+                            <div class="flex gap-4 pt-3 border-t">
                                 <i data-feather="calendar" class="my-auto w-4 h-4 text-center"></i>
                                 <p class="my-auto font-light">Date Realease</p>
                             </div>
                         </a>
                     </div>
-                    @endfor
+
+                    <div class=" shadow-lg border border-blue-50 rounded-2xl max-w-lg hover:-translate-y-2 hover:border-blue-900 transition duration-400">
+                        <a href="#" class="my-auto flex flex-col gap-5 bg-white p-5 rounded-2xl">
+                            <h2 class="text-[30px] font-bold uppercase tracking-tighter text-center">Schedule</h2>
+                            <p class="text-[17.63px] max-w-2xl font-light h-20 mb-3"> Download the template for extended abstract here
+                                For details of abstract submission guidelines, please click here 
+                            </p>
+                            <div class="flex gap-4 pt-3 border-t">
+                                <i data-feather="calendar" class="my-auto w-4 h-4 text-center"></i>
+                                <p class="my-auto font-light">Date Realease</p>
+                            </div>
+                        </a>
+                    </div>
+
                 </div>
             </div>
             <div class="w-full max-w-7xl flex flex-col gap-10 mx-auto">
@@ -49,9 +62,9 @@
                 </div>
                 <div class="flex justify-center gap-10">
                     @for ($i=0;$i<3;$i++)
-                        <a href="" class="grid gap-1 bg-white shadow-2xl p-5 rounded-3xl border">
+                        <a href="" class="grid gap-2 bg-white shadow-2xl p-5 rounded-3xl border">
                             <h1 class="bg-[#BEDBFF] text-[11.72px] w-fit py-1 px-5 rounded-lg text-blue-900">Tag</h1>
-                            <h1 class="text-[30px] font-bold">Informations Title</h1>
+                            <h1 class="text-[30px] font-bold tracking-tighter">Informations Title</h1>
                             <p class="text-[15.75px] pb-3 font-light">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                     nostrum perferendis distinctio et consequatur.</p>
                             <div class="flex gap-2 border-t pt-2 items-center">
@@ -69,15 +82,15 @@
     <section class="bg-white flex flex-col my-30 gap-30">
         <div class="flex flex-col gap-12">
             <div class="leading-tight text-center">
-                <h1 class="tracking-tighter max-w-7xl mx-auto font-bold text-[40px] text-black uppercase w-full">
+                <h1 class="tracking-tighter max-w-7xl mx-auto font-bold text-[40px] text-blue-900 uppercase w-full">
                 Poster
-                    <span class="font-bold text-[40px] text-blue-900 max-w-7xl mx-auto uppercase w-full pb-5">& Pamphlet</span> 
+                    <span class="font-bold text-[40px] text-black max-w-7xl mx-auto uppercase w-full pb-5">& Pamphlet</span> 
                 </h1>
                 <h3 class="tracking-tighter max-w-7xl mx-auto font-light text-[25px] text-blue-900 uppercase w-full">Explore Our Official Media</h3>
             </div>
             <div class="flex justify-center gap-10 max-w-7xl w-full mx-auto">
             @for ($i=0;$i<3;$i++)
-                <div class="p-3 bg-blue-50">
+                <div class="p-3 bg-blue-50 hover:border hover:border-blue-900 border border-blue-50 rounded-xl duration-400 transition-all">
                     <img class="mx-auto w-90.75 h-140 object-cover shadow-2xl" src="../assets/test.jpeg" alt="">
                 </div>
             @endfor
@@ -89,11 +102,11 @@
     <section class="bg-white pb-20">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-15 leading-tight">
-                <h1 class="text-5xl font-black text-blue-900 uppercase tracking-tight mb-4">
+                <h1 class="text-5xl font-black text-blue-900 uppercase tracking-tight mb-2">
                     Announcement
                 </h1>
                 <div class="flex items-center justify-center gap-4">
-                    <h2 class="text-xl font-light text-blue-900 tracking-wide uppercase">
+                    <h2 class="text-[25px] font-light text-blue-900 tracking-wide uppercase">
                         Participant Results & Nominations
                     </h2>
                 </div>

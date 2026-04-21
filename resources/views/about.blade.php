@@ -101,8 +101,8 @@
             
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
                 <div class="space-y-4">
-                    <h2 class="text-5xl font-black text-slate-900 uppercase tracking-tighter">
-                        Post Symposium <br> <span class="text-blue-900">Workshop</span>
+                    <h2 class="text-5xl font-black text-blue-900 uppercase tracking-tighter">
+                        Post Symposium <br> <span class="text-black">Workshop</span>
                     </h2>
                 </div>
             </div>

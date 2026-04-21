@@ -15,16 +15,6 @@
         @error('name') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
     </div>
 
-    {{-- Title / Honorific --}}
-    <div>
-        <label class="block text-sm font-medium text-blue-900 mb-1">Academic Title</label>
-        <input type="text" name="title"
-            value="{{ old('title', $speaker->title ?? '') }}"
-            class="w-full border border-blue-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
-            placeholder="e.g. Assoc. Prof. Dr.">
-        @error('title') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-    </div>
-
     {{-- Country --}}
     <div>
         <label class="block text-sm font-medium text-blue-900 mb-1">Country</label>
@@ -33,16 +23,6 @@
             class="w-full border border-blue-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
             placeholder="e.g. Thailand">
         @error('country') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-    </div>
-
-    {{-- Institution --}}
-    <div class="md:col-span-2">
-        <label class="block text-sm font-medium text-blue-900 mb-1">Institution / Organization</label>
-        <input type="text" name="institution"
-            value="{{ old('institution', $speaker->institution ?? '') }}"
-            class="w-full border border-blue-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
-            placeholder="e.g. King Mongkut's University of Technology Thonburi">
-        @error('institution') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
     </div>
 
     {{-- Photo --}}

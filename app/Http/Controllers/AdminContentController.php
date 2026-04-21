@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\PartnerLogo;
 use App\Models\SiteContent;
 use App\Models\WhatsNewImage;
 use Illuminate\Http\Request;
@@ -22,8 +23,9 @@ class AdminContentController extends Controller
         ])->pluck('value', 'key');
 
         $whatsNewImages = WhatsNewImage::orderBy('order')->orderBy('id')->get();
+        $partnerLogos   = PartnerLogo::orderBy('order')->orderBy('id')->get();
 
-        return view('admin.content.home', compact('contents', 'whatsNewImages'));
+        return view('admin.content.home', compact('contents', 'whatsNewImages', 'partnerLogos'));
     }
 
     public function updateHome(Request $request)
@@ -49,11 +51,8 @@ class AdminContentController extends Controller
         foreach ($keys as $key) {
             if ($request->has($key)) {
                 SiteContent::updateOrCreate(
-                    ['key' => $key],
-                    [
-                        'value' => $request->input($key) ?? '', // Paksa jadi string kosong jika null
-                        'type' => 'text'
-                    ]
+                    ['key'   => $key],
+                    ['value' => $request->input($key) ?? '', 'type' => 'text']
                 );
             }
         }
@@ -61,6 +60,50 @@ class AdminContentController extends Controller
         return redirect()->route('admin.content.home')
             ->with('success', 'Content updated successfully!');
     }
+
+    public function uploadLogo(Request $request)
+    {
+        $request->validate([
+            'logos'        => 'required|array|min:1',
+            'logos.*'      => 'image|mimes:jpg,jpeg,png,webp,svg|max:2048',
+            'logo_names'   => 'nullable|array',
+            'logo_names.*' => 'nullable|string|max:100',
+        ]);
+
+        $order = PartnerLogo::max('order') ?? 0;
+
+        foreach ($request->file('logos') as $index => $file) {
+            $path = $file->store('partner-logos', 'public');
+            PartnerLogo::create([
+                'path'  => $path,
+                'name'  => $request->input("logo_names.{$index}") ?? null,
+                'order' => ++$order,
+            ]);
+        }
+
+        return redirect()->route('admin.content.home')
+            ->with('success', 'Logo(s) uploaded successfully!');
+    }
+
+    public function updateLogoName(Request $request, PartnerLogo $logo)
+    {
+        $request->validate(['name' => 'nullable|string|max:100']);
+        $logo->update(['name' => $request->input('name')]);
+
+        return redirect()->route('admin.content.home')
+            ->with('success', 'Logo label updated!');
+    }
+
+    public function deleteLogo(PartnerLogo $logo)
+    {
+        Storage::disk('public')->delete($logo->path);
+        $logo->delete();
+
+        return redirect()->route('admin.content.home')
+            ->with('success', 'Logo deleted successfully!');
+    }
+
+    // ── What's New Images ─────────────────────────────────────────────────────
 
     public function uploadWhatsNew(Request $request)
     {
@@ -83,9 +126,6 @@ class AdminContentController extends Controller
             ->with('success', 'Images uploaded successfully!');
     }
 
-    /**
-     * Delete a single image from What's New.
-     */
     public function deleteWhatsNew(WhatsNewImage $image)
     {
         Storage::disk('public')->delete($image->path);
@@ -93,32 +133,5 @@ class AdminContentController extends Controller
 
         return redirect()->route('admin.content.home')
             ->with('success', 'Image deleted successfully!');
-    }
-
-    public function updateLogo(Request $request)
-    {
-        $request->validate([
-            'home_logo_seameo' => 'required|image|mimes:png,jpg,jpeg,svg|max:2048',
-        ]);
-
-        if ($request->hasFile('home_logo_seameo')) {
-            // Hapus logo lama jika perlu (opsional)
-            $oldLogo = SiteContent::get('home_logo_seameo');
-            if ($oldLogo && $oldLogo !== 'images/default-logo.png') {
-                Storage::disk('public')->delete(str_replace('storage/', '', $oldLogo));
-            }
-
-            // Simpan file baru
-            $path = $request->file('home_logo_seameo')->store('logos', 'public');
-            $fullPath = 'storage/' . $path;
-
-            // Update ke database
-            SiteContent::updateOrCreate(
-                ['key' => 'home_logo_seameo'],
-                ['value' => $fullPath, 'type' => 'image']
-            );
-        }
-
-        return back()->with('success', 'Logo updated successfully!');
     }
 }

@@ -26,9 +26,8 @@
                     No keynote speakers added yet.
                 </div>
             @else
-                <div class="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory rounded-2xl no-scrollbar">
+                <div class="flex gap-5 overflow-x-auto justify-center scroll-smooth snap-x snap-mandatory rounded-2xl no-scrollbar">
                     @foreach($speakers as $speaker)
-                        {{-- Clicking a speaker card scrolls/links to their bio below --}}
                         <a href="#speaker-{{ $speaker->id }}"
                             class="min-w-62.5 snap-start shrink-0 group">
                             <div class="relative overflow-hidden rounded-3xl">
@@ -89,15 +88,15 @@
                                     <h2 class="text-[28px] font-bold text-[#1E3A8A] tracking-tighter leading-tight">
                                         {{ $speaker->name }}
                                     </h2>
-                                    @if($speaker->institution || $speaker->country)
-                                        <p class="text-slate-500 text-sm mt-1">
-                                            {{ collect([$speaker->institution, $speaker->country])->filter()->implode(' · ') }}
+                                    @if($speaker->country)
+                                        <p class="text-slate-500 text-sm mt-1 uppercase font-bold">
+                                            {{ collect([$speaker->country])->filter()->implode(' · ') }}
                                         </p>
                                     @endif
                                 </div>
 
                                 @if($speaker->bio)
-                                    <div class="text-[17px] font-light text-justify leading-relaxed text-slate-700 max-h-72 overflow-y-auto pr-2">
+                                    <div class="bg-white text-[17px] font-light text-justify leading-relaxed text-blue-900 rounded-xl p-3 max-h-80 overflow-y-auto pr-2 [ms-overflow-style:'none'] [scrollbar-width:'none'] [&::-webkit-scrollbar]:hidden">
                                         {!! nl2br(e($speaker->bio)) !!}
                                     </div>
                                 @endif
@@ -126,7 +125,7 @@
                                 @endif
 
                                 @if($speaker->presentation_abstract)
-                                    <p class="text-justify font-light text-[17px] leading-relaxed text-slate-700 max-h-96 overflow-y-auto">
+                                    <p class="text-justify font-light text-[17px] bg-white rounded-xl p-3 leading-relaxed text-blue-900 max-h-96 overflow-y-auto [ms-overflow-style:'none'] [scrollbar-width:'none'] [&::-webkit-scrollbar]:hidden">
                                         {!! nl2br(e($speaker->presentation_abstract)) !!}
                                     </p>
                                 @endif

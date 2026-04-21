@@ -1,7 +1,7 @@
 <x-admin-layout title="Add Speaker">
 
     <div class="mb-6 flex items-center gap-3">
-        <a href="{{ route('admin.speakers.index') }}"
+        <a href="{{ route('admin.speaker.index') }}"
             class="w-9 h-9 flex items-center justify-center rounded-xl bg-blue-50 text-blue-900 hover:bg-blue-100 transition">
             <i data-feather="arrow-left" class="w-4 h-4"></i>
         </a>
@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <form action="{{ route('admin.speakers.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.speaker.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="bg-white rounded-2xl shadow p-7 mb-5">
@@ -25,11 +25,11 @@
                 </div>
             </div>
 
-            @include('admin.speakers._form', ['speaker' => null])
+            @include('admin.speaker._form', ['speaker' => null])
         </div>
 
         <div class="flex justify-end gap-3">
-            <a href="{{ route('admin.speakers.index') }}"
+            <a href="{{ route('admin.speaker.index') }}"
                 class="px-6 py-2.5 rounded-xl border border-blue-200 text-blue-900 text-sm font-medium hover:bg-blue-50 transition">
                 Cancel
             </a>

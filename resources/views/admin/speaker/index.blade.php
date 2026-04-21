@@ -13,7 +13,7 @@
             <h1 class="text-2xl font-bold text-blue-900">Keynote Speakers</h1>
             <p class="text-sm text-black/40 mt-1">Manage speakers shown on the Symposium page.</p>
         </div>
-        <a href="{{ route('admin.speakers.create') }}"
+        <a href="{{ route('admin.speaker.create') }}"
             class="bg-blue-900 hover:bg-blue-800 text-white text-sm font-medium px-5 py-2.5 rounded-xl transition flex items-center gap-2">
             <i data-feather="plus" class="w-4 h-4"></i>
             Add Speaker
@@ -27,7 +27,7 @@
             </div>
             <h3 class="text-lg font-semibold text-slate-700 mb-2">No speakers yet</h3>
             <p class="text-sm text-black/40 mb-6">Add your first keynote speaker to display on the symposium page.</p>
-            <a href="{{ route('admin.speakers.create') }}"
+            <a href="{{ route('admin.speaker.create') }}"
                 class="inline-flex items-center gap-2 bg-blue-900 hover:bg-blue-800 text-white text-sm font-medium px-6 py-2.5 rounded-xl transition">
                 <i data-feather="plus" class="w-4 h-4"></i>
                 Add First Speaker
@@ -40,7 +40,7 @@
                     <tr>
                         <th class="text-left px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest w-16">Order</th>
                         <th class="text-left px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest">Speaker</th>
-                        <th class="text-left px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest hidden md:table-cell">Institution</th>
+                        <th class="text-left px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest hidden md:table-cell">Country</th>
                         <th class="text-left px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest hidden lg:table-cell">Presentation</th>
                         <th class="text-left px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest w-24">Status</th>
                         <th class="text-right px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest w-28">Actions</th>
@@ -71,7 +71,6 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4 hidden md:table-cell">
-                                <p class="text-sm text-slate-600">{{ $speaker->institution ?? '—' }}</p>
                                 @if($speaker->country)
                                     <p class="text-xs text-black/40">{{ $speaker->country }}</p>
                                 @endif
@@ -94,11 +93,11 @@
                             </td>
                             <td class="px-6 py-4 text-right">
                                 <div class="flex items-center justify-end gap-2">
-                                    <a href="{{ route('admin.speakers.edit', $speaker->id) }}"
+                                    <a href="{{ route('admin.speaker.edit', $speaker->id) }}"
                                         class="w-8 h-8 flex items-center justify-center rounded-lg bg-blue-50 text-blue-900 hover:bg-blue-900 hover:text-white transition">
                                         <i data-feather="edit-2" class="w-3.5 h-3.5"></i>
                                     </a>
-                                    <form action="{{ route('admin.speakers.destroy', $speaker->id) }}" method="POST"
+                                    <form action="{{ route('admin.speaker.destroy', $speaker->id) }}" method="POST"
                                         onsubmit="return confirm('Delete {{ $speaker->name }}?')">
                                         @csrf
                                         @method('DELETE')

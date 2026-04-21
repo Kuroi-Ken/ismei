@@ -19,7 +19,7 @@
             @php
                 $menus = [
                     ['Dashboard',   'home',           'admin.dashboard'],
-                    ['Symposium',   'users',          'admin.speakers.index'],
+                    ['Symposium',   'users',          'admin.speaker.index'],
                     ['Informations','info',           null],
                     ['Archives',    'archive',        null],
                     ['About',       'more-horizontal',null],
@@ -31,7 +31,7 @@
                     $isActive = $route && (
                         $current === $route ||
                         ($route === 'admin.dashboard'      && $current === 'admin.content.home') ||
-                        ($route === 'admin.speakers.index' && str_starts_with($current ?? '', 'admin.speakers'))
+                        ($route === 'admin.speaker.index' && str_starts_with($current ?? '', 'admin.speaker'))
                     );
                     $url = $route ? route($route) : '#';
                 @endphp
