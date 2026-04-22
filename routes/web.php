@@ -1,10 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminContentController;
 use App\Http\Controllers\AdminSpeakerController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\RegisterController;
+use Illuminate\Support\Facades\Route;
 
 // ─── Public routes ────────────────────────────────────────────────────────────
 Route::get('/', fn() => view('home'));
@@ -13,6 +14,10 @@ Route::get('/symposium',     fn() => view('symposium',     ['title' => 'Symposiu
 Route::get('/about',         fn() => view('about',         ['title' => 'About Us']));
 Route::get('/archive',       fn() => view('archive',       ['title' => 'Archives']));
 Route::get('/other-archive', fn() => view('other-archive', ['title' => 'Archives']));
+Route::get('/login', function () {return "Halaman Login ISMEI";})->name('login');
+
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
 // ─── Guest-only ───────────────────────────────────────────────────────────────
 Route::middleware('guest')->group(function () {

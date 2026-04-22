@@ -7,3 +7,4 @@
 @theme {
   --font-kaushan: "Kaushan Script", cursive;
 }
+@plugin "@tailwindcss/typography";

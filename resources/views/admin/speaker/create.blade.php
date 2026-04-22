@@ -40,5 +40,23 @@
             </button>
         </div>
     </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            tinymce.init({
+                selector: '#tinymce-bio, #tinymce-abstract',
+                license_key: 'gpl',
+                plugins: 'code table lists link',
+                toolbar: 'undo redo | blocks | bold italic | bullist numlist | code | table |alignleft aligncenter alignright alignjustify',
+                height: 350,
+                branding: false,
+                promotion: false,
+                setup: function (editor) {
+                    editor.on('change', function () {
+                        tinymce.triggerSave();
+                    });
+                }
+            });
+        });
+    </script>
 
 </x-admin-layout>

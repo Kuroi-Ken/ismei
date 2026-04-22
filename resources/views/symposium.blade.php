@@ -96,9 +96,11 @@
                                 </div>
 
                                 @if($speaker->bio)
-                                    <div class="bg-white text-[17px] font-light text-justify leading-relaxed text-blue-900 rounded-xl p-3 max-h-80 overflow-y-auto pr-2 [ms-overflow-style:'none'] [scrollbar-width:'none'] [&::-webkit-scrollbar]:hidden">
-                                        {!! nl2br(e($speaker->bio)) !!}
-                                    </div>
+                                    <div class="prose prose-blue max-w-none text-[17px] leading-relaxed 
+                                                max-h-72 overflow-y-auto pr-2
+                                                [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                                        {!! $speaker->bio !!}
+                                    </div>      
                                 @endif
 
                                 @if($speaker->presentation_abstract)
@@ -125,9 +127,11 @@
                                 @endif
 
                                 @if($speaker->presentation_abstract)
-                                    <p class="text-justify font-light text-[17px] bg-white rounded-xl p-3 leading-relaxed text-blue-900 max-h-96 overflow-y-auto [ms-overflow-style:'none'] [scrollbar-width:'none'] [&::-webkit-scrollbar]:hidden">
-                                        {!! nl2br(e($speaker->presentation_abstract)) !!}
-                                    </p>
+                                    <div class="prose prose-blue max-w-none text-[17px] leading-relaxed 
+                                                max-h-72 overflow-y-auto pr-2
+                                                [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                                        {!! $speaker->presentation_abstract !!}
+                                    </div>
                                 @endif
 
                                 <button onclick="toggleSlide(this)"

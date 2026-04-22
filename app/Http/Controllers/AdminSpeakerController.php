@@ -47,6 +47,13 @@ class AdminSpeakerController extends Controller
         $data['is_active'] = $request->boolean('is_active', true);
         $data['order']     = $request->input('order', 0);
 
+        if (isset($data['bio'])) {
+            $data['bio'] = strip_tags($data['bio'], '<p><br><strong><em><ul><ol><li><h1><h2><h3><h4><a><table><thead><tbody><tr><td><th>');
+        }
+        if (isset($data['presentation_abstract'])) {
+            $data['presentation_abstract'] = strip_tags($data['presentation_abstract'], '<p><br><strong><em><ul><ol><li><h1><h2><h3><h4><a><table><thead><tbody><tr><td><th>');
+        }
+
         if ($request->hasFile('photo')) {
             $data['photo'] = $request->file('photo')->store('speakers', 'public');
         }

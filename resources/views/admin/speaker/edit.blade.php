@@ -53,14 +53,18 @@
         document.addEventListener("DOMContentLoaded", function() {
             tinymce.init({
                 selector: '#tinymce-bio, #tinymce-abstract',
-                license_key: 'gpl', // Tambahkan ini jika Anda menggunakan TinyMCE versi 7
-                plugins: 'code table lists link',
-                toolbar: 'undo redo | blocks | bold italic | bullist numlist | code | table',
-                height: 350,
+                license_key: 'gpl',
+                
+                plugins: 'code table lists link image preview fullscreen wordcount searchreplace emoticons charmap',
+                
+                toolbar: 'undo redo | blocks | bold italic underline | forecolor | alignleft aligncenter alignright alignjustify | bullist numlist | link image | table | fullscreen preview | code wordcount',
+                
+                height: 400,
                 branding: false,
                 promotion: false,
-                setup: function (editor) {
-                    editor.on('change', function () {
+                
+                setup: function(editor) {
+                    editor.on('change', function() {
                         tinymce.triggerSave();
                     });
                 }
