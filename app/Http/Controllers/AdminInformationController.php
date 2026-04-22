@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Information;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -38,13 +37,15 @@ class AdminInformationController extends Controller
             'is_active' => $request->boolean('is_active', true),
         ];
 
-        // Handle image delete
-        if ($request->input('delete_image') && $information->image) {
-            Storage::disk('public')->delete($information->image);
+        // Delete image (only when no new file is uploaded at the same time)
+        if ($request->input('delete_image') && !$request->hasFile('image')) {
+            if ($information->image) {
+                Storage::disk('public')->delete($information->image);
+            }
             $data['image'] = null;
         }
 
-        // Handle new image upload (overrides delete if both sent)
+        // Upload new image (also replaces existing)
         if ($request->hasFile('image')) {
             if ($information->image) {
                 Storage::disk('public')->delete($information->image);

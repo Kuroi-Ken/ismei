@@ -11,7 +11,10 @@
         </div>
     </div>
 
-    <form action="{{ route('admin.information.store') }}" method="POST" enctype="multipart/form-data">
+    {{-- enctype="multipart/form-data" is REQUIRED for file upload --}}
+    <form action="{{ route('admin.information.store') }}"
+          method="POST"
+          enctype="multipart/form-data">
         @csrf
 
         <div class="bg-white rounded-2xl shadow p-7 mb-5">
@@ -23,6 +26,7 @@
                     <h2 class="text-[18px] font-semibold text-blue-900">Announcement Details</h2>
                     <p class="text-sm text-black/50">
                         Leave body empty to show a "no recent info" placeholder on the front-end.
+                        Time is set automatically.
                     </p>
                 </div>
             </div>

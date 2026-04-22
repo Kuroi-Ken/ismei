@@ -55,9 +55,6 @@
                             @endif
 
                             <div class="flex items-center justify-center gap-2">
-                                <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-700 flex-shrink-0">
-                                    <i data-feather="file-text" class="w-4 h-4"></i>
-                                </div>
                                 <h2 class="text-[28px] font-bold uppercase tracking-tighter text-blue-900">
                                     {{ ($callForSubmission && $callForSubmission->title) ? $callForSubmission->title : 'Call for Submissions' }}
                                 </h2>
@@ -120,9 +117,6 @@
                             @endif
 
                             <div class="flex items-center justify-center gap-2">
-                                <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-700 flex-shrink-0">
-                                    <i data-feather="calendar" class="w-4 h-4"></i>
-                                </div>
                                 <h2 class="text-[28px] font-bold uppercase tracking-tighter text-blue-900">
                                     {{ ($schedule && $schedule->title) ? $schedule->title : 'Schedule' }}
                                 </h2>

@@ -20,19 +20,6 @@
         @error('title') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
     </div>
 
-    {{-- Release Date --}}
-    <div>
-        <label class="block text-sm font-medium text-blue-900 mb-1">
-            Release Date
-            <span class="text-black/30 font-normal">(shown under the card)</span>
-        </label>
-        <input type="text" name="release_date"
-            value="{{ old('release_date', $information->release_date ?? '') }}"
-            class="w-full border border-blue-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
-            placeholder="e.g. April 22, 2026">
-        @error('release_date') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-    </div>
-
     {{-- Body — TinyMCE --}}
     <div>
         <label class="block text-sm font-medium text-blue-900 mb-1">

@@ -1,24 +1,61 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Models;
 
-use App\Models\Information;
+use Illuminate\Database\Eloquent\Model;
 
-class InformationController extends Controller
+class Information extends Model
 {
-    public function show(string $slug)
+    protected $table = 'informations';
+
+    protected $fillable = [
+        'slug',
+        'label',
+        'type',
+        'title',
+        'body',
+        'image',
+        'release_date',
+        'is_active',
+        'order',
+    ];
+
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
+
+    /**
+     * Get a single record by slug, or null.
+     */
+    public static function findBySlug(string $slug): ?self
     {
-        $information = Information::findBySlug($slug);
+        return static::where('slug', $slug)->first();
+    }
 
-        if (!$information) {
-            abort(404);
-        }
+    /**
+     * True when this item has meaningful displayable content.
+     */
+    public function hasContent(): bool
+    {
+        return !empty(strip_tags($this->body ?? '')) || !empty($this->title);
+    }
 
-        // Optional inactive items → 404
-        if ($information->type === 'optional' && !$information->is_active) {
-            abort(404);
-        }
+    /**
+     * Returns the image URL or null.
+     */
+    public function getImageUrlAttribute(): ?string
+    {
+        return $this->image ? asset('storage/' . $this->image) : null;
+    }
 
-        return view('information-detail', compact('information'));
+    /**
+     * Human-readable "time ago" using Carbon / diffForHumans on created_at.
+     * Examples: "3 minutes ago", "2 hours ago", "5 days ago"
+     */
+    public function getTimeAgoAttribute(): string
+    {
+        return $this->created_at
+            ? $this->created_at->diffForHumans()
+            : 'Unknown date';
     }
 }

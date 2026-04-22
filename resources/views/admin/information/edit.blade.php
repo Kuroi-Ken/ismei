@@ -26,7 +26,10 @@
         </div>
     </div>
 
-    <form action="{{ route('admin.information.update', $information->id) }}" method="POST" enctype="multipart/form-data">
+    {{-- enctype="multipart/form-data" is REQUIRED for file upload --}}
+    <form action="{{ route('admin.information.update', $information->id) }}"
+          method="POST"
+          enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -37,7 +40,7 @@
                 </div>
                 <div>
                     <h2 class="text-[18px] font-semibold text-blue-900">{{ $information->label }}</h2>
-                    <p class="text-sm text-black/50">Update the content below. Supports rich text, images, and headings via TinyMCE.</p>
+                    <p class="text-sm text-black/50">Update the content below. Supports rich text and a featured image.</p>
                 </div>
             </div>
 
