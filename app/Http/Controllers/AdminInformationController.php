@@ -2,98 +2,107 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Information;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminInformationController extends Controller
 {
-    /**
-     * List all information items.
-     */
     public function index()
     {
-        $fixed       = Information::where('type', 'fixed')->orderBy('order')->get();
+        $fixed         = Information::where('type', 'fixed')->orderBy('order')->get();
         $announcements = Information::where('type', 'optional')->orderBy('order')->get();
 
         return view('admin.information.index', compact('fixed', 'announcements'));
     }
 
-    /**
-     * Show edit form for a single item.
-     */
     public function edit(Information $information)
     {
         return view('admin.information.edit', compact('information'));
     }
 
-    /**
-     * Update a single information record.
-     */
     public function update(Request $request, Information $information)
     {
         $request->validate([
             'title'        => 'nullable|string|max:500',
             'body'         => 'nullable|string',
-            'release_date' => 'nullable|string|max:100',
+            'image'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'delete_image' => 'nullable',
             'is_active'    => 'boolean',
         ]);
 
-        $information->update([
-            'title'        => $request->input('title'),
-            'body'         => $request->input('body'),
-            'release_date' => $request->input('release_date'),
-            'is_active'    => $request->boolean('is_active', true),
-        ]);
+        $data = [
+            'title'     => $request->input('title'),
+            'body'      => $request->input('body'),
+            'is_active' => $request->boolean('is_active', true),
+        ];
+
+        // Handle image delete
+        if ($request->input('delete_image') && $information->image) {
+            Storage::disk('public')->delete($information->image);
+            $data['image'] = null;
+        }
+
+        // Handle new image upload (overrides delete if both sent)
+        if ($request->hasFile('image')) {
+            if ($information->image) {
+                Storage::disk('public')->delete($information->image);
+            }
+            $data['image'] = $request->file('image')->store('informations', 'public');
+        }
+
+        $information->update($data);
 
         return redirect()->route('admin.information.index')
             ->with('success', $information->label . ' updated successfully!');
     }
 
-    /**
-     * Show create form (announcements only).
-     */
     public function create()
     {
         return view('admin.information.create');
     }
 
-    /**
-     * Store a new announcement.
-     */
     public function store(Request $request)
     {
         $request->validate([
-            'title'        => 'nullable|string|max:500',
-            'body'         => 'nullable|string',
-            'release_date' => 'nullable|string|max:100',
-            'is_active'    => 'boolean',
+            'title'     => 'nullable|string|max:500',
+            'body'      => 'nullable|string',
+            'image'     => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'is_active' => 'boolean',
         ]);
 
         $count = Information::where('type', 'optional')->count();
 
-        Information::create([
-            'slug'         => 'announcement_' . ($count + 1) . '_' . time(),
-            'label'        => 'Announcement ' . ($count + 1),
-            'type'         => 'optional',
-            'title'        => $request->input('title'),
-            'body'         => $request->input('body'),
-            'release_date' => $request->input('release_date'),
-            'is_active'    => $request->boolean('is_active', true),
-            'order'        => 10 + $count,
-        ]);
+        $data = [
+            'slug'      => 'announcement_' . ($count + 1) . '_' . time(),
+            'label'     => 'Announcement ' . ($count + 1),
+            'type'      => 'optional',
+            'title'     => $request->input('title'),
+            'body'      => $request->input('body'),
+            'is_active' => $request->boolean('is_active', true),
+            'order'     => 10 + $count,
+        ];
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('informations', 'public');
+        }
+
+        Information::create($data);
 
         return redirect()->route('admin.information.index')
             ->with('success', 'Announcement added successfully!');
     }
 
-    /**
-     * Delete an announcement (optional type only).
-     */
     public function destroy(Information $information)
     {
         if ($information->type === 'fixed') {
             return redirect()->route('admin.information.index')
                 ->with('error', 'Fixed items cannot be deleted.');
+        }
+
+        if ($information->image) {
+            Storage::disk('public')->delete($information->image);
         }
 
         $information->delete();

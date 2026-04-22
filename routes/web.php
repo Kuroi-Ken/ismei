@@ -7,10 +7,13 @@ use App\Http\Controllers\AdminSpeakerController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InformationController;
 
 // Public routes
 Route::get('/', fn() => view('home'));
 Route::get('/information',   fn() => view('information',   ['title' => 'Hall of Informations']));
+Route::get('/information/{slug}', [InformationController::class, 'show'])
+    ->name('information.show');
 Route::get('/symposium',     fn() => view('symposium',     ['title' => 'Symposium']));
 Route::get('/about',         fn() => view('about',         ['title' => 'About Us']));
 Route::get('/archive',       fn() => view('archive',       ['title' => 'Archives']));

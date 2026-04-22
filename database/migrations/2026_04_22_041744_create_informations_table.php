@@ -17,13 +17,20 @@ return new class extends Migration
             $table->longText('body')->nullable();  // TinyMCE rich content
             $table->string('release_date')->nullable();
             $table->boolean('is_active')->default(true);
-            $table->integer('order')->default(0);
+            $table->integer('order')->default(0);   
             $table->timestamps();
+        });
+        
+         Schema::table('informations', function (Blueprint $table) {
+            $table->string('image')->nullable()->after('body');
         });
     }
 
     public function down(): void
     {
         Schema::dropIfExists('informations');
+        Schema::table('informations', function (Blueprint $table) {
+            $table->dropColumn('image');
+        });
     }
 };
