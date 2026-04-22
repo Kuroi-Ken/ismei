@@ -24,11 +24,11 @@
         <ul class="flex flex-col gap-1">
             @php
                 $menus = [
-                    ['Dashboard',   'home',           'admin.dashboard'],
-                    ['Symposium',   'users',          'admin.speaker.index'],
-                    ['Informations','info',           null],
-                    ['Archives',    'archive',        null],
-                    ['About',       'more-horizontal',null],
+                    ['Dashboard',    'home',           'admin.dashboard'],
+                    ['Symposium',    'users',          'admin.speaker.index'],
+                    ['Informations', 'info',           'admin.information.index'],
+                    ['Archives',     'archive',        null],
+                    ['About',        'more-horizontal', null],
                 ];
             @endphp
 
@@ -36,14 +36,15 @@
                 @php
                     $isActive = $route && (
                         $current === $route ||
-                        ($route === 'admin.dashboard'    && $current === 'admin.content.home') ||
-                        ($route === 'admin.speaker.index' && str_starts_with($current ?? '', 'admin.speaker'))
+                        ($route === 'admin.dashboard'          && $current === 'admin.content.home') ||
+                        ($route === 'admin.speaker.index'      && str_starts_with($current ?? '', 'admin.speaker')) ||
+                        ($route === 'admin.information.index'  && str_starts_with($current ?? '', 'admin.information'))
                     );
                     $url = $route ? route($route) : '#';
                 @endphp
 
                 <li class="group/item">
-                    <a href="{{ $url }}" 
+                    <a href="{{ $url }}"
                        class="flex items-center py-2.5 px-3 rounded-lg duration-300 
                        {{ $isActive 
                             ? 'bg-white text-blue-900 ml-3' 

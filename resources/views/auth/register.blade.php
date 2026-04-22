@@ -34,7 +34,7 @@
 
                 {{-- Google reCAPTCHA Container --}}
                 <div class="mb-6 flex justify-center">
-                    <div class="g-recaptcha" data-sitekey="{{ env('NOCAPTCHA_SITEKEY') }}"></div>
+                    {!! NoCaptcha::display() !!}
                 </div>
                 @error('g-recaptcha-response')
                     <p class="text-red-500 text-xs mt-[-15px] mb-4 text-center">{{ $message }}</p>
