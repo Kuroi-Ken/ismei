@@ -10,9 +10,9 @@ return new class extends Migration
     {
         Schema::create('informations', function (Blueprint $table) {
             $table->id();
-            $table->string('slug')->unique(); // 'call_for_submission' | 'schedule' | 'announcement_1' | 'announcement_2' | 'announcement_3'
-            $table->string('label');          // human-readable label for admin UI
-            $table->string('type');           // 'fixed' (always shown) | 'optional' (hidden if empty)
+            $table->string('slug')->unique();  
+            $table->string('label');         
+            $table->string('type');          
             $table->string('title')->nullable();
             $table->longText('body')->nullable();  // TinyMCE rich content
             $table->string('release_date')->nullable();

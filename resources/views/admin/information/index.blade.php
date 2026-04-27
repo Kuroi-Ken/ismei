@@ -19,11 +19,6 @@
             <h1 class="text-2xl font-bold text-blue-900">Informations Page</h1>
             <p class="text-sm text-black/40 mt-1">Manage content shown on the Informations page.</p>
         </div>
-        <a href="{{ route('admin.information.create') }}"
-            class="bg-blue-900 hover:bg-blue-800 text-white text-sm font-medium px-5 py-2.5 rounded-xl transition flex items-center gap-2">
-            <i data-feather="plus" class="w-4 h-4"></i>
-            Add Post
-        </a>
     </div>
 
     {{-- FIXED CARDS --}}
@@ -75,10 +70,19 @@
     </div>
 
     {{-- ADDITIONAL INFORMATION POSTS --}}
-    <div class="flex items-center gap-2 mb-3">
-        <span class="w-2 h-2 rounded-full bg-amber-500"></span>
-        <h2 class="text-sm font-bold text-blue-900 uppercase tracking-widest">Additional Information</h2>
-        <span class="text-xs text-black/40">(optional posts — can be added & deleted)</span>
+    <div class="flex items-center gap-2 mb-3 justify-between">
+        <div class="">
+            <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+            <h2 class="text-sm font-bold text-blue-900 uppercase tracking-widest">Additional Information</h2>
+            <span class="text-xs text-black/40">(optional posts — can be added & deleted)</span>
+        </div>
+        <div class="">
+            <a href="{{ route('admin.information.create') }}"
+                class="bg-blue-900 hover:bg-blue-800 text-white text-sm font-medium px-5 py-2.5 rounded-xl transition flex items-center gap-2">
+                <i data-feather="plus" class="w-4 h-4"></i>
+                Add Post
+            </a>
+        </div>
     </div>
 
     @if($announcements->isEmpty())

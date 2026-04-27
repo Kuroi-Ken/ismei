@@ -76,7 +76,7 @@
         @error('image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
     </div>
 
-    {{-- Order --}}
+    {{-- Order & Visibility --}}
     <div class="grid grid-cols-2 gap-4">
         <div>
             <label class="block text-sm font-medium text-blue-900 mb-1">Display Order</label>
@@ -88,7 +88,6 @@
             @error('order') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
         </div>
 
-        {{-- Visibility --}}
         <div>
             <label class="block text-sm font-medium text-blue-900 mb-3">Visibility</label>
             <label class="inline-flex items-center gap-3 cursor-pointer">

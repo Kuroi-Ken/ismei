@@ -140,8 +140,9 @@
         </div>
     </section>
 
-    {{-- Poster & Pamphlet --}}
-{{-- Poster & Pamphlet --}}
+    {{-- ═══════════════════════════════════════════════════ --}}
+    {{-- Poster & Pamphlet                                   --}}
+    {{-- ═══════════════════════════════════════════════════ --}}
     <section class="bg-white flex flex-col my-30 gap-30">
         <div class="flex flex-col gap-12">
             <div class="leading-tight text-center">
@@ -153,24 +154,38 @@
             </div>
 
             @php
-                $pamflets = \App\Models\Pamflet::active()->take(3)->get();
+                $pamflets = \App\Models\Pamflet::active()->get();
             @endphp
 
             @if($pamflets->isNotEmpty())
-                <div class="flex justify-center gap-10 max-w-7xl w-full mx-auto flex-wrap">
-                    @foreach($pamflets as $pamflet)
-                        <div class="p-3 bg-blue-50 hover:border hover:border-blue-900 border border-blue-50 rounded-xl duration-400 transition-all group cursor-pointer"
-                            onclick="openLightbox('{{ $pamflet->image_url }}', '{{ addslashes($pamflet->title ?? '') }}')">
-                            <img class="mx-auto w-90.75 h-140 object-cover shadow-2xl rounded-lg transition-transform duration-300 group-hover:scale-[1.02]"
-                                src="{{ $pamflet->image_url }}"
-                                alt="{{ $pamflet->title ?? 'Pamflet' }}">
-                            @if($pamflet->title)
-                                <p class="text-center text-sm font-medium text-blue-900 mt-3 pt-3 border-t border-blue-100">
-                                    {{ $pamflet->title }}
-                                </p>
-                            @endif
-                        </div>
-                    @endforeach
+                {{-- Scrollable row — centered when ≤3, scrollable when >3 --}}
+                <div class="relative max-w-7xl w-full mx-auto px-4">
+
+                    <div style="display:flex; {{ $pamflets->count() <= 3 ? 'justify-content:center;' : '' }} gap:2.5rem; overflow-x:auto; scroll-behavior:smooth; scroll-snap-type:x mandatory; padding-bottom:1rem;"
+                        class="no-scrollbar">
+                        @foreach($pamflets as $pamflet)
+                            <div style="scroll-snap-align:start; flex-shrink:0; width:362px;"
+                                class="p-3 bg-blue-50 hover:border hover:border-blue-900 border border-blue-50 rounded-xl duration-400 transition-all group cursor-pointer"
+                                onclick="openLightbox('{{ $pamflet->image_url }}', '{{ addslashes($pamflet->title ?? '') }}')">
+                                <img style="width:338px; height:560px; object-fit:cover;"
+                                    class="shadow-2xl rounded-lg transition-transform duration-300 group-hover:scale-[1.02]"
+                                    src="{{ $pamflet->image_url }}"
+                                    alt="{{ $pamflet->title ?? 'Pamflet' }}">
+                                @if($pamflet->title)
+                                    <p class="text-center text-sm font-medium text-blue-900 mt-3 pt-3 border-t border-blue-100">
+                                        {{ $pamflet->title }}
+                                    </p>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+
+                    @if($pamflets->count() > 3)
+                        <p class="text-center text-sm italic text-blue-900/50 mt-2">
+                            *Scroll to see more posters & pamflets
+                        </p>
+                    @endif
+
                 </div>
             @else
                 <div class="flex justify-center max-w-7xl w-full mx-auto">
@@ -234,5 +249,27 @@
             </div>
         </div>
     </section>
+
+    {{-- Lightbox script --}}
+    <script>
+        function openLightbox(src, title) {
+            document.getElementById('lightbox-img').src   = src;
+            document.getElementById('lightbox-title').textContent = title;
+            const lb = document.getElementById('pamflet-lightbox');
+            lb.classList.remove('hidden');
+            lb.classList.add('flex');
+            if (typeof feather !== 'undefined') feather.replace();
+        }
+        function closeLightbox() {
+            const lb = document.getElementById('pamflet-lightbox');
+            lb.classList.add('hidden');
+            lb.classList.remove('flex');
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
+
+
 
 </x-layout>
