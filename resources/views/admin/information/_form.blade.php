@@ -16,7 +16,7 @@
         <input type="text" name="title"
             value="{{ old('title', optional($information)->title ?? '') }}"
             class="w-full border border-blue-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
-            placeholder="e.g. Call for Submissions">
+            placeholder="e.g. Call for Submissions" required>
         @error('title') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
     </div>
     

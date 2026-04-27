@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Information;
+use App\Models\Pamflet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,8 +13,9 @@ class AdminInformationController extends Controller
     {
         $fixed         = Information::where('type', 'fixed')->orderBy('order')->get();
         $announcements = Information::where('type', 'optional')->orderBy('order')->get();
+        $pamflets      = Pamflet::orderBy('order')->orderBy('id')->get();
 
-        return view('admin.information.index', compact('fixed', 'announcements'));
+        return view('admin.information.index', compact('fixed', 'announcements', 'pamflets'));
     }
 
     public function edit(Information $information)
@@ -102,7 +104,6 @@ class AdminInformationController extends Controller
             'body'      => $request->input('body'),
             'is_active' => $request->boolean('is_active', true),
             'order'     => 10 + $count,
-            // release_date is auto-set by the model's booted() method
         ];
 
         if ($request->hasFile('image')) {

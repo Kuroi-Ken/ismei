@@ -141,6 +141,7 @@
     </section>
 
     {{-- Poster & Pamphlet --}}
+{{-- Poster & Pamphlet --}}
     <section class="bg-white flex flex-col my-30 gap-30">
         <div class="flex flex-col gap-12">
             <div class="leading-tight text-center">
@@ -150,15 +151,52 @@
                 </h1>
                 <h3 class="tracking-tighter max-w-7xl mx-auto font-light text-[25px] text-blue-900 uppercase w-full">Explore Our Official Media</h3>
             </div>
-            <div class="flex justify-center gap-10 max-w-7xl w-full mx-auto">
-                @for ($i=0;$i<3;$i++)
-                    <div class="p-3 bg-blue-50 hover:border hover:border-blue-900 border border-blue-50 rounded-xl duration-400 transition-all">
-                        <img class="mx-auto w-90.75 h-140 object-cover shadow-2xl" src="../assets/test.jpeg" alt="">
+
+            @php
+                $pamflets = \App\Models\Pamflet::active()->take(3)->get();
+            @endphp
+
+            @if($pamflets->isNotEmpty())
+                <div class="flex justify-center gap-10 max-w-7xl w-full mx-auto flex-wrap">
+                    @foreach($pamflets as $pamflet)
+                        <div class="p-3 bg-blue-50 hover:border hover:border-blue-900 border border-blue-50 rounded-xl duration-400 transition-all group cursor-pointer"
+                            onclick="openLightbox('{{ $pamflet->image_url }}', '{{ addslashes($pamflet->title ?? '') }}')">
+                            <img class="mx-auto w-90.75 h-140 object-cover shadow-2xl rounded-lg transition-transform duration-300 group-hover:scale-[1.02]"
+                                src="{{ $pamflet->image_url }}"
+                                alt="{{ $pamflet->title ?? 'Pamflet' }}">
+                            @if($pamflet->title)
+                                <p class="text-center text-sm font-medium text-blue-900 mt-3 pt-3 border-t border-blue-100">
+                                    {{ $pamflet->title }}
+                                </p>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="flex justify-center max-w-7xl w-full mx-auto">
+                    <div class="text-center py-16 px-10 bg-blue-50 rounded-2xl border-2 border-dashed border-blue-200 text-black/30 text-sm">
+                        <i data-feather="image" class="w-10 h-10 mx-auto mb-3 text-blue-200"></i>
+                        <p>Poster & pamflet will be available soon.</p>
                     </div>
-                @endfor
-            </div>
+                </div>
+            @endif
         </div>
     </section>
+
+    {{-- Lightbox --}}
+    <div id="pamflet-lightbox"
+        class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4"
+        onclick="closeLightbox()">
+        <div class="relative max-w-3xl w-full" onclick="event.stopPropagation()">
+            <button onclick="closeLightbox()"
+                class="absolute -top-10 right-0 text-white hover:text-blue-300 transition flex items-center gap-1.5 text-sm font-medium">
+                <i data-feather="x" class="w-5 h-5"></i> Close
+            </button>
+            <img id="lightbox-img" src="" alt=""
+                class="w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl">
+            <p id="lightbox-title" class="text-center text-white text-sm font-medium mt-4 opacity-80"></p>
+        </div>
+    </div>
 
     {{-- Announcement section (bottom) --}}
     <section class="bg-white pb-20">

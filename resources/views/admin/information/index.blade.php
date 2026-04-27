@@ -65,7 +65,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="4" class="px-6 py-10 text-center text-sm text-black/30">
+                        <td colspan="3" class="px-6 py-10 text-center text-sm text-black/30">
                             No fixed items found. Run: <code>php artisan db:seed --class=InformationSeeder</code>
                         </td>
                     </tr>
@@ -82,7 +82,7 @@
     </div>
 
     @if($announcements->isEmpty())
-        <div class="bg-white rounded-2xl shadow p-12 text-center">
+        <div class="bg-white rounded-2xl shadow p-12 text-center mb-10">
             <div class="w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <i data-feather="file-plus" class="w-8 h-8 text-amber-300"></i>
             </div>
@@ -95,7 +95,7 @@
             </a>
         </div>
     @else
-        <div class="bg-white rounded-2xl shadow overflow-hidden">
+        <div class="bg-white rounded-2xl shadow overflow-hidden mb-10">
             <table class="w-full">
                 <thead class="bg-amber-50 border-b border-amber-100">
                     <tr>
@@ -110,7 +110,6 @@
                         <tr class="hover:bg-slate-50 transition">
                             <td class="px-6 py-4">
                                 <div class="flex items-center gap-3">
-                                    {{-- Thumbnail if image exists --}}
                                     @if($ann->image)
                                         <div class="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0 bg-blue-50">
                                             <img src="{{ asset('storage/' . $ann->image) }}"
@@ -153,6 +152,99 @@
                                     </a>
                                     <form action="{{ route('admin.information.destroy', $ann->id) }}" method="POST"
                                         onsubmit="return confirm('Delete this post?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="w-8 h-8 flex items-center justify-center rounded-lg bg-red-50 text-red-600 hover:bg-red-600 hover:text-white transition">
+                                            <i data-feather="trash-2" class="w-3.5 h-3.5"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endif
+
+    {{-- ═══════════════════════════════════════════════════════════════ --}}
+    {{-- POSTER & PAMFLET SECTION                                        --}}
+    {{-- ═══════════════════════════════════════════════════════════════ --}}
+
+    <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+            <h2 class="text-sm font-bold text-blue-900 uppercase tracking-widest">Poster & Pamflet</h2>
+            <span class="text-xs text-black/40">(max 3 displayed publicly)</span>
+        </div>
+        <a href="{{ route('admin.pamflet.create') }}"
+            class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-xl transition flex items-center gap-2">
+            <i data-feather="plus" class="w-4 h-4"></i>
+            Add Pamflet
+        </a>
+    </div>
+
+    @if($pamflets->isEmpty())
+        <div class="bg-white rounded-2xl shadow p-10 text-center border-2 border-dashed border-indigo-100">
+            <div class="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                <i data-feather="image" class="w-7 h-7 text-indigo-300"></i>
+            </div>
+            <h3 class="text-base font-semibold text-slate-700 mb-1">No pamflets yet</h3>
+            <p class="text-sm text-black/40 mb-5">Upload poster or pamflet images to display on the informations page.</p>
+            <a href="{{ route('admin.pamflet.create') }}"
+                class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-5 py-2 rounded-xl transition">
+                <i data-feather="plus" class="w-4 h-4"></i>
+                Add First Pamflet
+            </a>
+        </div>
+    @else
+        <div class="bg-white rounded-2xl shadow overflow-hidden">
+            <table class="w-full">
+                <thead class="bg-indigo-50 border-b border-indigo-100">
+                    <tr>
+                        <th class="text-left px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest">Pamflet</th>
+                        <th class="text-left px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest w-20">Order</th>
+                        <th class="text-left px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest w-24">Status</th>
+                        <th class="text-right px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest w-28">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                    @foreach($pamflets as $pamflet)
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-indigo-50 border border-indigo-100">
+                                        <img src="{{ asset('storage/' . $pamflet->image) }}"
+                                            class="w-full h-full object-cover" alt="">
+                                    </div>
+                                    <p class="text-sm font-medium text-slate-800">
+                                        {{ $pamflet->title ?? '(No title)' }}
+                                    </p>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="text-sm text-black/40 font-medium">#{{ $pamflet->order }}</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                @if($pamflet->is_active)
+                                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-green-100 text-green-700 text-xs font-medium">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Visible
+                                    </span>
+                                @else
+                                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 text-slate-500 text-xs font-medium">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span> Hidden
+                                    </span>
+                                @endif
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <div class="flex items-center justify-end gap-2">
+                                    <a href="{{ route('admin.pamflet.edit', $pamflet->id) }}"
+                                        class="w-8 h-8 flex items-center justify-center rounded-lg bg-indigo-50 text-indigo-700 hover:bg-indigo-700 hover:text-white transition">
+                                        <i data-feather="edit-2" class="w-3.5 h-3.5"></i>
+                                    </a>
+                                    <form action="{{ route('admin.pamflet.destroy', $pamflet->id) }}" method="POST"
+                                        onsubmit="return confirm('Delete this pamflet?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"

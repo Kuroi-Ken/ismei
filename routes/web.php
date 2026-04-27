@@ -3,11 +3,12 @@
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminContentController;
 use App\Http\Controllers\AdminInformationController;
+use App\Http\Controllers\AdminPamfletController;
 use App\Http\Controllers\AdminSpeakerController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\InformationController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\InformationController;
 
 // Public routes
 Route::get('/', fn() => view('home'));
@@ -44,6 +45,14 @@ Route::post('/admin/logout', [AdminAuthController::class, 'logout'])
 
 // Admin (auth required)
 Route::prefix('admin')->middleware('auth')->group(function () {
+
+
+    Route::get   ('/pamflets',                [AdminPamfletController::class, 'index'])   ->name('admin.pamflet.index');
+    Route::get   ('/pamflets/create',         [AdminPamfletController::class, 'create'])  ->name('admin.pamflet.create');
+    Route::post  ('/pamflets',                [AdminPamfletController::class, 'store'])   ->name('admin.pamflet.store');
+    Route::get   ('/pamflets/{pamflet}/edit', [AdminPamfletController::class, 'edit'])    ->name('admin.pamflet.edit');
+    Route::put   ('/pamflets/{pamflet}',      [AdminPamfletController::class, 'update'])  ->name('admin.pamflet.update');
+    Route::delete('/pamflets/{pamflet}',      [AdminPamfletController::class, 'destroy']) ->name('admin.pamflet.destroy');
 
     // Dashboard / Home Content
     Route::get('/',             [AdminContentController::class, 'editHome'])   ->name('admin.dashboard');

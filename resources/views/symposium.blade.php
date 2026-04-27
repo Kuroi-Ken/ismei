@@ -62,7 +62,6 @@
         </div>
     </section>
 
-    {{-- ===== SPEAKER BIO CARDS (bottom section) ===== --}}
     @if($speakers->isNotEmpty())
         <section class="w-full mx-auto pb-30 bg-white overflow-hidden flex flex-col gap-20">
             @foreach($speakers as $speaker)
@@ -106,7 +105,7 @@
                                 @if($speaker->presentation_abstract)
                                     <div class="flex {{ $loop->even ? 'justify-end' : 'justify-start' }}">
                                         <button onclick="toggleSlide(this)"
-                                            class="mx-auto flex gap-3 px-6 py-2 rounded-3xl bg-blue-50 border-2 border-blue-900 text-blue-900 cursor-pointer hover:bg-blue-900 hover:text-white transition-all">
+                                            class="mx-auto flex gap-3 px-6 py-2 mt-10 rounded-3xl bg-blue-50 border-2 border-blue-900 text-blue-900 cursor-pointer hover:bg-blue-900 hover:text-white transition-all">
                                             <span class="pb-1">See The Keynote Presentation</span>
                                             <i data-feather="chevron-right" class="my-auto"></i>
                                         </button>

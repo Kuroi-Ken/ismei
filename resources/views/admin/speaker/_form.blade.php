@@ -1,91 +1,51 @@
 {{--
-    Shared form fields for information create/edit.
-    Variables expected: $information (Model instance, or null for create mode)
-    Note: release_date removed — post time is auto-set via created_at->diffForHumans()
+    Shared form fields for speaker create/edit.
+    Variables expected: $speaker (Model instance, or null for create mode)
 --}}
 
-<div class="grid grid-cols-1 gap-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-    {{-- Title --}}
+    {{-- Name --}}
     <div>
         <label class="block text-sm font-medium text-blue-900 mb-1">
-            Title
-            @if(isset($information) && $information && $information->type === 'fixed')
-                <span class="text-black/30 font-normal">(card heading shown on the page)</span>
-            @endif
+            Name <span class="text-red-500">*</span>
         </label>
-        <input type="text" name="title"
-            value="{{ old('title', optional($information)->title ?? '') }}"
+        <input type="text" name="name"
+            value="{{ old('name', optional($speaker)->name ?? '') }}"
             class="w-full border border-blue-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
-            placeholder="e.g. Call for Submissions">
-        @error('title') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+            placeholder="e.g. John Doe" required>
+        @error('name') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
     </div>
 
-    {{-- Featured Image --}}
+    {{-- Institution --}}
     <div>
-        <label class="block text-sm font-medium text-blue-900 mb-2">
-            Featured Image
-            <span class="text-black/30 font-normal">(banner shown at the top of the detail page)</span>
-        </label>
-
-        {{-- Current image preview (edit mode only) --}}
-        @if(isset($information) && $information && $information->image)
-            <div class="mb-3 rounded-xl overflow-hidden border border-blue-100 relative">
-                <img src="{{ asset('storage/' . $information->image) }}"
-                    class="w-full h-44 object-cover"
-                    alt="Current featured image">
-                <div class="absolute bottom-0 left-0 right-0 bg-black/50 px-4 py-2 flex items-center justify-between">
-                    <span class="text-white text-xs">Current image</span>
-                    <label class="inline-flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" name="delete_image" value="1"
-                            class="w-4 h-4 rounded border-red-300 text-red-500 focus:ring-red-400">
-                        <span class="text-red-300 text-xs font-medium">Remove image</span>
-                    </label>
-                </div>
-            </div>
-        @endif
-
-        {{-- Upload area --}}
-        <div class="border-2 border-dashed border-blue-200 rounded-xl p-5 bg-blue-50/40 hover:border-blue-400 transition-colors cursor-pointer"
-            id="image-drop-area"
-            onclick="document.getElementById('image-file-input').click()">
-            <input type="file"
-                name="image"
-                id="image-file-input"
-                accept="image/jpg,image/jpeg,image/png,image/webp"
-                class="hidden"
-                onchange="handleImagePreview(this)">
-
-            <div id="image-upload-placeholder" class="flex flex-col items-center gap-2 text-center pointer-events-none">
-                <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-400">
-                    <i data-feather="upload-cloud" class="w-5 h-5"></i>
-                </div>
-                <div>
-                    <p class="text-sm font-medium text-blue-900">Click to upload a featured image</p>
-                    <p class="text-xs text-black/40 mt-0.5">JPG, PNG, WebP — max 4MB &nbsp;·&nbsp; Recommended: 1200×600px</p>
-                </div>
-            </div>
-
-            <div id="image-preview-wrap" class="hidden">
-                <img id="image-preview-img" class="w-full max-h-52 object-cover rounded-lg border border-blue-200" src="" alt="Preview">
-                <p class="text-xs text-blue-700 mt-2 text-center font-medium">
-                    ✓ New image selected — will be saved on submit
-                </p>
-            </div>
-        </div>
-        @error('image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+        <label class="block text-sm font-medium text-blue-900 mb-1">Institution</label>
+        <input type="text" name="institution"
+            value="{{ old('institution', optional($speaker)->institution ?? '') }}"
+            class="w-full border border-blue-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+            placeholder="e.g. University of Michigan">
+        @error('institution') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
     </div>
 
-    {{-- Body — TinyMCE --}}
+    {{-- Country --}}
     <div>
-        <label class="block text-sm font-medium text-blue-900 mb-1">
-            Body Content
-            <span class="text-black/30 font-normal">(rich text — paragraphs, tables, headings)</span>
-        </label>
-        <textarea name="body" id="tinymce-body" rows="12"
+        <label class="block text-sm font-medium text-blue-900 mb-1">Country</label>
+        <input type="text" name="country"
+            value="{{ old('country', optional($speaker)->country ?? '') }}"
             class="w-full border border-blue-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
-            placeholder="Write content here...">{{ old('body', optional($information)->body ?? '') }}</textarea>
-        @error('body') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+            placeholder="e.g. United States">
+        @error('country') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+    </div>
+
+    {{-- Order & Is Active --}}
+    <div>
+        <label class="block text-sm font-medium text-blue-900 mb-1">Display Order</label>
+        <input type="number" name="order" min="0"
+            value="{{ old('order', optional($speaker)->order ?? 0) }}"
+            class="w-full border border-blue-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+            placeholder="0">
+        <p class="text-xs text-black/40 mt-1">Lower number = shown first.</p>
+        @error('order') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
     </div>
 
     {{-- Visibility --}}
@@ -94,24 +54,109 @@
         <label class="inline-flex items-center gap-3 cursor-pointer">
             <input type="hidden" name="is_active" value="0">
             <input type="checkbox" name="is_active" value="1"
-                {{ old('is_active', optional($information)->is_active ?? true) ? 'checked' : '' }}
+                {{ old('is_active', optional($speaker)->is_active ?? true) ? 'checked' : '' }}
                 class="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500">
-            <span class="text-sm text-slate-700">Show this item on the informations page</span>
+            <span class="text-sm text-slate-700">Show this speaker on the Symposium page</span>
         </label>
-        @if(isset($information) && $information && $information->type === 'fixed')
-            <p class="text-xs text-black/40 mt-1 ml-7">Fixed cards still appear even when hidden — they show a placeholder instead.</p>
-        @else
-            <p class="text-xs text-black/40 mt-1 ml-7">When unchecked, this announcement is completely hidden on the page.</p>
-        @endif
+        <p class="text-xs text-black/40 mt-1 ml-7">When unchecked, this speaker is completely hidden.</p>
     </div>
 
 </div>
 
+{{-- Photo — full width --}}
+<div class="mt-6">
+    <label class="block text-sm font-medium text-blue-900 mb-2">
+        Photo
+        <span class="text-black/30 font-normal">(portrait recommended, square or 3:4 ratio)</span>
+    </label>
+
+    {{-- Current photo preview (edit mode) --}}
+    @if(isset($speaker) && $speaker && $speaker->photo)
+        <div class="mb-3 flex gap-4 items-start">
+            <div class="rounded-xl overflow-hidden border border-blue-100 flex-shrink-0">
+                <img src="{{ asset('storage/' . $speaker->photo) }}"
+                    class="w-24 h-32 object-cover"
+                    alt="Current photo">
+            </div>
+            <div class="flex flex-col gap-1 pt-1">
+                <p class="text-xs font-medium text-blue-900">Current photo</p>
+                <p class="text-xs text-black/40">Upload a new photo below to replace it.</p>
+            </div>
+        </div>
+    @endif
+
+    {{-- Upload area --}}
+    <div class="border-2 border-dashed border-blue-200 rounded-xl p-5 bg-blue-50/40 hover:border-blue-400 transition-colors cursor-pointer"
+        onclick="document.getElementById('speaker-photo-input').click()">
+        <input type="file"
+            name="photo"
+            id="speaker-photo-input"
+            accept="image/jpg,image/jpeg,image/png,image/webp"
+            class="hidden"
+            onchange="handleSpeakerPhotoPreview(this)">
+
+        <div id="speaker-photo-placeholder" class="flex flex-col items-center gap-2 text-center pointer-events-none">
+            <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-400">
+                <i data-feather="upload-cloud" class="w-5 h-5"></i>
+            </div>
+            <div>
+                <p class="text-sm font-medium text-blue-900">Click to upload a photo</p>
+                <p class="text-xs text-black/40 mt-0.5">JPG, PNG, WebP — max 3MB</p>
+            </div>
+        </div>
+
+        <div id="speaker-photo-preview-wrap" class="hidden flex flex-col items-center gap-2">
+            <img id="speaker-photo-preview-img"
+                class="max-h-52 rounded-xl border border-blue-200 object-contain shadow-sm"
+                src="" alt="Preview">
+            <p class="text-xs text-blue-700 font-medium">✓ Photo selected — will be saved on submit</p>
+        </div>
+    </div>
+    @error('photo') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+</div>
+
+{{-- Bio — full width TinyMCE --}}
+<div class="mt-6">
+    <label class="block text-sm font-medium text-blue-900 mb-1">
+        Biography
+        <span class="text-black/30 font-normal">(rich text — paragraphs, lists, links)</span>
+    </label>
+    <textarea name="bio" id="tinymce-bio" rows="8"
+        class="w-full border border-blue-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+        placeholder="Write speaker biography here...">{{ old('bio', optional($speaker)->bio ?? '') }}</textarea>
+    @error('bio') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+</div>
+
+{{-- Presentation Title --}}
+<div class="mt-6">
+    <label class="block text-sm font-medium text-blue-900 mb-1">
+        Presentation Title
+        <span class="text-black/30 font-normal">(keynote talk title)</span>
+    </label>
+    <input type="text" name="presentation_title"
+        value="{{ old('presentation_title', optional($speaker)->presentation_title ?? '') }}"
+        class="w-full border border-blue-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+        placeholder="e.g. AI-Driven Approaches in Modern Mathematics Education">
+    @error('presentation_title') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+</div>
+
+{{-- Presentation Abstract — TinyMCE --}}
+<div class="mt-6">
+    <label class="block text-sm font-medium text-blue-900 mb-1">
+        Presentation Abstract
+        <span class="text-black/30 font-normal">(rich text)</span>
+    </label>
+    <textarea name="presentation_abstract" id="tinymce-abstract" rows="8"
+        class="w-full border border-blue-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+        placeholder="Write presentation abstract here...">{{ old('presentation_abstract', optional($speaker)->presentation_abstract ?? '') }}</textarea>
+    @error('presentation_abstract') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+</div>
+
 <script>
-    function handleImagePreview(input) {
-        const placeholder = document.getElementById('image-upload-placeholder');
-        const previewWrap = document.getElementById('image-preview-wrap');
-        const previewImg  = document.getElementById('image-preview-img');
+    function handleSpeakerPhotoPreview(input) {
+        const placeholder  = document.getElementById('speaker-photo-placeholder');
+        const previewWrap  = document.getElementById('speaker-photo-preview-wrap');
+        const previewImg   = document.getElementById('speaker-photo-preview-img');
 
         if (input.files && input.files[0]) {
             const reader = new FileReader();
@@ -124,24 +169,4 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        if (typeof tinymce !== 'undefined') {
-            tinymce.init({
-                selector: '#tinymce-body',
-                license_key: 'gpl',
-                plugins: 'code table lists link image preview fullscreen wordcount searchreplace',
-                toolbar: 'undo redo | blocks | bold italic underline | forecolor | alignleft aligncenter alignright alignjustify | bullist numlist | link image | table | fullscreen preview | code',
-                height: 420,
-                branding: false,
-                promotion: false,
-                automatic_uploads: false,
-                setup: function (editor) {
-                    editor.on('change', function () {
-                        tinymce.triggerSave();
-                    });
-                }
-            });
-        }
-    });
 </script>
