@@ -27,7 +27,9 @@ class AdminInformationController extends Controller
             'title'        => 'nullable|string|max:500',
             'body'         => 'nullable|string',
             'image'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'image2'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
             'delete_image' => 'nullable',
+            'delete_image2'=> 'nullable',
             'is_active'    => 'boolean',
         ]);
 
@@ -37,7 +39,7 @@ class AdminInformationController extends Controller
             'is_active' => $request->boolean('is_active', true),
         ];
 
-        // Delete image (only when no new file is uploaded at the same time)
+        // Handle primary image deletion
         if ($request->input('delete_image') && !$request->hasFile('image')) {
             if ($information->image) {
                 Storage::disk('public')->delete($information->image);
@@ -45,12 +47,28 @@ class AdminInformationController extends Controller
             $data['image'] = null;
         }
 
-        // Upload new image (also replaces existing)
+        // Handle primary image upload
         if ($request->hasFile('image')) {
             if ($information->image) {
                 Storage::disk('public')->delete($information->image);
             }
             $data['image'] = $request->file('image')->store('informations', 'public');
+        }
+
+        // Handle secondary image deletion
+        if ($request->input('delete_image2') && !$request->hasFile('image2')) {
+            if ($information->image2) {
+                Storage::disk('public')->delete($information->image2);
+            }
+            $data['image2'] = null;
+        }
+
+        // Handle secondary image upload
+        if ($request->hasFile('image2')) {
+            if ($information->image2) {
+                Storage::disk('public')->delete($information->image2);
+            }
+            $data['image2'] = $request->file('image2')->store('informations', 'public');
         }
 
         $information->update($data);
@@ -70,6 +88,7 @@ class AdminInformationController extends Controller
             'title'     => 'nullable|string|max:500',
             'body'      => 'nullable|string',
             'image'     => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'image2'    => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
             'is_active' => 'boolean',
         ]);
 
@@ -83,16 +102,21 @@ class AdminInformationController extends Controller
             'body'      => $request->input('body'),
             'is_active' => $request->boolean('is_active', true),
             'order'     => 10 + $count,
+            // release_date is auto-set by the model's booted() method
         ];
 
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('informations', 'public');
         }
 
+        if ($request->hasFile('image2')) {
+            $data['image2'] = $request->file('image2')->store('informations', 'public');
+        }
+
         Information::create($data);
 
         return redirect()->route('admin.information.index')
-            ->with('success', 'Announcement added successfully!');
+            ->with('success', 'Post added successfully!');
     }
 
     public function destroy(Information $information)
@@ -106,9 +130,13 @@ class AdminInformationController extends Controller
             Storage::disk('public')->delete($information->image);
         }
 
+        if ($information->image2) {
+            Storage::disk('public')->delete($information->image2);
+        }
+
         $information->delete();
 
         return redirect()->route('admin.information.index')
-            ->with('success', 'Announcement deleted successfully!');
+            ->with('success', 'Post deleted successfully!');
     }
 }

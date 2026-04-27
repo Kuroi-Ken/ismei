@@ -24,6 +24,14 @@ return new class extends Migration
          Schema::table('informations', function (Blueprint $table) {
             $table->string('image')->nullable()->after('body');
         });
+        
+        Schema::table('informations', function (Blueprint $table) {
+            // Make release_date auto-managed, keep nullable for legacy data
+            $table->string('release_date')->nullable()->change();
+            // Add second image column for additional images below body
+            $table->string('image2')->nullable()->after('image');
+        });
+
     }
 
     public function down(): void
@@ -32,5 +40,10 @@ return new class extends Migration
         Schema::table('informations', function (Blueprint $table) {
             $table->dropColumn('image');
         });
+        Schema::table('informations', function (Blueprint $table) {
+            $table->string('release_date')->nullable()->change();
+            $table->string('image2')->nullable()->after('image');
+        });
+
     }
 };

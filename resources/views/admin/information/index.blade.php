@@ -13,7 +13,7 @@
         </div>
     @endif
 
-    {{-- ── Page header ─────────────────────────────────────────────── --}}
+    {{-- Page header --}}
     <div class="flex items-center justify-between mb-6">
         <div>
             <h1 class="text-2xl font-bold text-blue-900">Informations Page</h1>
@@ -22,13 +22,11 @@
         <a href="{{ route('admin.information.create') }}"
             class="bg-blue-900 hover:bg-blue-800 text-white text-sm font-medium px-5 py-2.5 rounded-xl transition flex items-center gap-2">
             <i data-feather="plus" class="w-4 h-4"></i>
-            Add Announcement
+            Add Post
         </a>
     </div>
 
-    {{-- ══════════════════════════════════════════════════════════
-         FIXED CARDS — Call for Submission & Schedule
-    ════════════════════════════════════════════════════════════ --}}
+    {{-- FIXED CARDS --}}
     <div class="flex items-center gap-2 mb-3">
         <span class="w-2 h-2 rounded-full bg-blue-900"></span>
         <h2 class="text-sm font-bold text-blue-900 uppercase tracking-widest">Fixed Cards</h2>
@@ -41,9 +39,7 @@
                 <tr>
                     <th class="text-left px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest">Item</th>
                     <th class="text-left px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest hidden md:table-cell">Title</th>
-                    <th class="text-left px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest hidden lg:table-cell">Release Date</th>
-                    <th class="text-left px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest w-24">Status</th>
-                    <th class="text-right px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest w-24">Actions</th>
+                    <th class="text-center px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest w-24">Edit</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-slate-100">
@@ -60,21 +56,7 @@
                         <td class="px-6 py-4 hidden md:table-cell">
                             <p class="text-sm text-slate-600 max-w-xs truncate">{{ $info->title ?? '—' }}</p>
                         </td>
-                        <td class="px-6 py-4 hidden lg:table-cell">
-                            <p class="text-sm text-slate-500">{{ $info->release_date ?? '—' }}</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            @if($info->is_active)
-                                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-green-100 text-green-700 text-xs font-medium">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Active
-                                </span>
-                            @else
-                                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 text-slate-500 text-xs font-medium">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span> Hidden
-                                </span>
-                            @endif
-                        </td>
-                        <td class="px-6 py-4 text-right">
+                        <td class="px-6 py-4 text-center">
                             <a href="{{ route('admin.information.edit', $info->id) }}"
                                 class="w-8 h-8 inline-flex items-center justify-center rounded-lg bg-blue-50 text-blue-900 hover:bg-blue-900 hover:text-white transition">
                                 <i data-feather="edit-2" class="w-3.5 h-3.5"></i>
@@ -83,8 +65,8 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="px-6 py-10 text-center text-sm text-black/30">
-                            No fixed items found. Run the seeder: <code>php artisan db:seed --class=InformationSeeder</code>
+                        <td colspan="4" class="px-6 py-10 text-center text-sm text-black/30">
+                            No fixed items found. Run: <code>php artisan db:seed --class=InformationSeeder</code>
                         </td>
                     </tr>
                 @endforelse
@@ -92,26 +74,24 @@
         </table>
     </div>
 
-    {{-- ══════════════════════════════════════════════════════════
-         ANNOUNCEMENT CARDS — optional, can be added & deleted
-    ════════════════════════════════════════════════════════════ --}}
+    {{-- ADDITIONAL INFORMATION POSTS --}}
     <div class="flex items-center gap-2 mb-3">
         <span class="w-2 h-2 rounded-full bg-amber-500"></span>
-        <h2 class="text-sm font-bold text-blue-900 uppercase tracking-widest">Announcement Cards</h2>
-        <span class="text-xs text-black/40">(optional — hidden when empty, can be deleted)</span>
+        <h2 class="text-sm font-bold text-blue-900 uppercase tracking-widest">Additional Information</h2>
+        <span class="text-xs text-black/40">(optional posts — can be added & deleted)</span>
     </div>
 
     @if($announcements->isEmpty())
         <div class="bg-white rounded-2xl shadow p-12 text-center">
             <div class="w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <i data-feather="bell" class="w-8 h-8 text-amber-300"></i>
+                <i data-feather="file-plus" class="w-8 h-8 text-amber-300"></i>
             </div>
-            <h3 class="text-lg font-semibold text-slate-700 mb-2">No announcements yet</h3>
-            <p class="text-sm text-black/40 mb-6">Add your first announcement to display on the informations page.</p>
+            <h3 class="text-lg font-semibold text-slate-700 mb-2">No posts yet</h3>
+            <p class="text-sm text-black/40 mb-6">Add your first post to display on the informations page.</p>
             <a href="{{ route('admin.information.create') }}"
                 class="inline-flex items-center gap-2 bg-blue-900 hover:bg-blue-800 text-white text-sm font-medium px-6 py-2.5 rounded-xl transition">
                 <i data-feather="plus" class="w-4 h-4"></i>
-                Add First Announcement
+                Add First Post
             </a>
         </div>
     @else
@@ -119,9 +99,8 @@
             <table class="w-full">
                 <thead class="bg-amber-50 border-b border-amber-100">
                     <tr>
-                        <th class="text-left px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest">Announcement</th>
-                        <th class="text-left px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest hidden md:table-cell">Title</th>
-                        <th class="text-left px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest hidden lg:table-cell">Release Date</th>
+                        <th class="text-left px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest">Title</th>
+                        <th class="text-left px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest hidden md:table-cell">Release Date</th>
                         <th class="text-left px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest w-24">Status</th>
                         <th class="text-right px-6 py-4 text-xs font-bold text-blue-900 uppercase tracking-widest w-28">Actions</th>
                     </tr>
@@ -131,11 +110,21 @@
                         <tr class="hover:bg-slate-50 transition">
                             <td class="px-6 py-4">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600 flex-shrink-0">
-                                        <i data-feather="bell" class="w-4 h-4"></i>
-                                    </div>
+                                    {{-- Thumbnail if image exists --}}
+                                    @if($ann->image)
+                                        <div class="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0 bg-blue-50">
+                                            <img src="{{ asset('storage/' . $ann->image) }}"
+                                                class="w-full h-full object-cover" alt="">
+                                        </div>
+                                    @else
+                                        <div class="w-10 h-10 rounded-lg bg-amber-50 flex items-center justify-center flex-shrink-0">
+                                            <i data-feather="file-text" class="w-4 h-4 text-amber-400"></i>
+                                        </div>
+                                    @endif
                                     <div>
-                                        <p class="text-sm font-semibold text-slate-800">{{ $ann->label }}</p>
+                                        <p class="text-sm font-semibold text-slate-800">
+                                            {{ $ann->title ?? '(No title)' }}
+                                        </p>
                                         @if(!$ann->hasContent())
                                             <p class="text-xs text-amber-500">No content yet</p>
                                         @endif
@@ -143,9 +132,6 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4 hidden md:table-cell">
-                                <p class="text-sm text-slate-600 max-w-xs truncate">{{ $ann->title ?? '—' }}</p>
-                            </td>
-                            <td class="px-6 py-4 hidden lg:table-cell">
                                 <p class="text-sm text-slate-500">{{ $ann->release_date ?? '—' }}</p>
                             </td>
                             <td class="px-6 py-4">
@@ -166,7 +152,7 @@
                                         <i data-feather="edit-2" class="w-3.5 h-3.5"></i>
                                     </a>
                                     <form action="{{ route('admin.information.destroy', $ann->id) }}" method="POST"
-                                        onsubmit="return confirm('Delete this announcement?')">
+                                        onsubmit="return confirm('Delete this post?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"

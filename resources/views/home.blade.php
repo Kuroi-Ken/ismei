@@ -1,67 +1,78 @@
 <x-layout title="ISMEI Homepage">
 
-    <section>
-        <div class="relative md:py-10 py-25
-            bg-linear-to-b bg-[#F8FAFC]
-            bg-[radial-gradient(rgba(59,130,246,0.15)_2px,transparent_2px)]
-            bg-size-[30px_30px]">
+    <section class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50/50 -z-10"></div>
+        
+        {{-- Aksen Dekoratif Halus (Optional, agar tidak terlalu flat) --}}
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-100/30 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-slate-100/50 rounded-full blur-[100px] -z-10 -translate-x-1/3 translate-y-1/3"></div>
 
-            <div class="relative z-10 flex flex-col items-center justify-center w-full p-20 py-5">
+        <div class="relative z-10 flex flex-col items-center justify-center w-full max-w-7xl mx-auto px-6 py-13 md:py-22">
 
-                <div class="flex justify-center w-full">
-                    <h1 class="max-w-5xl text-center md:text-[40px] leading-11 font-bold uppercase text-blue-900">
-                        Welcome To The International Symposium on Mathematics Education and Innovation <br> (ISMEI)
-                    </h1>
-                </div>
-                <div class=" mx-auto justify-center pt-8 flex flex-col gap-3 ">
-                    <h4 class="text-center rounded-3xl bg-blue-900 w-fit mx-auto px-5 py-1 font-medium text-[20px] text-white">
+            {{-- Headline Section --}}
+            <div class="text-center space-y-6">
+                <h1 class="max-w-5xl mx-auto text-3xl md:text-[45px] leading-[1.2] font-black uppercase text-blue-900 tracking-tighter">
+                    Welcome To The <br> 
+                    <span class="text-blue-600">International Symposium</span> on <br>
+                    Mathematics Education and Innovation
+                </h1>
+                
+                <div class="inline-flex items-center bg-blue-900 px-6 py-2 rounded-full shadow-lg shadow-blue-900/20">
+                    <h4 class="font-bold text-sm md:text-base text-white uppercase tracking-widest">
                         {{ \App\Models\SiteContent::get('home_theme_subtitle', '8th ISMEI Symposium Theme') }}
                     </h4>
-                    <h3 class="max-w-5xl text-center text-[25px] leading-tight font-light text-blue-900">
+                </div>
+            </div>
+
+            {{-- Theme Quote --}}
+            <div class="mt-10 max-w-4xl mx-auto">
+                <div class="relative p-8 bg-white/50 backdrop-blur-sm border border-white rounded-3xl shadow-sm text-center">
+                    {{-- Quote Icon Decor --}}
+                    <h3 class="text-xl md:text-2xl font-medium leading-relaxed text-slate-700 italic pt-2">
                         "{{ \App\Models\SiteContent::get('home_theme_quote', 'Empowering Future Generation through Emerging Technology Trends in Mathematics Education') }}"
                     </h3>
                 </div>
+            </div>
 
-                @php
-                    $partnerLogos = \App\Models\PartnerLogo::orderBy('order')->orderBy('id')->get();
-                @endphp
+            {{-- Partner Logos Section --}}
+            <div class="w-full mt-16 mb-12">
+                <p class="text-center text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-8">Official Partners & Organizers</p>
                 
-                <div class="flex justify-center md:gap-10 gap-5 md:py-10 mx-auto flex-wrap">
+                <div class="flex justify-center items-center gap-8 md:gap-16 flex-wrap">
+                    @php $partnerLogos = \App\Models\PartnerLogo::orderBy('order')->orderBy('id')->get(); @endphp
+                    
                     @forelse($partnerLogos as $logo)
-                        <div class="py-2 flex flex-col items-center">
-                            <img class="w-20 h-20 md:w-32 md:h-32 object-contain mx-auto"
+                        <div class="group flex flex-col items-center transition-all duration-500">
+                            <img class="w-20 h-20 md:w-32 md:h-32 object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 transform"
                                 src="{{ asset('storage/' . $logo->path) }}"
                                 alt="{{ $logo->name ?? 'Partner Logo' }}">
                             @if($logo->name)
-                                <h3 class="pt-3 md:text-xl text-center uppercase font-medium text-blue-900">{{ $logo->name }}</h3>
+                                <p class="mt-4 text-[10px] font-bold text-slate-400 group-hover:text-blue-900 transition-colors tracking-widest uppercase">{{ $logo->name }}</p>
                             @endif
                         </div>
                     @empty
-                        {{-- Fallback jika belum ada logo di database --}}
                         @for($i = 0; $i < 3; $i++)
-                            <div class="py-2">
-                                <img class="w-20 h-20 md:w-32 md:h-32 mx-auto object-cover"
-                                    src="{{ asset('assets/seameo.png') }}" alt="SEAMEO">
-                                <h3 class="pt-3 md:text-xl text-center text-blue-900">SEAMEO</h3>
+                            <div class="flex flex-col items-center opacity-40">
+                                <img class="w-20 h-20 md:w-32 md:h-32 object-contain" src="{{ asset('assets/seameo.png') }}" alt="SEAMEO">
+                                <p class="mt-4 text-[10px] font-bold tracking-widest uppercase">SEAMEO</p>
                             </div>
                         @endfor
                     @endforelse
                 </div>
-                
-
-                <div class="flex gap-7 md:gap-10">
-                    <a href="/register" class="grid items-center w-30 h-8 md:w-44 md:h-12 md:text-xl text-center text-white rounded-3xl bg-blue-900 hover:bg-blue-800 transition">
-                        Registration
-                    </a>
-                    <a href="#" class="grid items-center w-30 h-8 md:w-44 md:h-12 md:text-xl text-center text-blue-900 bg-white border-2 border-blue-900 rounded-3xl hover:bg-blue-50 transition">
-                        Read More
-                    </a>
-                </div>
-
             </div>
+
+            {{-- Call to Action --}}
+            <div class="flex flex-col md:flex-row gap-6 items-center">
+                <a href="/register" class="flex items-center justify-center w-60 h-14 text-lg font-bold text-white rounded-full bg-blue-900 shadow-xl shadow-blue-900/30 hover:bg-blue-800 hover:-translate-y-1 transition-all duration-300">
+                    Register Now
+                </a>
+                <a href="#about" class="flex items-center justify-center w-60 h-14 text-lg font-bold text-blue-900 bg-white border-2 border-blue-900 rounded-full hover:bg-blue-50 hover:-translate-y-1 transition-all duration-300">
+                    Read More
+                </a>
+            </div>
+
         </div>
     </section>
-
 
     <section class="z-10 inset-0 bg-white relative pt-20 ">
         <div class="w-full">
@@ -95,12 +106,12 @@
     </section>
 
 
-    <section class="w-full flex flex-col py-40 gap-10 ">
+    <section class="w-full flex flex-col py-40 gap-15 ">
         <div class="flex flex-col gap-8">
-            <h1 class="w-full text-center text-[30px] font-kaushan text-blue-900 ">
+            <h1 class="w-full text-center text-[35px] font-bold font-kaushan text-blue-900 ">
                 What is ISMEI?
             </h1>
-            <h3 class="text-[17.63px] font-light leading-10 text-center max-w-3xl mx-auto text-[#1F2937]">
+            <h3 class="text-[18px] font-light leading-10 text-center max-w-3xl mx-auto text-[#1F2937]">
                 The International Symposium on Mathematics Education and Innovation (ISMEI) is a prominent biennial event organized by the SEAMEO Regional Centre for QITEP in Mathematics (SEAQiM). Since its inception in 2011, ISMEI has been a pivotal gathering for educators, policymakers, and stakeholders to share and discuss innovative practices in mathematics education.
             </h3>
         </div>

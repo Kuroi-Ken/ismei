@@ -3,13 +3,8 @@
     @php
         $callForSubmission = \App\Models\Information::findBySlug('call_for_submission');
         $schedule          = \App\Models\Information::findBySlug('schedule');
-        $announcements     = \App\Models\Information::where('type', 'optional')
-                                ->where('is_active', true)
-                                ->orderBy('order')
-                                ->get();
     @endphp
 
-    {{-- ── Hero ─────────────────────────────────────────────────── --}}
     <section class="bg-blue-900 py-24 relative -z-20 overflow-hidden">
         <div class="absolute top-0 right-0 w-1/3 h-full bg-blue-800 skew-x-12 translate-x-20"></div>
         <div class="max-w-7xl mx-auto px-6 relative z-10">
@@ -21,228 +16,127 @@
         </div>
     </section>
 
-    {{-- ── Main cards ──────────────────────────────────────────── --}}
-    <section class="bg-white z-20 rounded-4xl p-15 shadow-lg max-w-7xl mx-auto leading-tight -mt-12">
-        <h1 class="text-[40px] max-w-7xl mx-auto text-[#1E3A8A] text-center font-bold tracking-tighter pt-5 uppercase">Main Informations</h1>
-        <h1 class="text-[25px] max-w-7xl mb-8 mx-auto text-[#1E3A8A] text-center font-light uppercase">Stay up-to-date With Our Latest News and Events.</h1>
+    <section class="relative z-20 -mt-16 max-w-7xl mx-auto px-4 ">
+        <div class="bg-white rounded-[3rem] shadow-2xl shadow-blue-900/10 p-8 md:p-16 border border-slate-100">
+            
+            {{-- Header Section --}}
+            <div class="text-center mb-16">
+                <h2 class="text-blue-600 font-bold uppercase tracking-[0.3em] text-sm mb-3">Updates</h2>
+                <h1 class="text-4xl md:text-5xl font-black text-blue-900 tracking-tighter uppercase mb-4">Main Informations</h1>
+                <p class="text-slate-500 text-lg font-light max-w-2xl mx-auto">
+                    Stay up-to-date with the latest news, submission deadlines, and event schedules.
+                </p>
+            </div>
 
-        <div class="flex flex-col gap-10">
-
-            {{-- ── Fixed Cards: Call for Submissions & Schedule ── --}}
-            <div class="flex gap-10 justify-center flex-wrap">
-
-                {{-- Call for Submissions --}}
-                @php
-                    $callHasContent = $callForSubmission && $callForSubmission->is_active && $callForSubmission->hasContent();
-                @endphp
-
-                @if($callHasContent)
-                    <a href="{{ route('information.show', 'call_for_submission') }}"
-                        class="group shadow-lg border border-blue-50 rounded-2xl max-w-lg flex-1 min-w-72 flex flex-col hover:-translate-y-2 hover:border-blue-900 hover:shadow-xl transition-all duration-300 cursor-pointer">
-                @else
-                    <div class="group shadow-lg border border-blue-50 rounded-2xl max-w-lg flex-1 min-w-72 flex flex-col cursor-default">
-                @endif
-
-                        <div class="flex flex-col gap-4 bg-white p-6 rounded-2xl flex-1">
-
-                            {{-- Featured image thumbnail --}}
-                            @if($callForSubmission && $callForSubmission->image_url)
-                                <div class="w-full h-44 rounded-xl overflow-hidden">
-                                    <img src="{{ $callForSubmission->image_url }}"
-                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        alt="Call for Submissions">
-                                </div>
-                            @endif
-
-                            <div class="flex items-center justify-center gap-2">
-                                <h2 class="text-[28px] font-bold uppercase tracking-tighter text-blue-900">
-                                    {{ ($callForSubmission && $callForSubmission->title) ? $callForSubmission->title : 'Call for Submissions' }}
-                                </h2>
-                            </div>
-
-                            @if($callHasContent)
-                                <p class="text-[15px] font-light leading-relaxed text-slate-500 flex-1 line-clamp-3">
-                                    {{ Str::limit(strip_tags($callForSubmission->body), 160) }}
-                                </p>
-                            @else
-                                <p class="text-[17.63px] max-w-2xl font-light flex-1 text-black/40 italic text-center">
-                                    Content will be available soon. Please check back later.
-                                </p>
-                            @endif
-
-                            <div class="flex items-center justify-between border-t border-slate-100 pt-3 mt-auto">
-                                @if($callForSubmission && $callForSubmission->created_at)
-                                    <div class="flex gap-1.5 items-center text-black/40">
-                                        <i data-feather="clock" class="w-3.5 h-3.5"></i>
-                                        <span class="text-xs font-light">{{ $callForSubmission->time_ago }}</span>
-                                    </div>
-                                @else
-                                    <span></span>
-                                @endif
-
+            <div class="space-y-16">
+                
+                {{-- 1. TOP CARDS (Bento Style) --}}
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    
+                    {{-- Card: Call for Submissions --}}
+                    @php $callHasContent = $callForSubmission->hasContent(); @endphp
+                    <div class="group relative overflow-hidden bg-gradient-to-br from-blue-900 to-blue-800 rounded-3xl p-8 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/30 hover:-translate-y-2">
+                        <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:scale-110 transition-transform">
+                            <i data-feather="file-text" class="w-24 h-24 text-white"></i>
+                        </div>
+                        <div class="relative z-10 flex flex-col h-full">
+                            <h3 class="text-blue-300 font-bold text-xs uppercase tracking-widest mb-2">Academic</h3>
+                            <h2 class="text-2xl font-bold text-white mb-4 uppercase">
+                                {{ ($callForSubmission && $callForSubmission->title) ? $callForSubmission->title : 'Call for Submissions' }}
+                            </h2>
+                            <p class="text-blue-100/80 font-light line-clamp-3 mb-8">
+                                {{ $callHasContent ? Str::limit(strip_tags($callForSubmission->body), 120) : 'Contribution details will be updated soon.' }}
+                            </p>
+                            <div class="mt-auto">
                                 @if($callHasContent)
-                                    <span class="inline-flex items-center gap-1 text-sm text-blue-700 font-semibold group-hover:gap-2 transition-all">
-                                        Read More <i data-feather="arrow-right" class="w-4 h-4"></i>
-                                    </span>
+                                    <a href="{{ route('information.show', 'call_for_submission') }}" class="inline-flex items-center gap-2 bg-white text-blue-900 px-6 py-2.5 rounded-full font-bold text-sm hover:bg-blue-50 transition">
+                                        See Details <i data-feather="arrow-right" class="w-4 h-4"></i>
+                                    </a>
+                                @else
+                                    <span class="text-blue-300 text-xs italic">Upcoming Content</span>
                                 @endif
                             </div>
                         </div>
-
-                @if($callHasContent)
-                    </a>
-                @else
                     </div>
-                @endif
 
-                {{-- Schedule --}}
-                @php
-                    $scheduleHasContent = $schedule && $schedule->is_active && $schedule->hasContent();
-                @endphp
-
-                @if($scheduleHasContent)
-                    <a href="{{ route('information.show', 'schedule') }}"
-                        class="group shadow-lg border border-blue-50 rounded-2xl max-w-lg flex-1 min-w-72 flex flex-col hover:-translate-y-2 hover:border-blue-900 hover:shadow-xl transition-all duration-300 cursor-pointer">
-                @else
-                    <div class="group shadow-lg border border-blue-50 rounded-2xl max-w-lg flex-1 min-w-72 flex flex-col cursor-default">
-                @endif
-
-                        <div class="flex flex-col gap-4 bg-white p-6 rounded-2xl flex-1">
-
-                            @if($schedule && $schedule->image_url)
-                                <div class="w-full h-44 rounded-xl overflow-hidden">
-                                    <img src="{{ $schedule->image_url }}"
-                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        alt="Schedule">
-                                </div>
-                            @endif
-
-                            <div class="flex items-center justify-center gap-2">
-                                <h2 class="text-[28px] font-bold uppercase tracking-tighter text-blue-900">
-                                    {{ ($schedule && $schedule->title) ? $schedule->title : 'Schedule' }}
-                                </h2>
-                            </div>
-
-                            @if($scheduleHasContent)
-                                <p class="text-[15px] font-light leading-relaxed text-slate-500 flex-1 line-clamp-3">
-                                    {{ Str::limit(strip_tags($schedule->body), 160) }}
-                                </p>
-                            @else
-                                <p class="text-[17.63px] max-w-2xl font-light flex-1 text-black/40 italic text-center">
-                                    The schedule will be published closer to the event. Stay tuned!
-                                </p>
-                            @endif
-
-                            <div class="flex items-center justify-between border-t border-slate-100 pt-3 mt-auto">
-                                @if($schedule && $schedule->created_at)
-                                    <div class="flex gap-1.5 items-center text-black/40">
-                                        <i data-feather="clock" class="w-3.5 h-3.5"></i>
-                                        <span class="text-xs font-light">{{ $schedule->time_ago }}</span>
-                                    </div>
-                                @else
-                                    <span></span>
-                                @endif
-
+                    {{-- Card: Schedule --}}
+                    @php $scheduleHasContent = $schedule->hasContent(); @endphp
+                    <div class="group relative overflow-hidden bg-white border border-slate-200 rounded-3xl p-8 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/10 hover:-translate-y-2 hover:border-blue-200">
+                        <div class="absolute top-0 right-0 p-6 opacity-5 group-hover:scale-110 transition-transform">
+                            <i data-feather="calendar" class="w-24 h-24 text-blue-900"></i>
+                        </div>
+                        <div class="relative z-10 flex flex-col h-full">
+                            <h3 class="text-blue-600 font-bold text-xs uppercase tracking-widest mb-2">Timetable</h3>
+                            <h2 class="text-2xl font-bold text-blue-900 mb-4 uppercase">
+                                {{ ($schedule && $schedule->title) ? $schedule->title : 'Event Schedule' }}
+                            </h2>
+                            <p class="text-slate-500 font-light line-clamp-3 mb-8 text-justify">
+                                {{ $scheduleHasContent ? Str::limit(strip_tags($schedule->body), 120) : 'The detailed schedule is currently being finalized.' }}
+                            </p>
+                            <div class="mt-auto">
                                 @if($scheduleHasContent)
-                                    <span class="inline-flex items-center gap-1 text-sm text-blue-700 font-semibold group-hover:gap-2 transition-all">
-                                        Read More <i data-feather="arrow-right" class="w-4 h-4"></i>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                @if($scheduleHasContent)
-                    </a>
-                @else
-                    </div>
-                @endif
-
-            </div>
-
-            {{-- ── Search ── --}}
-            <div class="w-full max-w-7xl flex flex-col gap-10 mx-auto">
-                <div class="flex items-center w-full mx-auto px-3 py-2 bg-white border border-slate-200 rounded-full shadow-lg focus-within:border-blue-900 transition-all">
-                    <div class="pl-4 text-slate-400">
-                        <i data-feather="search" class="w-5 h-5"></i>
-                    </div>
-                    <input
-                        type="text"
-                        placeholder="Find your informations..."
-                        class="flex-1 bg-transparent border-none focus:ring-0 px-4 py-2 text-slate-800 outline-none"
-                    />
-                    <button class="bg-blue-900 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-800 transition-colors cursor-pointer">
-                        Search
-                    </button>
-                </div>
-
-                {{-- ── Announcement Cards ── --}}
-                <div class="flex justify-center gap-10 flex-wrap">
-                    @forelse($announcements as $ann)
-                        @php $annHasContent = $ann->hasContent(); @endphp
-
-                        @if($annHasContent)
-                            <a href="{{ route('information.show', $ann->slug) }}"
-                                class="group grid gap-3 bg-white shadow-2xl p-5 rounded-3xl border border-blue-50 max-w-sm flex-1 min-w-64
-                                       hover:-translate-y-2 hover:border-blue-900 hover:shadow-xl cursor-pointer transition-all duration-300">
-                        @else
-                            <div class="group grid gap-3 bg-white shadow-2xl p-5 rounded-3xl border border-blue-50 max-w-sm flex-1 min-w-64 cursor-default">
-                        @endif
-
-                                @if($ann->hasContent())
-
-                                    @if($ann->image_url)
-                                        <div class="w-full h-36 rounded-xl overflow-hidden">
-                                            <img src="{{ $ann->image_url }}"
-                                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                                alt="{{ $ann->title }}">
-                                        </div>
-                                    @endif
-
-                                    @if($ann->title)
-                                        <h1 class="bg-[#BEDBFF] text-[11.72px] w-fit py-1 px-5 rounded-lg text-blue-900 font-medium">
-                                            {{ $ann->title }}
-                                        </h1>
-                                    @else
-                                        <span class="bg-[#BEDBFF] text-[11.72px] w-fit py-1 px-5 rounded-lg text-blue-900 font-medium">Announcement</span>
-                                    @endif
-
-                                    <p class="text-[15.75px] font-light text-slate-600 line-clamp-3">
-                                        {{ Str::limit(strip_tags($ann->body), 140) }}
-                                    </p>
-
-                                    <div class="flex items-center justify-between border-t border-slate-100 pt-2 mt-auto">
-                                        <div class="flex gap-1.5 items-center text-black/40">
-                                            <i data-feather="clock" class="w-3 h-3"></i>
-                                            <span class="text-[11px] font-light">{{ $ann->time_ago }}</span>
-                                        </div>
-                                        @if($annHasContent)
-                                            <span class="inline-flex items-center gap-1 text-xs text-blue-700 font-semibold ml-auto group-hover:gap-2 transition-all">
-                                                Read More <i data-feather="arrow-right" class="w-3 h-3"></i>
-                                            </span>
-                                        @endif
-                                    </div>
-
+                                    <a href="{{ route('information.show', 'schedule') }}" class="inline-flex items-center gap-2 bg-blue-900 text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-blue-800 transition shadow-lg shadow-blue-900/20">
+                                        View Timeline <i data-feather="arrow-right" class="w-4 h-4"></i>
+                                    </a>
                                 @else
-                                    <div class="flex flex-col items-center justify-center py-10 gap-3 text-black/30">
-                                        <i data-feather="bell-off" class="w-8 h-8"></i>
-                                        <p class="text-sm font-light text-center">No recent information available.<br>Check back later.</p>
-                                    </div>
+                                    <span class="text-slate-400 text-xs italic">Available Soon</span>
                                 @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                        @if($annHasContent)
-                            </a>
-                        @else
+                {{-- 2. SEARCH & LIST AREA --}}
+                <div class="max-w-5xl mx-auto space-y-10">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 border-t border-slate-100 pt-16">
+                        <h2 class="text-2xl font-bold text-blue-900 uppercase tracking-tighter">Latest Announcements</h2>
+                        
+                        {{-- Search Bar --}}
+                        <form method="GET" action="{{ route('information.index') }}" class="relative w-full md:w-96 group">
+                            <input type="text" name="search" value="{{ $keyword ?? '' }}" placeholder="Search news..." 
+                                class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-3 pl-12 pr-4 outline-none focus:ring-2 focus:ring-blue-900/10 focus:border-blue-900 focus:bg-white transition-all">
+                            <i data-feather="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-blue-900 transition-colors"></i>
+                        </form>
+                    </div>
+
+                    {{-- Posts Grid --}}
+                    @if($announcements->isEmpty())
+                        <div class="text-center py-20 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200">
+                            <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                                <i data-feather="info" class="text-slate-300 w-8 h-8"></i>
+                            </div>
+                            <p class="text-slate-400 font-medium">No results found for your search.</p>
+                        </div>
+                    @else
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            @foreach($announcements as $ann)
+                                <a href="{{ route('information.show', $ann->slug) }}" class="group flex flex-col bg-white border border-blue-200 rounded-xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:border-blue-900">
+                                    <span class="bg-blue-50 text-blue-600 text-[10px] font-black uppercase tracking-widest w-fit px-3 py-1 rounded-lg mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                                        News
+                                    </span>
+                                    <h3 class="text-xl font-bold text-blue-900 leading-tight mb-3 group-hover:text-blue-600 transition-colors">
+                                        {{ $ann->title }}
+                                    </h3>
+                                    <p class="text-slate-500 text-sm font-light line-clamp-3 mb-6">
+                                        {{ Str::limit(strip_tags($ann->body), 100) }}
+                                    </p>
+                                    <div class="mt-auto flex items-center gap-2 text-slate-400 text-[11px] font-medium uppercase tracking-tighter">
+                                        <i data-feather="clock" class="w-3.5 h-3.5"></i>
+                                        {{ $ann->time_ago }}
+                                    </div>
+                                </a>
+                            @endforeach
+                        </div>
+
+                        {{-- Custom Pagination --}}
+                        @if($announcements->hasPages())
+                            <div class="flex justify-center pt-10">
+                                {{ $announcements->links() }}
                             </div>
                         @endif
-
-                    @empty
-                        <div class="w-full py-12 flex flex-col items-center gap-3 text-black/30 border border-dashed border-blue-100 rounded-2xl">
-                            <i data-feather="info" class="w-8 h-8"></i>
-                            <p class="text-sm font-light">No announcements at this time.</p>
-                        </div>
-                    @endforelse
+                    @endif
                 </div>
             </div>
-
         </div>
     </section>
 

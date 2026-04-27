@@ -11,9 +11,11 @@ use App\Http\Controllers\InformationController;
 
 // Public routes
 Route::get('/', fn() => view('home'));
-Route::get('/information',   fn() => view('information',   ['title' => 'Hall of Informations']));
-Route::get('/information/{slug}', [InformationController::class, 'show'])
-    ->name('information.show');
+
+// Information routes - now controller-based for search + pagination
+Route::get('/information',          [InformationController::class, 'index'])->name('information.index');
+Route::get('/information/{slug}',   [InformationController::class, 'show'])->name('information.show');
+
 Route::get('/symposium',     fn() => view('symposium',     ['title' => 'Symposium']));
 Route::get('/about',         fn() => view('about',         ['title' => 'About Us']));
 Route::get('/archive',       fn() => view('archive',       ['title' => 'Archives']));
@@ -70,10 +72,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::delete('/speakers/{speaker}',      [AdminSpeakerController::class, 'destroy'])->name('admin.speaker.destroy');
 
     // Informations CRUD
-    Route::get   ('/informations',                        [AdminInformationController::class, 'index'])  ->name('admin.information.index');
-    Route::get   ('/informations/create',                 [AdminInformationController::class, 'create']) ->name('admin.information.create');
-    Route::post  ('/informations',                        [AdminInformationController::class, 'store'])  ->name('admin.information.store');
-    Route::get   ('/informations/{information}/edit',     [AdminInformationController::class, 'edit'])   ->name('admin.information.edit');
-    Route::put   ('/informations/{information}',          [AdminInformationController::class, 'update']) ->name('admin.information.update');
-    Route::delete('/informations/{information}',          [AdminInformationController::class, 'destroy'])->name('admin.information.destroy');
+    Route::get   ('/informations',                    [AdminInformationController::class, 'index'])  ->name('admin.information.index');
+    Route::get   ('/informations/create',             [AdminInformationController::class, 'create']) ->name('admin.information.create');
+    Route::post  ('/informations',                    [AdminInformationController::class, 'store'])  ->name('admin.information.store');
+    Route::get   ('/informations/{information}/edit', [AdminInformationController::class, 'edit'])   ->name('admin.information.edit');
+    Route::put   ('/informations/{information}',      [AdminInformationController::class, 'update']) ->name('admin.information.update');
+    Route::delete('/informations/{information}',      [AdminInformationController::class, 'destroy'])->name('admin.information.destroy');
 });

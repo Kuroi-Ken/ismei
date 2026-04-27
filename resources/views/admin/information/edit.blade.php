@@ -1,4 +1,4 @@
-<x-admin-layout title="Edit Information">
+<x-admin-layout title="Edit Post">
 
     @if(session('success'))
         <div class="mb-5 px-5 py-3 bg-green-100 border border-green-300 text-green-800 rounded-xl text-sm flex items-center gap-2">
@@ -13,20 +13,22 @@
             <i data-feather="arrow-left" class="w-4 h-4"></i>
         </a>
         <div>
-            <h1 class="text-2xl font-bold text-blue-900">Edit Information</h1>
+            <h1 class="text-2xl font-bold text-blue-900">Edit Post</h1>
             <p class="text-sm text-black/40 mt-0.5">
                 Editing:
-                <span class="font-medium text-blue-900">{{ $information->label }}</span>
+                <span class="font-medium text-blue-900">{{ $information->title ?? $information->label }}</span>
                 @if($information->type === 'fixed')
                     <span class="ml-2 text-xs px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full">Fixed</span>
                 @else
-                    <span class="ml-2 text-xs px-2 py-0.5 bg-amber-100 text-amber-700 rounded-full">Announcement</span>
+                    <span class="ml-2 text-xs px-2 py-0.5 bg-amber-100 text-amber-700 rounded-full">Post</span>
+                @endif
+                @if($information->release_date)
+                    <span class="ml-2 text-xs text-black/30">· Published {{ $information->release_date }}</span>
                 @endif
             </p>
         </div>
     </div>
 
-    {{-- enctype="multipart/form-data" is REQUIRED for file upload --}}
     <form action="{{ route('admin.information.update', $information->id) }}"
           method="POST"
           enctype="multipart/form-data">
@@ -36,11 +38,13 @@
         <div class="bg-white rounded-2xl shadow p-7 mb-5">
             <div class="flex items-start gap-3 mb-6">
                 <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-900 flex-shrink-0">
-                    <i data-feather="{{ $information->type === 'fixed' ? 'file-text' : 'bell' }}" class="w-5 h-5"></i>
+                    <i data-feather="{{ $information->type === 'fixed' ? 'file-text' : 'edit' }}" class="w-5 h-5"></i>
                 </div>
                 <div>
                     <h2 class="text-[18px] font-semibold text-blue-900">{{ $information->label }}</h2>
-                    <p class="text-sm text-black/50">Update the content below. Supports rich text and a featured image.</p>
+                    <p class="text-sm text-black/50">
+                        Update the content below. Supports rich text, a featured image, and an additional image below the body.
+                    </p>
                 </div>
             </div>
 

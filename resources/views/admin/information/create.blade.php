@@ -1,4 +1,4 @@
-<x-admin-layout title="Add Announcement">
+<x-admin-layout title="Add Post">
 
     <div class="mb-6 flex items-center gap-3">
         <a href="{{ route('admin.information.index') }}"
@@ -6,12 +6,13 @@
             <i data-feather="arrow-left" class="w-4 h-4"></i>
         </a>
         <div>
-            <h1 class="text-2xl font-bold text-blue-900">Add New Announcement</h1>
-            <p class="text-sm text-black/40 mt-0.5">Fill in the details below to add a new announcement card.</p>
+            <h1 class="text-2xl font-bold text-blue-900">Add New Post</h1>
+            <p class="text-sm text-black/40 mt-0.5">
+                Fill in the details below. Release date will be set automatically.
+            </p>
         </div>
     </div>
 
-    {{-- enctype="multipart/form-data" is REQUIRED for file upload --}}
     <form action="{{ route('admin.information.store') }}"
           method="POST"
           enctype="multipart/form-data">
@@ -20,13 +21,13 @@
         <div class="bg-white rounded-2xl shadow p-7 mb-5">
             <div class="flex items-start gap-3 mb-6">
                 <div class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600 flex-shrink-0">
-                    <i data-feather="bell" class="w-5 h-5"></i>
+                    <i data-feather="file-plus" class="w-5 h-5"></i>
                 </div>
                 <div>
-                    <h2 class="text-[18px] font-semibold text-blue-900">Announcement Details</h2>
+                    <h2 class="text-[18px] font-semibold text-blue-900">Post Details</h2>
                     <p class="text-sm text-black/50">
-                        Leave body empty to show a "no recent info" placeholder on the front-end.
-                        Time is set automatically.
+                        Add a featured image, body content, and an optional additional image below the body.
+                        Release date is set automatically when you save.
                     </p>
                 </div>
             </div>
@@ -42,7 +43,7 @@
             <button type="submit"
                 class="bg-blue-900 hover:bg-blue-800 text-white text-sm font-medium px-8 py-2.5 rounded-xl transition flex items-center gap-2">
                 <i data-feather="save" class="w-4 h-4"></i>
-                Save Announcement
+                Save Post
             </button>
         </div>
     </form>
