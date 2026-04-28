@@ -95,7 +95,7 @@
                                 </div>
 
                                 @if($speaker->bio)
-                                    <div class="prose prose-blue max-w-none text-[17px] leading-relaxed 
+                                    <div class="prose prose-blue border rounded-md bg-white px-2 max-w-none text-[17px] leading-relaxed 
                                                 max-h-72 overflow-y-auto pr-2
                                                 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                                         {!! $speaker->bio !!}
@@ -105,7 +105,7 @@
                                 @if($speaker->presentation_abstract)
                                     <div class="flex {{ $loop->even ? 'justify-end' : 'justify-start' }}">
                                         <button onclick="toggleSlide(this)"
-                                            class="mx-auto flex gap-3 px-6 py-2 mt-10 rounded-3xl bg-blue-50 border-2 border-blue-900 text-blue-900 cursor-pointer hover:bg-blue-900 hover:text-white transition-all">
+                                            class="mx-auto flex gap-3 px-6 py-2 rounded-3xl bg-blue-50 border-2 border-blue-900 text-blue-900 cursor-pointer hover:bg-blue-900 hover:text-white transition-all">
                                             <span class="pb-1">See The Keynote Presentation</span>
                                             <i data-feather="chevron-right" class="my-auto"></i>
                                         </button>

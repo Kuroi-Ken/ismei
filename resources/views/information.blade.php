@@ -61,7 +61,7 @@
 
                     {{-- Card: Schedule --}}
                     @php $scheduleHasContent = $schedule->hasContent(); @endphp
-                    <div class="group relative overflow-hidden bg-white border border-slate-200 rounded-3xl p-8 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/10 hover:-translate-y-2 hover:border-blue-200">
+                    <div class="group relative overflow-hidden bg-white border border-blue-900 rounded-3xl p-8 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/10 hover:-translate-y-2">
                         <div class="absolute top-0 right-0 p-6 opacity-5 group-hover:scale-110 transition-transform">
                             <i data-feather="calendar" class="w-24 h-24 text-blue-900"></i>
                         </div>
@@ -110,7 +110,7 @@
                     @else
                         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                             @foreach($announcements as $ann)
-                                <a href="{{ route('information.show', $ann->slug) }}" class="group flex flex-col bg-white border border-blue-200 rounded-xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:border-blue-900">
+                                <a href="{{ route('information.show', $ann->slug) }}" class="group flex flex-col bg-white border border-blue-200 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:border-blue-900">
                                     <span class="bg-blue-50 text-blue-600 text-[10px] font-black uppercase tracking-widest w-fit px-3 py-1 rounded-lg mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                                         News
                                     </span>
@@ -140,9 +140,7 @@
         </div>
     </section>
 
-    {{-- ═══════════════════════════════════════════════════ --}}
-    {{-- Poster & Pamphlet                                   --}}
-    {{-- ═══════════════════════════════════════════════════ --}}
+    {{-- poster/pamflet --}}
     <section class="bg-white flex flex-col my-30 gap-30">
         <div class="flex flex-col gap-12">
             <div class="leading-tight text-center">

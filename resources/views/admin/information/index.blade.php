@@ -183,7 +183,7 @@
             <span class="text-xs text-black/40">(max 3 displayed publicly)</span>
         </div>
         <a href="{{ route('admin.pamflet.create') }}"
-            class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-xl transition flex items-center gap-2">
+            class="bg-blue-900 hover:bg-blue-800 text-white text-sm font-medium px-4 py-2 rounded-xl transition flex items-center gap-2">
             <i data-feather="plus" class="w-4 h-4"></i>
             Add Pamflet
         </a>
